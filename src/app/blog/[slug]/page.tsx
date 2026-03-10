@@ -6,9 +6,11 @@ import { Markdown } from '@/components/site/markdown'
 import {
   formatDisplayDate,
   getBaseMetadata,
+  getMetadataImageUrl,
   getBlogPostBySlug,
   getBlogPosts,
 } from '@/lib/content'
+import { siteConfig, siteUrl } from '@/lib/site'
 
 export function generateStaticParams() {
   return getBlogPosts().map((post) => ({ slug: post.slug }))
@@ -33,6 +35,14 @@ export function generateMetadata({
       title: post.title,
       description: post.excerpt,
       pathName: `/blog/${post.slug}`,
+      ogImagePath: `/blog/${post.slug}/opengraph-image`,
+      openGraphType: 'article',
+      publishedTime: post.publishedAt,
+      modifiedTime: post.updatedAt,
+      authors: [post.author],
+      section: post.category,
+      tags: post.tags,
+      keywords: [post.category, ...post.tags, post.author],
     })
   })
 }
@@ -49,8 +59,38 @@ export default async function BlogPostPage({
     notFound()
   }
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    image: [getMetadataImageUrl(`/blog/${post.slug}/opengraph-image`)],
+    author: {
+      '@type': 'Person',
+      name: post.author,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/android-chrome-512x512.png`,
+      },
+    },
+    mainEntityOfPage: `${siteUrl}/blog/${post.slug}`,
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    articleSection: post.category,
+    keywords: post.tags.join(', '),
+  }
+
   return (
     <main id="main-content">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <section className="section-space border-b border-border/60">
         <div className="page-shell max-w-4xl">
           <Link href="/blog" className="inline-flex items-center text-sm text-muted-foreground">

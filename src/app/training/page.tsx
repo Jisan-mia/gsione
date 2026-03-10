@@ -8,6 +8,14 @@ export const metadata: Metadata = getBaseMetadata({
   description:
     'Institutional training areas built around GSi’s real work in cyber governance, AI policy, strategic risk, and public policy analysis.',
   pathName: '/training',
+  ogImagePath: '/training/opengraph-image',
+  keywords: [
+    'GSi training',
+    'cyber governance training',
+    'AI policy workshop',
+    'Bangladesh institutional training',
+    'public policy training',
+  ],
 })
 
 export default function TrainingPage() {

@@ -8,6 +8,14 @@ export const metadata: Metadata = getBaseMetadata({
   description:
     'Markdown-backed analysis and commentary from GSi on cybersecurity, AI policy, governance, environmental risk, and digital rights.',
   pathName: '/blog',
+  ogImagePath: '/blog/opengraph-image',
+  keywords: [
+    'GSi blog',
+    'Bangladesh policy analysis',
+    'cybersecurity commentary',
+    'AI policy Bangladesh',
+    'governance writing',
+  ],
 })
 
 export default function BlogIndexPage() {

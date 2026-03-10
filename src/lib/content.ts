@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import type { Metadata } from 'next'
 import matter from 'gray-matter'
 import { cache } from 'react'
 import { siteConfig, siteUrl } from '@/lib/site'
@@ -22,6 +23,7 @@ export interface BlogPost {
   tags: string[]
   content: string
   readingTime: string
+  updatedAt?: string
 }
 
 export interface TrainingProgram {
@@ -36,6 +38,7 @@ export interface TrainingProgram {
   focusAreas: string[]
   outcomes: string[]
   content: string
+  updatedAt?: string
 }
 
 function readMarkdownFiles(directory: string) {
@@ -45,10 +48,12 @@ function readMarkdownFiles(directory: string) {
     .map((file) => {
       const fullPath = path.join(directory, file)
       const raw = fs.readFileSync(fullPath, 'utf8')
+      const stats = fs.statSync(fullPath)
       const parsed = matter(raw)
 
       return {
         slug: path.basename(file, '.md'),
+        updatedAt: stats.mtime.toISOString(),
         ...parsed,
       }
     })
@@ -74,7 +79,7 @@ function sortByDate<T extends { publishedAt?: string; slug: string }>(items: T[]
 }
 
 export const getBlogPosts = cache((): BlogPost[] => {
-  const posts = readMarkdownFiles(blogRoot).map(({ slug, data, content }) => {
+  const posts = readMarkdownFiles(blogRoot).map(({ slug, data, content, updatedAt }) => {
     const frontmatter = data as Omit<BlogPost, 'slug' | 'content' | 'readingTime'>
 
     return {
@@ -82,6 +87,7 @@ export const getBlogPosts = cache((): BlogPost[] => {
       slug,
       content,
       readingTime: getReadingTime(content),
+      updatedAt,
     }
   })
 
@@ -97,13 +103,14 @@ export const getBlogPostBySlug = cache((slug: string) =>
 )
 
 export const getTrainingPrograms = cache((): TrainingProgram[] => {
-  const programs = readMarkdownFiles(trainingRoot).map(({ slug, data, content }) => {
+  const programs = readMarkdownFiles(trainingRoot).map(({ slug, data, content, updatedAt }) => {
     const frontmatter = data as Omit<TrainingProgram, 'slug' | 'content'>
 
     return {
       ...frontmatter,
       slug,
       content,
+      updatedAt,
     }
   })
 
@@ -130,49 +137,110 @@ export function formatDisplayDate(date?: string) {
   }).format(new Date(date))
 }
 
+export function getMetadataImageUrl(pathName = '/opengraph-image') {
+  if (pathName.startsWith('http://') || pathName.startsWith('https://')) {
+    return pathName
+  }
+
+  return `${siteUrl}${pathName.startsWith('/') ? pathName : `/${pathName}`}`
+}
+
 export function getBaseMetadata({
   title,
   description,
   pathName = '/',
+  ogImagePath = '/opengraph-image',
+  openGraphType = 'website',
+  publishedTime,
+  modifiedTime,
+  authors,
+  section,
+  tags,
+  keywords,
 }: {
   title?: string
   description?: string
   pathName?: string
-}) {
+  ogImagePath?: string
+  openGraphType?: 'website' | 'article'
+  publishedTime?: string
+  modifiedTime?: string
+  authors?: string[]
+  section?: string
+  tags?: string[]
+  keywords?: string[]
+}): Metadata {
   const resolvedTitle = title
     ? `${title} | ${siteConfig.shortName}`
     : `${siteConfig.name} | ${siteConfig.tagline.replace(/ • /g, ' | ')}`
   const resolvedDescription = description || siteConfig.description
   const url = `${siteUrl}${pathName}`
+  const imageUrl = getMetadataImageUrl(ogImagePath)
+  const openGraph: Metadata['openGraph'] =
+    openGraphType === 'article'
+      ? {
+          title: resolvedTitle,
+          description: resolvedDescription,
+          url,
+          type: 'article',
+          siteName: siteConfig.name,
+          locale: 'en_US',
+          images: [
+            {
+              url: imageUrl,
+              width: 1200,
+              height: 630,
+              alt: resolvedTitle,
+            },
+          ],
+          publishedTime,
+          modifiedTime,
+          authors,
+          section,
+          tags,
+        }
+      : {
+          title: resolvedTitle,
+          description: resolvedDescription,
+          url,
+          type: 'website',
+          siteName: siteConfig.name,
+          locale: 'en_US',
+          images: [
+            {
+              url: imageUrl,
+              width: 1200,
+              height: 630,
+              alt: resolvedTitle,
+            },
+          ],
+        }
 
   return {
     metadataBase: new URL(siteUrl),
     title: resolvedTitle,
     description: resolvedDescription,
+    keywords,
     alternates: {
       canonical: url,
     },
-    openGraph: {
-      title: resolvedTitle,
-      description: resolvedDescription,
-      url,
-      type: 'website' as const,
-      siteName: siteConfig.name,
-      locale: 'en_US',
-      images: [
-        {
-          url: `${siteUrl}/logo.webp`,
-          width: 1200,
-          height: 630,
-          alt: `${siteConfig.name} logo`,
-        },
-      ],
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+        'max-video-preview': -1,
+      },
     },
+    openGraph,
     twitter: {
-      card: 'summary_large_image' as const,
+      card: 'summary_large_image',
       title: resolvedTitle,
       description: resolvedDescription,
-      images: [`${siteUrl}/logo.webp`],
+      images: [imageUrl],
     },
   }
 }

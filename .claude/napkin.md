@@ -7,6 +7,9 @@
 | 2026-03-10 | self | Tried to extract the LinkedIn PDF before checking available PDF tooling | Fall back to founder-supplied markdown or install a parser only if the PDF adds unique missing data |
 | 2026-03-10 | self | Used unquoted YAML frontmatter for a title containing a colon, which broke markdown parsing during build | Quote YAML values that contain colons or other ambiguous punctuation |
 | 2026-03-10 | self | Initialized theme state through `setState` inside an effect, which tripped the React lint rule | Read the initial DOM-backed theme inside the `useState` initializer when possible |
+| 2026-03-11 | self | Used a DOM-backed `useState` initializer for a Client Component label, which caused SSR and first-client-render attributes to diverge | Keep the initial render deterministic for hydration, then sync DOM-derived theme state in an effect |
+| 2026-03-11 | self | Tried to fix the theme hydration mismatch by setting state in an effect, which immediately re-triggered the React lint rule | For a simple theme toggle, prefer a stable server-safe label and derive the current theme from the DOM only inside the click handler |
+| 2026-03-11 | self | Left both a generated `robots.ts` route and a static `public/robots.txt` in place, which creates unnecessary duplication in SEO plumbing | Keep one authoritative robots source and let the App Router metadata route own it |
 
 ## User Preferences
 - Prefer TypeScript for new code, spaces for indentation, single quotes, camelCase.

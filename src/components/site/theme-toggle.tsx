@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { Moon, Sun } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
@@ -13,17 +12,12 @@ function applyTheme(nextTheme: Theme) {
 }
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof document === 'undefined') {
-      return 'light'
-    }
-
-    return document.documentElement.classList.contains('dark') ? 'dark' : 'light'
-  })
-
   const handleToggle = () => {
-    const nextTheme = theme === 'dark' ? 'light' : 'dark'
-    setTheme(nextTheme)
+    const currentTheme: Theme = document.documentElement.classList.contains('dark')
+      ? 'dark'
+      : 'light'
+    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark'
+
     applyTheme(nextTheme)
   }
 
@@ -32,7 +26,7 @@ export function ThemeToggle() {
       type="button"
       variant="ghost"
       size="icon"
-      aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+      aria-label="Toggle theme"
       onClick={handleToggle}
       className="rounded-full border border-border/70 bg-background/80 backdrop-blur-sm"
     >

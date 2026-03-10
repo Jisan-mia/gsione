@@ -16,6 +16,14 @@ export const metadata: Metadata = getBaseMetadata({
   description:
     'About the Governance and Security Initiative, including leadership profiles for Asheer Shah and Mohammad M.H. Joy, research areas, publications, and public engagement.',
   pathName: '/about',
+  ogImagePath: '/about/opengraph-image',
+  keywords: [
+    'GSi leadership',
+    'Asheer Shah',
+    'Mohammad M.H. Joy',
+    'Governance and Security Initiative',
+    'policy research Bangladesh',
+  ],
 })
 
 export default function AboutPage() {

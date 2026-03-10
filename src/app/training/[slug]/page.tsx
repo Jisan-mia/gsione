@@ -5,9 +5,11 @@ import { ArrowLeft } from 'lucide-react'
 import { Markdown } from '@/components/site/markdown'
 import {
   getBaseMetadata,
+  getMetadataImageUrl,
   getTrainingProgramBySlug,
   getTrainingPrograms,
 } from '@/lib/content'
+import { siteConfig, siteUrl } from '@/lib/site'
 
 export function generateStaticParams() {
   return getTrainingPrograms().map((program) => ({ slug: program.slug }))
@@ -32,6 +34,8 @@ export function generateMetadata({
       title: program.title,
       description: program.summary,
       pathName: `/training/${program.slug}`,
+      ogImagePath: `/training/${program.slug}/opengraph-image`,
+      keywords: [...program.focusAreas, ...program.audience, program.level],
     })
   })
 }
@@ -48,8 +52,31 @@ export default async function TrainingDetailPage({
     notFound()
   }
 
+  const courseSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: program.title,
+    description: program.summary,
+    image: [getMetadataImageUrl(`/training/${program.slug}/opengraph-image`)],
+    provider: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteUrl,
+    },
+    educationalLevel: program.level,
+    teaches: program.focusAreas,
+    audience: program.audience.map((item) => ({
+      '@type': 'Audience',
+      audienceType: item,
+    })),
+  }
+
   return (
     <main id="main-content">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+      />
       <section className="section-space border-b border-border/60">
         <div className="page-shell max-w-4xl">
           <Link href="/training" className="inline-flex items-center text-sm text-muted-foreground">
