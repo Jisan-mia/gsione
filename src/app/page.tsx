@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {
   ArrowRight,
+  ArrowUpRight,
   Landmark,
   MonitorCog,
   RadioTower,
@@ -11,7 +12,8 @@ import {
 } from 'lucide-react'
 import { ContactForm } from '@/components/site/contact-form'
 import { getFeaturedBlogPosts, getFeaturedTrainingPrograms } from '@/lib/content'
-import { founderProfile, homeContent, siteConfig } from '@/lib/site'
+import { homeContent, leadershipProfiles, siteConfig } from '@/lib/site'
+import { cn } from '@/lib/utils'
 
 const focusIcons = [
   ShieldCheck,
@@ -158,47 +160,88 @@ export default function HomePage() {
       </section>
 
       <section className="section-space">
-        <div className="page-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div className="section-card relative overflow-hidden p-4 sm:p-6">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/70" />
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem]">
-              <Image
-                src={founderProfile.image}
-                alt={founderProfile.name}
-                fill
-                className="object-cover object-top"
-                sizes="(min-width: 1024px) 40vw, 100vw"
-                priority
-              />
-            </div>
-          </div>
-          <div>
-            <span className="eyebrow">Founder profile</span>
+        <div className="page-shell">
+          <div className="max-w-3xl">
+            <span className="eyebrow">Leadership</span>
             <h2 className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl">
-              {founderProfile.name}
+              Two founders shaping the platform from complementary paths.
             </h2>
-            <p className="mt-3 text-lg text-primary">{founderProfile.role}</p>
-            <div className="mt-6 space-y-4 text-base leading-8 text-muted-foreground">
-              {founderProfile.introduction.slice(0, 2).map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/about"
-                className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground"
+            <p className="mt-4 text-base leading-8 text-muted-foreground">
+              GSi is led by founders with backgrounds in governance, international affairs,
+              cybersecurity, policy research, advisory work, and public-facing institutional
+              engagement.
+            </p>
+          </div>
+          <div className="mt-10 space-y-6 lg:space-y-8">
+            {leadershipProfiles.map((profile, index) => (
+              <article
+                key={profile.id}
+                className="section-card mx-auto grid max-w-6xl gap-8 overflow-hidden p-5 sm:p-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-10 lg:p-8"
               >
-                Read the full profile
-              </Link>
-              <a
-                href={siteConfig.socials.founderLinkedIn}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-border/80 bg-card px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
-              >
-                View LinkedIn
-              </a>
-            </div>
+                <div
+                  className={cn(
+                    'relative mx-auto w-full max-w-[34rem]',
+                    index % 2 === 1 && 'lg:order-2',
+                  )}
+                >
+                  <div className="relative mx-auto aspect-[4/5] max-w-[30rem] overflow-hidden rounded-[1.5rem]">
+                    <Image
+                      src={profile.image}
+                      alt={profile.name}
+                      fill
+                      className="object-cover object-center"
+                      sizes="(min-width: 1024px) 40vw, 100vw"
+                      priority={index === 0}
+                    />
+                  </div>
+                </div>
+                <div
+                  className={cn(
+                    'mx-auto flex h-full w-full max-w-[42rem] flex-col justify-center py-2 sm:py-4',
+                    index % 2 === 1 && 'lg:order-1',
+                  )}
+                >
+                  <span className="eyebrow w-fit">{profile.role}</span>
+                  <h2 className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl">
+                    {profile.name}
+                  </h2>
+                  <p className="mt-3 text-lg text-primary">{profile.affiliation}</p>
+                  <div className="mt-6 space-y-4 text-base leading-8 text-muted-foreground">
+                    {profile.introduction.slice(0, 2).map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                  <ul className="mt-6 space-y-3 text-sm leading-7 text-muted-foreground sm:text-base">
+                    {profile.highlights.map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <span className="mt-2 h-2.5 w-2.5 rounded-full bg-accent" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <Link
+                      href={`/about#${profile.id}`}
+                      className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground"
+                    >
+                      View full profile
+                    </Link>
+                    {profile.socialLinks.map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center justify-center rounded-full border border-border/80 bg-card px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
+                      >
+                        {link.label}
+                        <ArrowUpRight className="ml-2 h-4 w-4" />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>

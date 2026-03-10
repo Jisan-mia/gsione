@@ -12,6 +12,8 @@ export const siteConfig = {
   location: 'Shyamoli, Road 1, House 7/7, Dhaka, Bangladesh',
   socials: {
     founderLinkedIn: 'https://www.linkedin.com/in/asheer-shah',
+    coFounderLinkedIn: 'https://www.linkedin.com/in/mahmudul-hassan-joy-4891a83a5/',
+    coFounderFacebook: 'https://www.facebook.com/profile.php?id=61582858552667',
     companyLinkedIn: 'https://www.linkedin.com/company/gsi-dhaka/',
     facebook: 'https://www.facebook.com/share/1AmTQ9jbVu/?mibextid=wwXIfr',
     instagram:
@@ -38,7 +40,7 @@ export const homeContent = {
       'GSi brings together policy research, executive learning, public commentary, and community-facing initiatives across governance, national security, cybersecurity, AI policy, and urban reform.',
     points: [
       'Based in Dhaka and focused on Bangladesh within wider regional and global debates.',
-      'Founder-led work spanning policy research, training delivery, and public engagement.',
+      'Led by founders with academic and professional experience spanning Bangladesh, the UK, the Netherlands, and the United States.',
       'A public-facing platform for political, cybersecurity, governance, and nonprofit work.',
     ],
   },
@@ -160,13 +162,35 @@ export const organizationProfile = {
 } as const
 
 export const founderProfile = {
+  id: 'asheer-shah',
   name: 'Asheer Shah',
   role: 'Founder & Director',
+  affiliation: 'Governance and Security Initiative (GSi)',
   image: '/founder.jpg',
   introduction: [
     'Asheer Shah is the Founder and Director of the Governance and Security Initiative (GSi). His work focuses on cybersecurity governance, artificial intelligence policy, emerging technologies, climate security, and international affairs.',
     'He completed a Master’s degree in Cybersecurity Governance at Leiden University in the Netherlands, where his work focused on cyber espionage, digital crime, behavioural cybersecurity, and AI governance. He previously studied Global Studies and Governance at Independent University, Bangladesh, with a minor in Economics.',
     'His professional experience includes work with the Clingendael Institute in the Netherlands and the Bangladesh Institute of Peace and Security Studies (BIPSS), alongside research, writing, training delivery, and public commentary across policy platforms and media outlets.',
+  ],
+  highlights: [
+    'Cybersecurity governance, AI policy, and emerging technology risk',
+    'Academic background spanning Leiden University and Independent University, Bangladesh',
+    'Research, training, and public commentary across policy and media platforms',
+  ],
+  educationList: [
+    'Master’s in Cybersecurity Governance, Leiden University, Netherlands',
+    'Bachelor’s in Global Studies and Governance, Independent University, Bangladesh',
+  ],
+  experienceList: [
+    'Clingendael Institute, Netherlands',
+    'Bangladesh Institute of Peace and Security Studies (BIPSS)',
+    'Founder and Director, Governance and Security Initiative',
+  ],
+  socialLinks: [
+    {
+      label: 'LinkedIn',
+      href: siteConfig.socials.founderLinkedIn,
+    },
   ],
   education: [
     {
@@ -272,6 +296,57 @@ export const founderProfile = {
     },
   ],
 } as const
+
+export const coFounderProfile = {
+  id: 'mohammad-m-h-joy',
+  name: 'Mohammad M.H. Joy',
+  role: 'Co-founder of GSi ThinkTank',
+  affiliation: 'Founder & CEO of GSiTech Solutions & Consultancy',
+  image: '/founder2.jpeg',
+  leadershipTitle: 'Founder & CEO of GSiTech Solutions & Consultancy',
+  introduction: [
+    'Mohammad M.H. Joy is the Founder & CEO of GSiTech Solutions & Consultancy and Co-founder of GSi ThinkTank. He brings international academic and professional experience spanning the United Kingdom and the United States.',
+    'His background includes advisory, claims-handling, and research roles across higher education, service operations, and international policy research.',
+    'He studied Asia and international affairs in the United Kingdom, governance in Bangladesh, and earlier completed an Associate of Science degree in the United States.',
+  ],
+  highlights: [
+    'International academic and professional experience spanning the UK and the US',
+    'Background in student advisory, claims handling, and policy research',
+    'Academic pathway across the University of Nottingham, IUB, and Troy University',
+  ],
+  educationList: [
+    'MA in Asia & International Studies, University of Nottingham, United Kingdom',
+    'BSS in Global Studies & Governance, Independent University, Bangladesh',
+    'Associate of Science, Troy University, Alabama, United States',
+  ],
+  experienceList: [
+    'Student Advisor, The Open University, United Kingdom',
+    'Claims Handler, Home Repair Network Limited, United Kingdom',
+    'Research Assistant, Carnegie Endowment for International Peace, United States',
+  ],
+  socialLinks: [
+    {
+      label: 'LinkedIn',
+      href: siteConfig.socials.coFounderLinkedIn,
+    },
+    {
+      label: 'Facebook',
+      href: siteConfig.socials.coFounderFacebook,
+    },
+  ],
+  experience: [
+    'Student Advisor at The Open University, United Kingdom',
+    'Claims Handler at Home Repair Network Limited, United Kingdom',
+    'Research Assistant at Carnegie Endowment for International Peace, United States',
+  ],
+  education: [
+    'MA in Asia & International Studies, University of Nottingham, United Kingdom',
+    'BSS in Global Studies & Governance, Independent University, Bangladesh',
+    'Associate of Science, Troy University, Alabama, United States',
+  ],
+} as const
+
+export const leadershipProfiles = [founderProfile, coFounderProfile] as const
 
 export const legalContent = {
   privacy: {

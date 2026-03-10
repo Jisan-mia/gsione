@@ -19,6 +19,9 @@
 - Remove unused vulnerable packages when they are not part of the final architecture instead of carrying audit noise forward.
 - For markdown-heavy publishing pages, explicit ReactMarkdown component styling is more reliable than hoping generic `prose` classes communicate enough structure on their own.
 - Strip internal provenance language from public copy; a production website should not talk about “source files”, “archives”, or “founder-supplied” notes.
+- When multiple leaders matter equally, avoid “primary profile plus small add-on card” layouts; use mirrored or parallel sections with equal visual weight.
+- For portrait-led leadership sections, center both the crop and the content cards; top-cropping and uneven panel widths make the profiles feel misaligned even when the grid is technically correct.
+- When a user wants a premium profile row, prefer one rounded parent surface around the whole composition; separate bordered cards inside the same row can make the layout feel fragmented.
 
 ## Patterns That Don't Work
 - Assuming supporting repo memory files already exist.
