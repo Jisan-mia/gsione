@@ -4,7 +4,7 @@ excerpt: Landfill burning, toxic air, and weak enforcement have turned urban pol
 category: Environment
 author: Syeda Nafisa Anjum
 authorRole: Researcher at GSi
-sourceLabel: GSi source archive
+sourceLabel: GSi
 featured: false
 tags:
   - Air pollution
@@ -65,7 +65,3 @@ That is why the article closes on a moral claim rather than a technical one. Cle
 ## Bottom line
 
 Environmental policy becomes credible only when it can stop preventable harm, not merely describe it. On this issue, enforcement is part of public health.
-
-## Source note
-
-This web edition is adapted from the article text supplied in the project source files.

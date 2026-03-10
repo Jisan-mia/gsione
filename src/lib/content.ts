@@ -120,7 +120,7 @@ export const getTrainingProgramBySlug = cache((slug: string) =>
 
 export function formatDisplayDate(date?: string) {
   if (!date) {
-    return 'Source archive'
+    return 'Undated'
   }
 
   return new Intl.DateTimeFormat('en-US', {

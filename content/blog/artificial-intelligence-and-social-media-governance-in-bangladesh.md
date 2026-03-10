@@ -4,7 +4,7 @@ excerpt: A policy framing of deepfakes, disinformation, platform moderation, and
 category: AI Policy
 author: Asheer Shah
 authorRole: Founder & Director at GSi
-sourceLabel: GSi source archive
+sourceLabel: GSi
 featured: true
 tags:
   - Artificial intelligence
@@ -93,7 +93,3 @@ That is the challenge GSi’s work keeps returning to, because it is no longer a
 ## Working principle
 
 AI policy should be assessed by what it protects and what it risks. If a system claims to improve safety while weakening transparency and due process, it is creating a second governance problem instead of solving the first one.
-
-## Source note
-
-This web edition is adapted from the article text supplied in the project source files.

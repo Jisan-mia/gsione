@@ -19,11 +19,11 @@ export default function BlogIndexPage() {
         <div className="page-shell">
           <span className="eyebrow">Blog</span>
           <h1 className="mt-5 max-w-4xl text-5xl font-semibold text-balance text-foreground sm:text-6xl">
-            Source-backed writing, now published from markdown files.
+            Writing and commentary from GSi.
           </h1>
           <p className="mt-6 max-w-3xl text-base leading-8 text-muted-foreground sm:text-lg">
-            This archive pulls from the material you provided for the organisation, then rewrites it
-            into structured, indexable pages instead of shallow client-rendered cards.
+            Essays, analysis, and policy commentary on cybersecurity, AI governance, information
+            integrity, environmental risk, and public accountability.
           </p>
         </div>
       </section>

@@ -4,7 +4,7 @@ excerpt: The costs of digital violence against women expose legal loopholes that
 category: Governance
 author: Syeda Nafisa Anjum
 authorRole: Digital Security Researcher at GSi
-sourceLabel: GSi source archive
+sourceLabel: GSi
 featured: false
 tags:
   - Women
@@ -76,7 +76,3 @@ The policy goal should be simple: a connected society should not require women t
 ## What stronger law should do
 
 Better legal design should narrow ambiguity, speed up response, and reduce the burden on victims to prove that a clearly harmful act counts as a real offence.
-
-## Source note
-
-This web edition is adapted from the article text supplied in the project source files.

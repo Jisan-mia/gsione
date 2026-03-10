@@ -103,9 +103,9 @@ export default function HomePage() {
               A sharper structure than a generic brochure site.
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-8 text-muted-foreground">
-              The public material behind GSi points to a clear model: research, public
-              commentary, training, and issue-based initiatives. The site now reflects that
-              instead of pretending to be a large generic consultancy.
+              GSi works across research, public commentary, training, and issue-based
+              initiatives. The site now reflects that structure directly instead of falling back
+              on generic consultancy language.
             </p>
           </div>
           <div className="mt-10 grid gap-5 lg:grid-cols-2">
@@ -265,19 +265,19 @@ export default function HomePage() {
         <div className="page-shell">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-3xl">
-              <span className="eyebrow">Latest analysis</span>
-              <h2 className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl">
-                Real content from the source archive, republished through markdown.
-              </h2>
-              <p className="mt-4 text-base leading-8 text-muted-foreground">
-                The blog is now markdown-backed and server-rendered, so the organisation can keep
-                publishing essays without burying them in JSON blobs or placeholder client code.
-              </p>
-            </div>
-            <Link href="/blog" className="inline-flex items-center text-sm font-medium text-primary">
-              Browse the archive
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
+            <span className="eyebrow">Latest analysis</span>
+            <h2 className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl">
+              Published analysis, now managed through a proper editorial workflow.
+            </h2>
+            <p className="mt-4 text-base leading-8 text-muted-foreground">
+              The blog is markdown-backed and server-rendered, so the organisation can keep
+              publishing essays cleanly without burying them in JSON blobs or placeholder client code.
+            </p>
+          </div>
+          <Link href="/blog" className="inline-flex items-center text-sm font-medium text-primary">
+            Browse all articles
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
           </div>
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {featuredPosts.map((post) => (

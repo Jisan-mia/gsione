@@ -4,7 +4,7 @@ excerpt: A first-order policy response to plastic leakage, clogged drainage, and
 category: Environment
 author: Abul Kasem
 authorRole: Governance Researcher at GSi
-sourceLabel: GSi source archive
+sourceLabel: GSi
 featured: false
 tags:
   - Plastic waste
@@ -80,7 +80,3 @@ The bigger point is not rhetorical purity. It is that city governance becomes mo
 ## Policy direction
 
 This is a case where small first-order changes can build visible public legitimacy. If people see cleaner drains and fewer flooded streets, environmental policy stops feeling abstract.
-
-## Source note
-
-This web edition is adapted from the article text supplied in the project source files.

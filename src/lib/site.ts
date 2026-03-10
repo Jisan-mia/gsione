@@ -149,9 +149,9 @@ export const homeContent = {
 
 export const organizationProfile = {
   overview:
-    'Governance and Security Initiative (GSi) is presented across its public channels as an independent think tank and training academy based in Dhaka. Its public-facing work sits at the intersection of governance, national security, cybersecurity, AI policy, and broader public-interest reform.',
+    'Governance and Security Initiative (GSi) is an independent think tank and training academy based in Dhaka. Its work sits at the intersection of governance, national security, cybersecurity, AI policy, and broader public-interest reform.',
   positioning:
-    'Rather than operating as a generic corporate consultancy, GSi combines research, dialogue, training, and issue-based civic engagement. The public record points to a model that blends a think tank, training academy, and cybersecurity-oriented advisory practice.',
+    'GSi combines research, dialogue, training, and issue-based civic engagement. It works as a platform that blends a think tank, a training academy, and a cybersecurity-oriented advisory practice.',
   principles: [
     'Evidence-backed policy writing over generic institutional language.',
     'Bangladesh-rooted analysis with regional and global relevance.',
@@ -165,7 +165,7 @@ export const founderProfile = {
   image: '/founder.jpg',
   introduction: [
     'Asheer Shah is the Founder and Director of the Governance and Security Initiative (GSi). His work focuses on cybersecurity governance, artificial intelligence policy, emerging technologies, climate security, and international affairs.',
-    'According to the founder-supplied profile, he completed a Master’s degree in Cybersecurity Governance at Leiden University in the Netherlands, where his work focused on cyber espionage, digital crime, behavioural cybersecurity, and AI governance. He previously studied Global Studies and Governance at Independent University, Bangladesh, with a minor in Economics.',
+    'He completed a Master’s degree in Cybersecurity Governance at Leiden University in the Netherlands, where his work focused on cyber espionage, digital crime, behavioural cybersecurity, and AI governance. He previously studied Global Studies and Governance at Independent University, Bangladesh, with a minor in Economics.',
     'His professional experience includes work with the Clingendael Institute in the Netherlands and the Bangladesh Institute of Peace and Security Studies (BIPSS), alongside research, writing, training delivery, and public commentary across policy platforms and media outlets.',
   ],
   education: [

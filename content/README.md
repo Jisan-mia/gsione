@@ -27,7 +27,7 @@ tags:
 Write the article in markdown.
 ```
 
-`publishedAt` is optional. If it is omitted, the site shows `Source archive`.
+`publishedAt` is optional. If it is omitted, the site shows `Undated`.
 
 ## Training pages
 

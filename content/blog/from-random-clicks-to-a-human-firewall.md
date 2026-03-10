@@ -1,6 +1,6 @@
 ---
 title: From Random Clicks to a Human Firewall
-excerpt: First-order defenses against phishing in Bangladesh, adapted from GSi's public writing and LinkedIn publication archive.
+excerpt: First-order defenses against phishing in Bangladesh and the institutional routines that can reduce preventable cyber loss.
 category: Cybersecurity
 author: Abul Kasem
 authorRole: Governance Researcher at GSi
@@ -112,7 +112,3 @@ That is how random clicks stop being a systemic weakness and start becoming the 
 ## Takeaway for institutions
 
 The most valuable anti-phishing improvement is usually not a new slogan or a yearly workshop. It is a repeatable operating routine that makes the safe action easier than the unsafe one.
-
-## Source note
-
-This web edition is based on GSi social publishing material supplied in the project source files, including the LinkedIn post archive.

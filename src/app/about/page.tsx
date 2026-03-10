@@ -8,7 +8,7 @@ import { founderProfile, organizationProfile, siteConfig } from '@/lib/site'
 export const metadata: Metadata = getBaseMetadata({
   title: 'About',
   description:
-    'About the Governance and Security Initiative and founder Asheer Shah, with source-backed biography, research areas, and public engagement.',
+    'About the Governance and Security Initiative and founder Asheer Shah, including biography, research areas, publications, and public engagement.',
   pathName: '/about',
 })
 
@@ -221,7 +221,7 @@ export default function AboutPage() {
         <div className="page-shell">
           <div className="section-card p-6 sm:p-8">
             <h2 className="text-4xl font-semibold text-balance text-foreground sm:text-5xl">
-              Continue with the writing and training archive.
+              Continue with the writing and training pages.
             </h2>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link

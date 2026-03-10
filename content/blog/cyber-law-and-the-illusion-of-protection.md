@@ -4,7 +4,7 @@ excerpt: When personal data is leaked in Bangladesh, the legal question is no lo
 category: Digital Rights
 author: Nusrat Khan
 authorRole: Cybersecurity Researcher at GSi
-sourceLabel: GSi source archive
+sourceLabel: GSi
 featured: true
 tags:
   - Data protection
@@ -89,7 +89,3 @@ If the answer remains uncertain, then the country is still living with the illus
 ## Practical test
 
 The strongest signal of serious reform is not a new law by itself. It is whether regulators can investigate major failures, publish decisions, and impose consequences that change corporate behaviour.
-
-## Source note
-
-This web edition is adapted from the article text supplied in the project source files.
