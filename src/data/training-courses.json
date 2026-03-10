@@ -1,0 +1,480 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "slug": "cybersecurity-governance-executive",
+      "title": "Cybersecurity Governance for Executives",
+      "subtitle": "Strategic Leadership in the Digital Age",
+      "excerpt": "A comprehensive executive program designed to equip senior leaders with the knowledge and frameworks needed to lead cybersecurity strategy and governance within their organizations.",
+      "category": "Cybersecurity",
+      "level": "Executive",
+      "duration": "3 Days",
+      "format": "In-Person / Virtual",
+      "price": "$2,500",
+      "featured": true,
+      "instructor": "Asheer Shah",
+      "instructorTitle": "Founder & Director, GSi",
+      "instructorBio": "Cybersecurity governance expert with extensive experience in AI governance, digital security policy, and strategic affairs across South Asia.",
+      "nextCohort": "February 15, 2024",
+      "enrollmentDeadline": "February 10, 2024",
+      "maxParticipants": 25,
+      "certificateIncluded": true,
+      "cpdPoints": 24,
+      "tags": ["Cybersecurity", "Governance", "Executive Leadership", "Risk Management"],
+      "highlights": [
+        "Develop strategic cybersecurity frameworks aligned with organizational objectives",
+        "Understand emerging threats including AI-powered attacks and nation-state operations",
+        "Build board-level communication skills for cyber risk reporting",
+        "Network with fellow executives facing similar challenges"
+      ],
+      "learningOutcomes": [
+        "Develop and implement comprehensive cybersecurity governance frameworks",
+        "Evaluate and manage cyber risks at the strategic level",
+        "Lead incident response and crisis management effectively",
+        "Build organizational culture that supports security objectives",
+        "Navigate regulatory requirements and international standards"
+      ],
+      "curriculum": [
+        {
+          "week": 1,
+          "title": "Foundations of Cybersecurity Governance",
+          "description": "Understanding the strategic landscape and governance frameworks",
+          "topics": ["Cyber threat landscape for executives", "Governance frameworks and standards", "Risk appetite and tolerance setting", "Board oversight responsibilities"]
+        },
+        {
+          "week": 2,
+          "title": "Risk Management and Strategic Planning",
+          "description": "Building robust risk management capabilities",
+          "topics": ["Cyber risk quantification", "Third-party risk management", "Security investment prioritization", "Strategic planning integration"]
+        },
+        {
+          "week": 3,
+          "title": "Leadership and Crisis Management",
+          "description": "Leading through incidents and building resilience",
+          "topics": ["Incident response leadership", "Crisis communication", "Business continuity planning", "Post-incident recovery and learning"]
+        }
+      ],
+      "whoShouldAttend": [
+        "C-Suite executives and board members",
+        "Senior government officials responsible for cybersecurity policy",
+        "Directors and senior managers in security-related roles",
+        "Leaders transitioning into cybersecurity governance positions"
+      ],
+      "prerequisites": [
+        "Senior leadership experience in government or enterprise",
+        "Basic understanding of organizational risk management",
+        "Interest in cybersecurity governance at the strategic level"
+      ],
+      "testimonials": [
+        {
+          "name": "Ahmed Hassan",
+          "organization": "Ministry of ICT",
+          "quote": "This program transformed my understanding of cybersecurity governance. The frameworks provided are immediately applicable to our national cyber strategy."
+        },
+        {
+          "name": "Dr. Priya Sharma",
+          "organization": "Regional Development Bank",
+          "quote": "As a board member, I now feel confident in my oversight responsibilities for cyber risk. Excellent program for non-technical executives."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "slug": "ai-governance-policy-practitioners",
+      "title": "AI Governance for Policy Practitioners",
+      "subtitle": "Navigating the AI Policy Landscape",
+      "excerpt": "An intensive program for policymakers and advisors seeking to understand AI technologies, their societal implications, and effective governance approaches.",
+      "category": "Governance",
+      "level": "Advanced",
+      "duration": "4 Weeks",
+      "format": "Online",
+      "price": "$1,800",
+      "featured": true,
+      "instructor": "Asheer Shah",
+      "instructorTitle": "Founder & Director, GSi",
+      "instructorBio": "Expert in AI governance with research focus on international AI policy frameworks and ethical AI deployment.",
+      "nextCohort": "March 1, 2024",
+      "enrollmentDeadline": "February 25, 2024",
+      "maxParticipants": 30,
+      "certificateIncluded": true,
+      "cpdPoints": 32,
+      "tags": ["Artificial Intelligence", "Policy", "Governance", "Ethics"],
+      "highlights": [
+        "Deep dive into AI technologies and their policy implications",
+        "Analyze global AI governance frameworks and regulations",
+        "Develop AI policy recommendations for your context",
+        "Engage with case studies from multiple jurisdictions"
+      ],
+      "learningOutcomes": [
+        "Understand key AI technologies and their societal impacts",
+        "Analyze and compare international AI governance approaches",
+        "Develop policy frameworks for responsible AI development",
+        "Address ethical considerations in AI deployment",
+        "Build stakeholder engagement strategies for AI policy"
+      ],
+      "curriculum": [
+        {
+          "week": 1,
+          "title": "Understanding AI Technologies",
+          "description": "Technical foundations for policymakers",
+          "topics": ["Machine learning fundamentals", "Large language models and generative AI", "Computer vision and autonomous systems", "AI capabilities and limitations"]
+        },
+        {
+          "week": 2,
+          "title": "Global AI Governance Landscape",
+          "description": "International frameworks and approaches",
+          "topics": ["EU AI Act and regulatory models", "US approach to AI governance", "China's AI strategy", "Developing country perspectives"]
+        },
+        {
+          "week": 3,
+          "title": "AI Ethics and Society",
+          "description": "Ethical considerations in AI deployment",
+          "topics": ["Bias and fairness in AI systems", "Privacy and surveillance concerns", "AI and employment", "Environmental impacts"]
+        },
+        {
+          "week": 4,
+          "title": "Policy Development Workshop",
+          "description": "Developing practical AI policy frameworks",
+          "topics": ["Stakeholder engagement", "Regulatory instruments", "Implementation challenges", "Policy lab: developing recommendations"]
+        }
+      ],
+      "whoShouldAttend": [
+        "Government officials working on technology policy",
+        "Policy advisors in international organizations",
+        "Researchers focusing on technology governance",
+        "Civil society advocates working on AI issues"
+      ],
+      "prerequisites": [
+        "Experience in policy development or analysis",
+        "Interest in technology and its societal impacts",
+        "No technical AI background required"
+      ],
+      "testimonials": [
+        {
+          "name": "Fatima Begum",
+          "organization": "Ministry of Science & Technology",
+          "quote": "This course gave me the knowledge and confidence to lead our national AI strategy development. Highly recommended for all policy practitioners."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "slug": "cyber-espionage-digital-crime-analysis",
+      "title": "Cyber Espionage and Digital Crime Analysis",
+      "subtitle": "Investigative Techniques and Strategic Analysis",
+      "excerpt": "A specialized program for security professionals investigating cyber espionage operations and digital crimes, combining technical analysis with strategic intelligence perspectives.",
+      "category": "Security",
+      "level": "Advanced",
+      "duration": "5 Days",
+      "format": "In-Person",
+      "price": "$3,200",
+      "featured": false,
+      "instructor": "Asheer Shah",
+      "instructorTitle": "Founder & Director, GSi",
+      "instructorBio": "Specialized expertise in cyber espionage analysis, digital crime investigation, and behavioral cybersecurity.",
+      "nextCohort": "April 8, 2024",
+      "enrollmentDeadline": "April 1, 2024",
+      "maxParticipants": 20,
+      "certificateIncluded": true,
+      "cpdPoints": 40,
+      "tags": ["Cyber Espionage", "Digital Forensics", "Intelligence Analysis", "Cybercrime"],
+      "highlights": [
+        "Hands-on analysis of real-world cyber espionage cases",
+        "Learn attribution methodologies and their limitations",
+        "Understand nation-state cyber operations",
+        "Develop strategic intelligence products"
+      ],
+      "learningOutcomes": [
+        "Analyze sophisticated cyber operations using intelligence methodologies",
+        "Understand the tactics, techniques, and procedures of state actors",
+        "Apply attribution frameworks to cyber incidents",
+        "Produce strategic intelligence assessments",
+        "Coordinate with international partners on cyber investigations"
+      ],
+      "curriculum": [
+        {
+          "week": 1,
+          "title": "State-Sponsored Cyber Operations",
+          "description": "Understanding nation-state actors and their objectives",
+          "topics": ["Major state actors and their capabilities", "Strategic objectives of cyber espionage", "Targeting methodologies", "Case study analyses"]
+        },
+        {
+          "week": 2,
+          "title": "Technical Analysis Methods",
+          "description": "Investigative techniques for cyber operations",
+          "topics": ["Malware analysis fundamentals", "Network forensics", "Threat intelligence platforms", "Indicator development"]
+        },
+        {
+          "week": 3,
+          "title": "Attribution and Intelligence",
+          "description": "Determining responsibility for cyber operations",
+          "topics": ["Attribution methodologies", "Intelligence collection challenges", "Legal and policy considerations", "Strategic implications"]
+        },
+        {
+          "week": 4,
+          "title": "Strategic Analysis and Reporting",
+          "description": "Producing actionable intelligence products",
+          "topics": ["Intelligence writing standards", "Briefing senior leaders", "Coordinating with partners", "Practical exercise"]
+        }
+      ],
+      "whoShouldAttend": [
+        "Intelligence analysts focusing on cyber threats",
+        "Law enforcement investigators",
+        "Security researchers and threat intelligence professionals",
+        "Government officials in national security roles"
+      ],
+      "prerequisites": [
+        "Professional experience in cybersecurity or intelligence",
+        "Technical understanding of network and system operations",
+        "Security clearance or equivalent professional standing"
+      ],
+      "testimonials": [
+        {
+          "name": "Mohammad Ali",
+          "organization": "National Security Agency",
+          "quote": "The case studies and practical exercises were invaluable. I immediately applied the methodologies learned to ongoing investigations."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "slug": "climate-security-policy-analysis",
+      "title": "Climate Security Policy Analysis",
+      "subtitle": "Integrating Climate and Security Frameworks",
+      "excerpt": "An interdisciplinary program exploring the intersection of climate change and security policy, designed for analysts and policymakers addressing climate-related security challenges.",
+      "category": "Governance",
+      "level": "Professional",
+      "duration": "3 Weeks",
+      "format": "Hybrid",
+      "price": "$1,500",
+      "featured": false,
+      "instructor": "Asheer Shah",
+      "instructorTitle": "Founder & Director, GSi",
+      "instructorBio": "Published researcher on Bay of Bengal climate security with expertise in regional climate-security nexus analysis.",
+      "nextCohort": "May 6, 2024",
+      "enrollmentDeadline": "May 1, 2024",
+      "maxParticipants": 35,
+      "certificateIncluded": true,
+      "cpdPoints": 24,
+      "tags": ["Climate Security", "Policy Analysis", "Environmental Policy", "Regional Security"],
+      "highlights": [
+        "Understand climate-security linkages in South Asian context",
+        "Develop integrated assessment frameworks",
+        "Analyze regional cooperation mechanisms",
+        "Produce actionable policy recommendations"
+      ],
+      "learningOutcomes": [
+        "Analyze climate-related security risks using established frameworks",
+        "Integrate climate considerations into security planning",
+        "Develop regional cooperation proposals",
+        "Communicate climate security challenges to diverse audiences"
+      ],
+      "curriculum": [
+        {
+          "week": 1,
+          "title": "Climate Security Foundations",
+          "description": "Understanding the climate-security nexus",
+          "topics": ["Climate as security issue", "Vulnerability assessment frameworks", "Regional climate projections", "Case study: Bay of Bengal"]
+        },
+        {
+          "week": 2,
+          "title": "Policy Integration",
+          "description": "Mainstreaming climate in security policy",
+          "topics": ["National security strategies", "Defense planning implications", "Disaster risk reduction", "Migration and displacement"]
+        },
+        {
+          "week": 3,
+          "title": "Regional Cooperation",
+          "description": "Building cooperative frameworks",
+          "topics": ["Regional mechanisms", "Bilateral approaches", "International partnerships", "Policy development workshop"]
+        }
+      ],
+      "whoShouldAttend": [
+        "Environmental policy specialists",
+        "Security analysts and planners",
+        "Disaster management professionals",
+        "International development practitioners"
+      ],
+      "prerequisites": [
+        "Background in policy analysis or related field",
+        "Interest in climate and security issues",
+        "Regional expertise helpful but not required"
+      ],
+      "testimonials": [
+        {
+          "name": "Dr. Rahman",
+          "organization": "Climate Change Department",
+          "quote": "This program helped me understand how to effectively integrate climate considerations into our national security planning."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "slug": "digital-governance-public-sector",
+      "title": "Digital Governance for Public Sector Leaders",
+      "subtitle": "Transforming Government in the Digital Age",
+      "excerpt": "A comprehensive program for public sector leaders seeking to leverage digital technologies for improved governance, service delivery, and citizen engagement.",
+      "category": "Governance",
+      "level": "Professional",
+      "duration": "4 Weeks",
+      "format": "Online",
+      "price": "$1,200",
+      "featured": false,
+      "instructor": "Asheer Shah",
+      "instructorTitle": "Founder & Director, GSi",
+      "instructorBio": "Expert in digital governance frameworks with experience advising governments on digital transformation strategies.",
+      "nextCohort": "June 3, 2024",
+      "enrollmentDeadline": "May 27, 2024",
+      "maxParticipants": 40,
+      "certificateIncluded": true,
+      "cpdPoints": 28,
+      "tags": ["Digital Government", "E-Governance", "Public Sector", "Digital Transformation"],
+      "highlights": [
+        "Design citizen-centric digital services",
+        "Build institutional capacity for digital governance",
+        "Navigate digital transformation challenges",
+        "Learn from regional and global best practices"
+      ],
+      "learningOutcomes": [
+        "Develop digital government strategies aligned with national priorities",
+        "Design and implement citizen-centric digital services",
+        "Address institutional and cultural barriers to digital transformation",
+        "Ensure digital inclusion and accessibility"
+      ],
+      "curriculum": [
+        {
+          "week": 1,
+          "title": "Digital Government Foundations",
+          "description": "Understanding the digital transformation imperative",
+          "topics": ["Digital government evolution", "Citizen-centric design", "Digital infrastructure", "Regional case studies"]
+        },
+        {
+          "week": 2,
+          "title": "Service Design and Delivery",
+          "description": "Creating effective digital public services",
+          "topics": ["Service design principles", "Platform approaches", "Interoperability", "Mobile-first strategies"]
+        },
+        {
+          "week": 3,
+          "title": "Institutional Transformation",
+          "description": "Building organizational capacity for digital governance",
+          "topics": ["Change management", "Digital skills development", "Agile governance", "Data-driven decision making"]
+        },
+        {
+          "week": 4,
+          "title": "Implementation Workshop",
+          "description": "Developing practical transformation plans",
+          "topics": ["Stakeholder engagement", "Implementation challenges", "Monitoring and evaluation", "Action planning"]
+        }
+      ],
+      "whoShouldAttend": [
+        "Government officials leading digital initiatives",
+        "E-government program managers",
+        "Public sector IT leaders",
+        "Policy advisors on digital transformation"
+      ],
+      "prerequisites": [
+        "Experience in government or public sector",
+        "Interest in digital transformation",
+        "No technical background required"
+      ],
+      "testimonials": [
+        {
+          "name": "Karim Uddin",
+          "organization": "Local Government Division",
+          "quote": "Practical insights and frameworks that I could immediately apply to our digital service transformation project."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "slug": "indo-pacific-strategic-studies",
+      "title": "Indo-Pacific Strategic Studies",
+      "subtitle": "Regional Dynamics and Policy Implications",
+      "excerpt": "An advanced program examining the strategic dynamics of the Indo-Pacific region, with focus on the implications for South Asian nations.",
+      "category": "Security",
+      "level": "Advanced",
+      "duration": "6 Weeks",
+      "format": "Online",
+      "price": "$2,000",
+      "featured": false,
+      "instructor": "Asheer Shah",
+      "instructorTitle": "Founder & Director, GSi",
+      "instructorBio": "Specialized expertise in Indo-Pacific strategic affairs with focus on regional security dynamics and emerging technology competition.",
+      "nextCohort": "July 15, 2024",
+      "enrollmentDeadline": "July 8, 2024",
+      "maxParticipants": 30,
+      "certificateIncluded": true,
+      "cpdPoints": 36,
+      "tags": ["Indo-Pacific", "Strategic Affairs", "Regional Security", "Geopolitics"],
+      "highlights": [
+        "Analyze major power competition in the Indo-Pacific",
+        "Understand South Asia's strategic position",
+        "Examine maritime security challenges",
+        "Develop policy responses to regional dynamics"
+      ],
+      "learningOutcomes": [
+        "Analyze strategic competition in the Indo-Pacific",
+        "Assess implications for South Asian nations",
+        "Understand maritime security architecture",
+        "Develop policy recommendations for regional engagement"
+      ],
+      "curriculum": [
+        {
+          "week": 1,
+          "title": "Indo-Pacific Strategic Framework",
+          "description": "Understanding the regional architecture",
+          "topics": ["Defining the Indo-Pacific", "Historical context", "Key actors and interests", "Regional institutions"]
+        },
+        {
+          "week": 2,
+          "title": "Major Power Dynamics",
+          "description": "US-China competition and regional responses",
+          "topics": ["US Indo-Pacific strategy", "China's regional ambitions", "Japan and Australia roles", "India's Act East policy"]
+        },
+        {
+          "week": 3,
+          "title": "Maritime Security",
+          "description": "Oceanic competition and cooperation",
+          "topics": ["South China Sea disputes", "Indian Ocean dynamics", "Maritime trade routes", "Naval modernization"]
+        },
+        {
+          "week": 4,
+          "title": "Technology Competition",
+          "description": "Emerging technology in strategic competition",
+          "topics": ["Technology decoupling", "Supply chain security", "Digital connectivity", "AI and security"]
+        },
+        {
+          "week": 5,
+          "title": "South Asian Perspectives",
+          "description": "Implications for the subcontinent",
+          "topics": ["Strategic autonomy debates", "Economic connectivity", "Security partnerships", "Regional cooperation"]
+        },
+        {
+          "week": 6,
+          "title": "Policy Development",
+          "description": "Developing strategic recommendations",
+          "topics": ["Policy frameworks", "Risk assessment", "Engagement strategies", "Capstone exercise"]
+        }
+      ],
+      "whoShouldAttend": [
+        "Diplomats and foreign ministry officials",
+        "Defense and security analysts",
+        "Think tank researchers",
+        "Journalists covering regional affairs"
+      ],
+      "prerequisites": [
+        "Professional experience in foreign policy or security",
+        "Background in international relations helpful",
+        "Interest in regional strategic dynamics"
+      ],
+      "testimonials": [
+        {
+          "name": "Ambassador Retd. Khan",
+          "organization": "Foreign Service Academy",
+          "quote": "Comprehensive coverage of Indo-Pacific dynamics with excellent analysis of implications for South Asian nations."
+        }
+      ]
+    }
+  ]
+}
