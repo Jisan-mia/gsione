@@ -17,6 +17,7 @@
 - Start content-heavy website work by auditing the source documents first, then map them against the rendered pages.
 - Replace fake brochure metrics and unsupported claims with source-backed descriptions or omit them entirely.
 - Remove unused vulnerable packages when they are not part of the final architecture instead of carrying audit noise forward.
+- For markdown-heavy publishing pages, explicit ReactMarkdown component styling is more reliable than hoping generic `prose` classes communicate enough structure on their own.
 
 ## Patterns That Don't Work
 - Assuming supporting repo memory files already exist.

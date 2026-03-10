@@ -91,7 +91,9 @@ export default async function BlogPostPage({
 
       <section className="section-space">
         <div className="page-shell max-w-4xl">
-          <Markdown content={post.content} />
+          <article className="section-card p-6 sm:p-8 lg:p-10">
+            <Markdown content={post.content} />
+          </article>
         </div>
       </section>
     </main>

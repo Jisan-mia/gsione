@@ -77,19 +77,19 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3">
-          <span className="relative h-11 w-11 overflow-hidden rounded-2xl border border-border/70 bg-card shadow-sm">
+          <span className="relative h-11 w-11 overflow-hidden rounded-2xl bg-white shadow-sm">
             <Image
               src="/logo.webp"
               alt={`${siteConfig.name} logo`}
               fill
               sizes="44px"
-              className="object-cover"
+              className="object-contain p-1.5"
               priority
             />
           </span>
-          <span className="min-w-0">
-            <span className="block text-sm font-semibold tracking-wide text-foreground">
-              {siteConfig.shortName}
+          <span className="min-w-0 leading-tight">
+            <span className="block text-sm font-semibold tracking-wide text-foreground sm:text-base">
+              Governance and Security Initiative - GSi
             </span>
             <span className="block text-xs text-muted-foreground">{siteConfig.tagline}</span>
           </span>

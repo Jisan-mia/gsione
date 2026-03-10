@@ -35,7 +35,7 @@ export function SiteFooter() {
             {siteConfig.tagline}
           </p>
           <h2 className="mt-4 text-2xl font-semibold text-balance text-foreground">
-            {siteConfig.name}
+            Governance and Security Initiative - GSi
           </h2>
           <p className="mt-4 text-sm leading-7 text-muted-foreground">
             {siteConfig.description}

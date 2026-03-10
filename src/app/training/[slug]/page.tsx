@@ -106,7 +106,9 @@ export default async function TrainingDetailPage({
 
       <section className="section-space">
         <div className="page-shell max-w-4xl">
-          <Markdown content={program.content} />
+          <article className="section-card p-6 sm:p-8 lg:p-10">
+            <Markdown content={program.content} />
+          </article>
           <div className="section-card mt-10 p-6 sm:p-7">
             <h2 className="text-3xl font-semibold text-foreground">Discuss this programme</h2>
             <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
