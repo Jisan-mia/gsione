@@ -302,7 +302,7 @@ export const coFounderProfile = {
   name: 'Mohammad M.H. Joy',
   role: 'Co-founder of GSi ThinkTank',
   affiliation: 'Founder & CEO of GSiTech Solutions & Consultancy',
-  image: '/founder2.jpeg',
+  image: '/founder2.jpg',
   leadershipTitle: 'Founder & CEO of GSiTech Solutions & Consultancy',
   introduction: [
     'Mohammad M.H. Joy is the Founder & CEO of GSiTech Solutions & Consultancy and Co-founder of GSi ThinkTank. He brings international academic and professional experience spanning the United Kingdom and the United States.',
