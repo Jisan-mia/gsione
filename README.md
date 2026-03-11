@@ -1,49 +1,89 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+# Governance and Security Initiative (GSi) Website
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
+Official website for the Governance and Security Initiative (GSi), built with Next.js, TypeScript, and Tailwind CSS.
 
-## ✨ Technology Stack
+## Tech stack
 
-This scaffold provides a robust foundation built with:
+- Next.js 16 (App Router, standalone output)
+- TypeScript
+- Tailwind CSS v4 + shadcn/ui components
+- Markdown-driven content (`content/blog`, `content/training`)
+- Prisma (SQLite schema available for future data-backed features)
 
-### 🎯 Core Framework
+## Features
 
-- **⚡ Next.js 16** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
+- Public pages: home, about, training, blog, cookies, privacy, and terms
+- Dynamic blog and training detail pages from local Markdown files
+- SEO metadata, Open Graph images, sitemap, and robots.txt
+- Theming support (light/dark)
+- Accessible baseline patterns (skip link, semantic layout)
 
-### 🧩 UI Components & Styling
+## Project structure
 
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
+```text
+src/app            # Routes and page-level files
+src/components     # UI and site components
+src/lib            # Site config, content utilities, shared helpers
+content/blog       # Blog posts in Markdown
+content/training   # Training pages in Markdown
+prisma             # Prisma schema
+public             # Static assets
+```
 
-### 📋 Forms & Validation
+## Prerequisites
 
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
+- Node.js 20+
+- npm (or Bun if you want to run the production standalone server with the existing script)
 
-### 🔄 State Management & Data Fetching
+## Getting started
 
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Fetch** - Promise-based HTTP request
+1. Install dependencies:
 
-### 🗄️ Database & Backend
+   ```bash
+   npm install
+   ```
 
-- **🗄️ Prisma** - Next-generation TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
+2. Create a `.env` file (or `.env.local`) in project root:
 
-### 🎨 Advanced UI Features
+   ```env
+   NEXT_PUBLIC_SITE_URL=http://localhost:3000
+   DATABASE_URL="file:./dev.db"
+   ```
 
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
+3. Start development server:
 
-### 🌍 Internationalization & Utilities
+   ```bash
+   npm run dev
+   ```
 
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
+4. Open http://localhost:3000
+
+## Available scripts
+
+- `npm run dev` — Start Next.js dev server on port `3000` and write logs to `dev.log`
+- `npm run build` — Create production build with standalone output
+- `npm run start` — Start standalone server using Bun (`.next/standalone/server.js`)
+- `npm run lint` — Run ESLint
+- `npm run db:generate` — Generate Prisma client
+- `npm run db:push` — Push schema to database
+- `npm run db:migrate` — Create/apply development migration
+- `npm run db:reset` — Reset database and reapply migrations
+
+## Content management
+
+All editorial content is Markdown-based.
+
+- Add blog posts in `content/blog/*.md`
+- Add training pages in `content/training/*.md`
+
+Use the frontmatter formats described in `content/README.md`.
+
+## Deployment notes
+
+- `next.config.ts` is configured with `output: 'standalone'`
+- `Caddyfile` is included for reverse proxying to port `3000`
+- Set `NEXT_PUBLIC_SITE_URL` to your production domain for canonical/OG metadata
+
+## License
+
+This repository currently does not define a license. Add one if you plan to distribute it publicly.
