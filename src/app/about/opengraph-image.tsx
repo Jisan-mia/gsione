@@ -9,7 +9,7 @@ export default function AboutOpenGraphImage() {
     eyebrow: "About GSi",
     title: "Leadership, research, training, and public-facing policy work.",
     description:
-      "Meet the founders behind GSi and explore the platform’s work across governance, security, cybersecurity, and technology policy.",
-    meta: "Founders • Publications • Public engagement",
+      "Meet the founder of GSi and explore the platform's work across governance, security, cybersecurity, and technology policy.",
+    meta: "Founder • Publications • Public engagement",
   });
 }

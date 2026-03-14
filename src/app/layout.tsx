@@ -1,20 +1,20 @@
-import type { Metadata } from 'next'
-import { Manrope, Source_Serif_4 } from 'next/font/google'
-import { Toaster } from '@/components/ui/toaster'
-import { SiteFooter } from '@/components/site/footer'
-import { SiteHeader } from '@/components/site/header'
-import { siteConfig, siteUrl } from '@/lib/site'
-import './globals.css'
+import type { Metadata } from "next";
+import { Inter, Lora } from "next/font/google";
+import { Toaster } from "@/components/ui/toaster";
+import { SiteFooter } from "@/components/site/footer";
+import { SiteHeader } from "@/components/site/header";
+import { siteConfig, siteUrl } from "@/lib/site";
+import "./globals.css";
 
-const sans = Manrope({
-  subsets: ['latin'],
-  variable: '--font-sans',
-})
+const sans = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
-const serif = Source_Serif_4({
-  subsets: ['latin'],
-  variable: '--font-serif',
-})
+const serif = Lora({
+  subsets: ["latin"],
+  variable: "--font-serif",
+});
 
 const themeScript = `
   (function () {
@@ -26,7 +26,7 @@ const themeScript = `
       document.documentElement.style.colorScheme = theme;
     } catch (error) {}
   })();
-`
+`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -36,22 +36,27 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteUrl,
   },
-  manifest: '/manifest.webmanifest',
+  manifest: "/manifest.webmanifest",
   keywords: [
-    'Governance and Security Initiative',
-    'GSi Dhaka',
-    'cybersecurity governance',
-    'AI policy Bangladesh',
-    'governance think tank Dhaka',
-    'national security analysis Bangladesh',
-    'policy training Bangladesh',
+    "GSi",
+    "gsithinktank",
+    "gsithinktank.com",
+    "Governance and Security Initiative",
+    "GSi Dhaka",
+    "GSi Think Tank",
+    "cybersecurity governance",
+    "AI policy Bangladesh",
+    "governance think tank Dhaka",
+    "national security analysis Bangladesh",
+    "policy training Bangladesh",
+    "think tank Bangladesh",
   ],
   openGraph: {
     title: `${siteConfig.name} | Governance, security, and technology policy`,
     description: siteConfig.description,
     url: siteUrl,
     siteName: siteConfig.name,
-    type: 'website',
+    type: "website",
     images: [
       {
         url: `${siteUrl}/opengraph-image`,
@@ -62,7 +67,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: `${siteConfig.name} | Governance, security, and technology policy`,
     description: siteConfig.description,
     images: [`${siteUrl}/opengraph-image`],
@@ -73,29 +78,31 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-      'max-video-preview': -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
     },
   },
   icons: {
     icon: [
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
-    shortcut: '/favicon-32x32.png',
-    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+    shortcut: "/favicon-32x32.png",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
+    "@context": "https://schema.org",
+    "@type": "Organization",
     name: siteConfig.name,
     alternateName: siteConfig.shortName,
     url: siteUrl,
@@ -103,26 +110,28 @@ export default function RootLayout({
     description: siteConfig.description,
     email: siteConfig.email,
     address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Shyamoli, Road 1, House 7/7',
-      addressLocality: 'Dhaka',
-      addressCountry: 'Bangladesh',
+      "@type": "PostalAddress",
+      streetAddress: "Shyamoli, Road 1, House 7/7",
+      addressLocality: "Dhaka",
+      addressCountry: "Bangladesh",
     },
     sameAs: [
       siteConfig.socials.companyLinkedIn,
       siteConfig.socials.facebook,
       siteConfig.socials.instagram,
     ],
-  }
+  };
 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        <meta name="theme-color" content="#0f1d35" />
+        <meta name="theme-color" content="#1E40AF" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
         />
       </head>
       <body
@@ -142,5 +151,5 @@ export default function RootLayout({
         <Toaster />
       </body>
     </html>
-  )
+  );
 }

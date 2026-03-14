@@ -14,7 +14,7 @@ export function generateStaticParams() {
   return getBlogPosts().map((post) => ({ slug: post.slug }));
 }
 
-export default async function BlogPostOpenGraphImage({
+export default async function ArticleOpenGraphImage({
   params,
 }: {
   params: Promise<{ slug: string }>;
