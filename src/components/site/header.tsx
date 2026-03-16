@@ -76,11 +76,18 @@ function NavLinks({
 }
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
+
+  // Close mobile menu on route change and immediately restore scroll
+  useEffect(() => {
+    setMobileOpen(false);
+    document.body.style.overflow = '';
+  }, [pathname]);
 
   // Keep --header-h CSS variable in sync with actual header height
   useEffect(() => {
@@ -117,13 +124,20 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  // Lock body scroll when mobile nav is open
+  // Lock body scroll when mobile nav is open; always restore on cleanup
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = '';
     };
   }, [mobileOpen]);
+
+  // Guarantee scroll is restored when component unmounts
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
 
   return (
     <header
