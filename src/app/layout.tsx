@@ -3,6 +3,7 @@ import { Inter, Lora } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { SiteFooter } from "@/components/site/footer";
 import { SiteHeader } from "@/components/site/header";
+import { GlobalEffects } from "@/components/site/global-effects";
 import { siteConfig, siteUrl } from "@/lib/site";
 import "./globals.css";
 
@@ -144,6 +145,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <div className="relative flex min-h-screen flex-col">
+          <GlobalEffects />
           <SiteHeader />
           <div className="flex-1">{children}</div>
           <SiteFooter />

@@ -6,6 +6,11 @@ import {
   StaggerChildren,
 } from "@/components/site/animated-section";
 import {
+  TextReveal,
+  CursorGlow,
+  AnimatedLine,
+} from "@/components/site/interactive";
+import {
   formatDisplayDate,
   getBaseMetadata,
   getBlogPosts,
@@ -35,16 +40,20 @@ export default function ArticlesPage() {
       <section className="section-space border-b border-border/60">
         <div className="page-shell">
           <AnimatedSection>
-            <span className="eyebrow">GSi Articles</span>
-            <h1 className="mt-5 max-w-4xl text-5xl font-semibold text-balance text-foreground sm:text-6xl">
+            <span className="eyebrow shimmer">GSi Articles</span>
+            <TextReveal
+              as="h1"
+              className="mt-5 max-w-4xl text-5xl font-semibold text-balance text-foreground sm:text-6xl"
+            >
               Expert analysis and policy commentary from GSi.
-            </h1>
+            </TextReveal>
             <p className="mt-6 max-w-3xl text-base leading-8 text-muted-foreground sm:text-lg">
               In-depth articles on cybersecurity governance, AI policy,
               information integrity, environmental risk, and public
               accountability.
             </p>
           </AnimatedSection>
+          <AnimatedLine className="mt-8" />
         </div>
       </section>
 
@@ -57,46 +66,48 @@ export default function ArticlesPage() {
             <Link
               key={post.slug}
               href={`/articles/${post.slug}`}
-              className="group"
+              className="group h-full"
             >
-              <article className="section-card-interactive flex h-full flex-col p-6 sm:p-7">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <BookOpen className="h-5 w-5" />
+              <CursorGlow>
+                <article className="section-card-interactive flex h-full flex-col p-6 sm:p-7">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+                      <BookOpen className="h-5 w-5" />
+                    </div>
+                    <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.18em] text-primary">
+                      <span>{post.category}</span>
+                      <span className="text-muted-foreground">&middot;</span>
+                      <span>{formatDisplayDate(post.publishedAt)}</span>
+                    </div>
                   </div>
-                  <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.18em] text-primary">
-                    <span>{post.category}</span>
-                    <span className="text-muted-foreground">&middot;</span>
-                    <span>{formatDisplayDate(post.publishedAt)}</span>
+                  <h2 className="mt-4 text-3xl font-semibold text-balance text-foreground transition-colors group-hover:text-primary">
+                    {post.title}
+                  </h2>
+                  <p className="mt-3 flex-1 text-sm leading-7 text-muted-foreground sm:text-base">
+                    {post.excerpt}
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {post.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-border/70 bg-background px-3 py-1 text-xs text-muted-foreground transition-colors duration-300 group-hover:border-primary/30"
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
-                </div>
-                <h2 className="mt-4 text-3xl font-semibold text-balance text-foreground transition-colors group-hover:text-primary">
-                  {post.title}
-                </h2>
-                <p className="mt-3 flex-1 text-sm leading-7 text-muted-foreground sm:text-base">
-                  {post.excerpt}
-                </p>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-border/70 bg-background px-3 py-1 text-xs text-muted-foreground"
-                    >
-                      {tag}
+                  <div className="mt-6 flex items-center justify-between border-t border-border/70 pt-5 text-sm text-muted-foreground">
+                    <span>
+                      {post.author} &middot; {post.authorRole}
                     </span>
-                  ))}
-                </div>
-                <div className="mt-6 flex items-center justify-between border-t border-border/70 pt-5 text-sm text-muted-foreground">
-                  <span>
-                    {post.author} &middot; {post.authorRole}
+                    <span>{post.readingTime}</span>
+                  </div>
+                  <span className="mt-6 inline-flex items-center text-sm font-medium text-primary transition-colors group-hover:text-accent">
+                    Read full article
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-2" />
                   </span>
-                  <span>{post.readingTime}</span>
-                </div>
-                <span className="mt-6 inline-flex items-center text-sm font-medium text-primary transition-colors group-hover:text-accent">
-                  Read full article
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </span>
-              </article>
+                </article>
+              </CursorGlow>
             </Link>
           ))}
         </StaggerChildren>

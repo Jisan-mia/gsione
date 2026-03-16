@@ -14,10 +14,18 @@ import {
 } from "lucide-react";
 import {
   AnimatedSection,
-  AnimatedCounter,
   HeroAnimation,
   StaggerChildren,
 } from "@/components/site/animated-section";
+import {
+  TextReveal,
+  Magnetic,
+  Marquee,
+  NumberTicker,
+  AnimatedLine,
+  RevealMask,
+  CursorGlow,
+} from "@/components/site/interactive";
 import { ContactForm } from "@/components/site/contact-form";
 import {
   getFeaturedBlogPosts,
@@ -48,40 +56,50 @@ export default function HomePage() {
   return (
     <main id="main-content">
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="hero-gradient overflow-hidden border-b border-border/60">
-        <div className="page-shell grid gap-12 py-16 sm:py-20 lg:grid-cols-[1.2fr_0.8fr] lg:py-24">
+      <section className="hero-gradient overflow-hidden border-b border-border/60 relative">
+        <div className="page-shell grid gap-12 py-16 sm:py-20 lg:grid-cols-[1.2fr_0.8fr] lg:py-24 relative">
           <HeroAnimation>
             <div>
-              <span className="eyebrow">{homeContent.hero.eyebrow}</span>
+              <span className="eyebrow shimmer">
+                {homeContent.hero.eyebrow}
+              </span>
             </div>
-            <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-tight text-balance text-foreground sm:text-6xl lg:text-7xl">
+            <TextReveal
+              as="h1"
+              className="mt-6 max-w-4xl text-5xl font-semibold leading-tight text-balance text-foreground sm:text-6xl lg:text-7xl"
+              staggerAmount={0.02}
+            >
               {homeContent.hero.title}
-            </h1>
+            </TextReveal>
             <p className="mt-6 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
               {homeContent.hero.description}
             </p>
             <ul className="mt-8 space-y-3 text-sm leading-7 text-muted-foreground sm:text-base">
               {homeContent.hero.points.map((point) => (
                 <li key={point} className="flex items-start gap-3">
-                  <span className="mt-2 h-2.5 w-2.5 rounded-full bg-primary" />
+                  <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-primary pulse-dot" />
                   <span>{point}</span>
                 </li>
               ))}
             </ul>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/about"
-                className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all hover:opacity-90 hover:shadow-lg hover:shadow-primary/20"
-              >
-                Explore the profile
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-              <Link
-                href="/articles"
-                className="inline-flex items-center justify-center rounded-full border border-border/80 bg-card px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary hover:text-primary hover:shadow-md"
-              >
-                Read GSi Articles
-              </Link>
+              <Magnetic strength={0.15}>
+                <Link
+                  href="/about"
+                  className="btn-glow inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all hover:opacity-90 hover:shadow-lg hover:shadow-primary/20"
+                >
+                  Explore the profile
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </Magnetic>
+              <Magnetic strength={0.15}>
+                <Link
+                  href="/articles"
+                  className="inline-flex items-center justify-center rounded-full border border-border/80 bg-card px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary hover:text-primary hover:shadow-md"
+                >
+                  Read GSi Articles
+                </Link>
+              </Magnetic>
             </div>
           </HeroAnimation>
 
@@ -97,7 +115,7 @@ export default function HomePage() {
                     {homeContent.proof.map((item) => (
                       <div
                         key={item.title}
-                        className="rounded-[1.5rem] border border-border/70 bg-background/85 p-4 transition-all duration-300 hover:border-primary/30 hover:shadow-sm"
+                        className="rounded-2xl border border-border/70 bg-background/85 p-4 transition-all duration-300 hover:border-primary/30 hover:shadow-sm"
                       >
                         <h2 className="text-xl font-semibold text-foreground">
                           {item.title}
@@ -109,7 +127,7 @@ export default function HomePage() {
                     ))}
                   </div>
                 </div>
-                <div className="rounded-[1.5rem] border border-border/70 bg-primary px-5 py-4 text-primary-foreground">
+                <div className="rounded-2xl border border-border/70 bg-primary px-5 py-4 text-primary-foreground">
                   <p className="text-sm font-semibold uppercase tracking-[0.18em]">
                     Base
                   </p>
@@ -121,14 +139,38 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── Marquee strip ────────────────────────────────────── */}
+      <div className="marquee-strip" aria-hidden="true">
+        <Marquee speed={30}>
+          {[
+            "Governance",
+            "Cybersecurity",
+            "AI Policy",
+            "National Security",
+            "Digital Rights",
+            "Public Accountability",
+            "Strategic Risk",
+            "Policy Reform",
+          ].map((word) => (
+            <span
+              key={word}
+              className="whitespace-nowrap text-sm font-semibold uppercase tracking-[0.2em] text-primary/60"
+            >
+              {word}
+              <span className="mx-8 text-primary/30">•</span>
+            </span>
+          ))}
+        </Marquee>
+      </div>
+
       {/* ── Stats strip ──────────────────────────────────────── */}
       <section className="border-b border-border/60 bg-primary/5">
         <div className="page-shell py-10 sm:py-12">
           <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-4xl font-bold text-primary sm:text-5xl">
-                  <AnimatedCounter end={stat.value} suffix={stat.suffix} />
+              <div key={stat.label} className="group text-center">
+                <p className="text-4xl font-bold text-primary sm:text-5xl transition-transform duration-300 group-hover:scale-110">
+                  <NumberTicker end={stat.value} suffix={stat.suffix} />
                 </p>
                 <p className="mt-2 text-sm text-muted-foreground">
                   {stat.label}
@@ -145,10 +187,13 @@ export default function HomePage() {
           <AnimatedSection>
             <div className="max-w-3xl">
               <span className="eyebrow">What we do</span>
-              <h2 className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl">
+              <TextReveal
+                as="h2"
+                className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl"
+              >
                 Research, training, and policy engagement across critical
                 governance challenges.
-              </h2>
+              </TextReveal>
               <p className="mt-4 max-w-2xl text-base leading-8 text-muted-foreground">
                 GSi works across research, public commentary, training, and
                 issue-based initiatives bridging governance, national security,
@@ -156,30 +201,30 @@ export default function HomePage() {
               </p>
             </div>
           </AnimatedSection>
+          <AnimatedLine className="mt-8" />
           <StaggerChildren
             className="mt-10 grid gap-5 lg:grid-cols-2"
             staggerDelay={0.12}
           >
             {homeContent.services.map((service) => (
-              <article
-                key={service.title}
-                className="section-card-interactive p-6 sm:p-7"
-              >
-                <h3 className="text-2xl font-semibold text-foreground">
-                  {service.title}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
-                  {service.description}
-                </p>
-                <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
-                  {service.items.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <span className="mt-2 h-2 w-2 rounded-full bg-accent" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
+              <CursorGlow key={service.title}>
+                <article className="section-card-interactive flex h-full flex-col p-6 sm:p-7">
+                  <h3 className="text-2xl font-semibold text-foreground">
+                    {service.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
+                    {service.description}
+                  </p>
+                  <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
+                    {service.items.map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              </CursorGlow>
             ))}
           </StaggerChildren>
         </div>
@@ -191,11 +236,15 @@ export default function HomePage() {
           <AnimatedSection>
             <div className="max-w-3xl">
               <span className="eyebrow">Focus areas</span>
-              <h2 className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl">
+              <TextReveal
+                as="h2"
+                className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl"
+              >
                 Policy domains that define our work and structure our analysis.
-              </h2>
+              </TextReveal>
             </div>
           </AnimatedSection>
+          <AnimatedLine className="mt-8" delay={0.2} />
           <StaggerChildren
             className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3"
             staggerDelay={0.1}
@@ -204,20 +253,19 @@ export default function HomePage() {
               const Icon = focusIcons[index];
 
               return (
-                <article
-                  key={item.title}
-                  className="section-card-interactive p-6"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="mt-5 text-2xl font-semibold text-foreground">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
-                    {item.description}
-                  </p>
-                </article>
+                <CursorGlow key={item.title}>
+                  <article className="section-card-interactive flex h-full flex-col p-6">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="mt-5 text-2xl font-semibold text-foreground">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 flex-1 text-sm leading-7 text-muted-foreground sm:text-base">
+                      {item.description}
+                    </p>
+                  </article>
+                </CursorGlow>
               );
             })}
           </StaggerChildren>
@@ -230,10 +278,13 @@ export default function HomePage() {
           <AnimatedSection>
             <div className="max-w-3xl">
               <span className="eyebrow">Leadership</span>
-              <h2 className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl">
+              <TextReveal
+                as="h2"
+                className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl"
+              >
                 Setting the direction for governance-focused research and
                 training.
-              </h2>
+              </TextReveal>
               <p className="mt-4 text-base leading-8 text-muted-foreground">
                 GSi is led by a founder with a background in governance,
                 international affairs, cybersecurity, policy research, and
@@ -241,21 +292,24 @@ export default function HomePage() {
               </p>
             </div>
           </AnimatedSection>
+          <AnimatedLine className="mt-8" />
           <div className="mt-10">
             <AnimatedSection animation="scaleIn">
-              <article className="section-card mx-auto grid max-w-6xl gap-8 overflow-hidden p-5 sm:p-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-10 lg:p-8">
-                <div className="relative mx-auto w-full max-w-[34rem]">
-                  <div className="relative mx-auto aspect-[4/5] max-w-[30rem] overflow-hidden rounded-[1.5rem]">
-                    <Image
-                      src={founderProfile.image}
-                      alt={founderProfile.name}
-                      fill
-                      className="object-cover object-center"
-                      sizes="(min-width: 1024px) 40vw, 100vw"
-                      priority
-                    />
+              <article className="section-card grid gap-8 overflow-hidden p-5 sm:p-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-10 lg:p-8">
+                <RevealMask direction="left" delay={0.2}>
+                  <div className="relative mx-auto w-full max-w-[34rem]">
+                    <div className="relative mx-auto aspect-[4/5] max-w-[30rem] overflow-hidden rounded-[1.5rem]">
+                      <Image
+                        src={founderProfile.image}
+                        alt={founderProfile.name}
+                        fill
+                        className="object-cover object-center"
+                        sizes="(min-width: 1024px) 40vw, 100vw"
+                        priority
+                      />
+                    </div>
                   </div>
-                </div>
+                </RevealMask>
                 <div className="mx-auto flex h-full w-full max-w-[42rem] flex-col justify-center py-2 sm:py-4">
                   <span className="eyebrow w-fit">{founderProfile.role}</span>
                   <h2 className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl">
@@ -274,29 +328,32 @@ export default function HomePage() {
                   <ul className="mt-6 space-y-3 text-sm leading-7 text-muted-foreground sm:text-base">
                     {founderProfile.highlights.map((item) => (
                       <li key={item} className="flex items-start gap-3">
-                        <span className="mt-2 h-2.5 w-2.5 rounded-full bg-accent" />
+                        <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-accent" />
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                   <div className="mt-8 flex flex-wrap gap-3">
-                    <Link
-                      href={`/about#${founderProfile.id}`}
-                      className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all hover:opacity-90 hover:shadow-lg hover:shadow-primary/20"
-                    >
-                      View full profile
-                    </Link>
-                    {founderProfile.socialLinks.map((link) => (
-                      <a
-                        key={link.href}
-                        href={link.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center justify-center rounded-full border border-border/80 bg-card px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary hover:text-primary hover:shadow-md"
+                    <Magnetic strength={0.12}>
+                      <Link
+                        href={`/about#${founderProfile.id}`}
+                        className="btn-glow inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all hover:opacity-90 hover:shadow-lg hover:shadow-primary/20"
                       >
-                        {link.label}
-                        <ArrowUpRight className="ml-2 h-4 w-4" />
-                      </a>
+                        View full profile
+                      </Link>
+                    </Magnetic>
+                    {founderProfile.socialLinks.map((link) => (
+                      <Magnetic key={link.href} strength={0.12}>
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center justify-center rounded-full border border-border/80 bg-card px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary hover:text-primary hover:shadow-md"
+                        >
+                          {link.label}
+                          <ArrowUpRight className="ml-2 h-4 w-4" />
+                        </a>
+                      </Magnetic>
                     ))}
                   </div>
                 </div>
@@ -316,69 +373,74 @@ export default function HomePage() {
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div className="max-w-3xl">
                 <span className="eyebrow">Training</span>
-                <h2 className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl">
+                <TextReveal
+                  as="h2"
+                  className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl"
+                >
                   Executive training programmes tailored for institutional
                   impact.
-                </h2>
+                </TextReveal>
                 <p className="mt-4 text-base leading-8 text-muted-foreground">
                   Credible programme tracks that can be adapted for leadership
                   teams, media organisations, universities, regulators, NGOs,
                   and mission-driven partners.
                 </p>
               </div>
-              <Link
-                href="/training"
-                className="inline-flex items-center text-sm font-medium text-primary transition-colors hover:text-accent"
-              >
-                Browse all training areas
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
+              <Magnetic strength={0.15}>
+                <Link
+                  href="/training"
+                  className="inline-flex items-center gap-1 whitespace-nowrap text-sm font-medium text-primary transition-colors hover:text-accent link-animated"
+                >
+                  Browse all training areas
+                  <ArrowRight className="h-4 w-4 shrink-0" />
+                </Link>
+              </Magnetic>
             </div>
           </AnimatedSection>
+          <AnimatedLine className="mt-8" />
           <StaggerChildren
             className="mt-10 grid gap-5 lg:grid-cols-2"
             staggerDelay={0.15}
           >
             {featuredPrograms.map((program) => (
-              <article
-                key={program.slug}
-                className="section-card-interactive p-6 sm:p-7"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <GraduationCap className="h-5 w-5" />
+              <CursorGlow key={program.slug}>
+                <article className="section-card-interactive flex h-full flex-col p-6 sm:p-7">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <GraduationCap className="h-5 w-5" />
+                    </div>
+                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+                      {program.level}
+                    </p>
                   </div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                    {program.level}
+                  <h3 className="mt-4 text-3xl font-semibold text-foreground">
+                    {program.title}
+                  </h3>
+                  <p className="mt-3 flex-1 text-sm leading-7 text-muted-foreground sm:text-base">
+                    {program.summary}
                   </p>
-                </div>
-                <h3 className="mt-4 text-3xl font-semibold text-foreground">
-                  {program.title}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
-                  {program.summary}
-                </p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {program.focusAreas.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full border border-border/70 bg-background px-3 py-1 text-xs text-muted-foreground"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-                <p className="mt-5 text-sm text-muted-foreground">
-                  {program.duration} · {program.format}
-                </p>
-                <Link
-                  href={`/training/${program.slug}`}
-                  className="mt-6 inline-flex items-center text-sm font-medium text-primary transition-colors hover:text-accent"
-                >
-                  View programme details
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </article>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {program.focusAreas.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-full border border-border/70 bg-background px-3 py-1 text-xs text-muted-foreground"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="mt-5 text-sm text-muted-foreground">
+                    {program.duration} · {program.format}
+                  </p>
+                  <Link
+                    href={`/training/${program.slug}`}
+                    className="mt-auto pt-6 inline-flex items-center text-sm font-medium text-primary transition-colors hover:text-accent"
+                  >
+                    View programme details
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </article>
+              </CursorGlow>
             ))}
           </StaggerChildren>
         </div>
@@ -391,25 +453,31 @@ export default function HomePage() {
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div className="max-w-3xl">
                 <span className="eyebrow">GSi Articles</span>
-                <h2 className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl">
+                <TextReveal
+                  as="h2"
+                  className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl"
+                >
                   Expert analysis on governance, cybersecurity, and policy
                   reform.
-                </h2>
+                </TextReveal>
                 <p className="mt-4 text-base leading-8 text-muted-foreground">
                   In-depth articles covering cybersecurity governance, AI
                   policy, information integrity, environmental risk, and public
                   accountability.
                 </p>
               </div>
-              <Link
-                href="/articles"
-                className="inline-flex items-center text-sm font-medium text-primary transition-colors hover:text-accent"
-              >
-                Browse all articles
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
+              <Magnetic strength={0.15}>
+                <Link
+                  href="/articles"
+                  className="inline-flex items-center gap-1 whitespace-nowrap text-sm font-medium text-primary transition-colors hover:text-accent link-animated"
+                >
+                  Browse all articles
+                  <ArrowRight className="h-4 w-4 shrink-0" />
+                </Link>
+              </Magnetic>
             </div>
           </AnimatedSection>
+          <AnimatedLine className="mt-8" />
           <StaggerChildren
             className="mt-10 grid gap-5 lg:grid-cols-3"
             staggerDelay={0.12}
@@ -418,31 +486,33 @@ export default function HomePage() {
               <Link
                 key={post.slug}
                 href={`/articles/${post.slug}`}
-                className="group"
+                className="group h-full"
               >
-                <article className="section-card-interactive flex h-full flex-col p-6">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                      <BookOpen className="h-5 w-5" />
+                <CursorGlow>
+                  <article className="section-card-interactive flex h-full flex-col p-6">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+                        <BookOpen className="h-5 w-5" />
+                      </div>
+                      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+                        {post.category}
+                      </p>
                     </div>
-                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                      {post.category}
+                    <h3 className="mt-4 text-2xl font-semibold text-balance text-foreground transition-colors group-hover:text-primary sm:text-3xl">
+                      {post.title}
+                    </h3>
+                    <p className="mt-3 flex-1 text-sm leading-7 text-muted-foreground sm:text-base">
+                      {post.excerpt}
                     </p>
-                  </div>
-                  <h3 className="mt-4 text-3xl font-semibold text-balance text-foreground transition-colors group-hover:text-primary">
-                    {post.title}
-                  </h3>
-                  <p className="mt-3 flex-1 text-sm leading-7 text-muted-foreground sm:text-base">
-                    {post.excerpt}
-                  </p>
-                  <p className="mt-5 text-sm text-muted-foreground">
-                    {post.author} · {post.readingTime}
-                  </p>
-                  <span className="mt-6 inline-flex items-center text-sm font-medium text-primary transition-colors group-hover:text-accent">
-                    Read full article
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </article>
+                    <p className="mt-5 text-sm text-muted-foreground">
+                      {post.author} · {post.readingTime}
+                    </p>
+                    <span className="mt-4 inline-flex items-center text-sm font-medium text-primary transition-colors group-hover:text-accent">
+                      Read full article
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-2" />
+                    </span>
+                  </article>
+                </CursorGlow>
               </Link>
             ))}
           </StaggerChildren>
@@ -455,27 +525,30 @@ export default function HomePage() {
           <AnimatedSection>
             <div className="max-w-3xl">
               <span className="eyebrow">Public-interest initiatives</span>
-              <h2 className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl">
+              <TextReveal
+                as="h2"
+                className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl"
+              >
                 Connecting policy research with community action.
-              </h2>
+              </TextReveal>
             </div>
           </AnimatedSection>
+          <AnimatedLine className="mt-8" />
           <StaggerChildren
             className="mt-10 grid gap-5 lg:grid-cols-2"
             staggerDelay={0.15}
           >
             {homeContent.initiatives.map((initiative) => (
-              <article
-                key={initiative.title}
-                className="section-card-interactive p-6 sm:p-7"
-              >
-                <h3 className="text-2xl font-semibold text-foreground">
-                  {initiative.title}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
-                  {initiative.description}
-                </p>
-              </article>
+              <CursorGlow key={initiative.title}>
+                <article className="section-card-interactive flex h-full flex-col p-6 sm:p-7">
+                  <h3 className="text-2xl font-semibold text-foreground">
+                    {initiative.title}
+                  </h3>
+                  <p className="mt-3 flex-1 text-sm leading-7 text-muted-foreground sm:text-base">
+                    {initiative.description}
+                  </p>
+                </article>
+              </CursorGlow>
             ))}
           </StaggerChildren>
         </div>

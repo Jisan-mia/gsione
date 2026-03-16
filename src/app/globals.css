@@ -136,11 +136,15 @@
   }
 
   .section-card-interactive {
-    @apply rounded-[2rem] border border-border/70 bg-card/85 shadow-sm transition-all duration-300;
+    @apply rounded-[2rem] border border-border/70 bg-card/85 shadow-sm transition-all duration-500;
   }
 
   .section-card-interactive:hover {
-    @apply -translate-y-1 shadow-lg border-primary/30;
+    @apply -translate-y-2 border-primary/40;
+    box-shadow:
+      0 20px 40px -12px color-mix(in oklab, var(--color-primary) 15%, transparent),
+      0 8px 16px -8px color-mix(in oklab, var(--color-primary) 10%, transparent);
+    border-radius: 2rem;
   }
 
   .hero-grid {
@@ -180,13 +184,192 @@
     animation: gradient-shift 8s ease infinite;
   }
 
-  /* Reduced motion support */
+  /* ── Animated link underline ────────────────────────── */
+  .link-animated {
+    position: relative;
+  }
+
+  .link-animated::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .link-animated:hover::after,
+  .link-animated:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* ── Glow button ────────────────────────────────────── */
+  .btn-glow {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .btn-glow::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(90deg,
+        transparent,
+        color-mix(in oklab, var(--color-primary) 60%, transparent),
+        transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+    border-radius: inherit;
+    filter: blur(12px);
+  }
+
+  .btn-glow:hover::before,
+  .btn-glow:focus-visible::before {
+    opacity: 1;
+  }
+
+  /* ── Shimmer effect ─────────────────────────────────── */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg,
+        transparent 25%,
+        color-mix(in oklab, var(--color-primary) 15%, transparent) 50%,
+        transparent 75%);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  /* ── Pulse dot ──────────────────────────────────────── */
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+
+    100% {
+      transform: scale(2.4);
+      opacity: 0;
+    }
+  }
+
+  .pulse-dot {
+    position: relative;
+  }
+
+  .pulse-dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: currentColor;
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* ── Float animation ────────────────────────────────── */
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float 5s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 4s ease-in-out 1s infinite;
+  }
+
+  /* ── Marquee strip ──────────────────────────────────── */
+  .marquee-strip {
+    @apply border-y border-border/40 bg-primary/5 py-4 overflow-hidden;
+  }
+
+  /* ── Gradient text ──────────────────────────────────── */
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ── Glass card ─────────────────────────────────────── */
+  .glass-card {
+    @apply rounded-[2rem] border border-border/30;
+    background: color-mix(in oklab, var(--color-card) 70%, transparent);
+    backdrop-filter: blur(20px) saturate(1.2);
+  }
+
+  /* ── Stagger fade keyframes ─────────────────────────── */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out both;
+  }
+
+  /* ── Reduced motion support ─────────────────────────── */
   @media (prefers-reduced-motion: reduce) {
-    .hero-gradient {
+
+    .hero-gradient,
+    .shimmer,
+    .animate-float,
+    .animate-float-slow,
+    .animate-float-delayed {
       animation: none;
     }
 
     .section-card-interactive:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .link-animated::after {
+      transition: none;
+    }
+
+    .btn-glow::before {
+      transition: none;
+    }
+
+    .animate-fade-in-up {
+      animation: none;
+      opacity: 1;
       transform: none;
     }
   }

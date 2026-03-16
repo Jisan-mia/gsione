@@ -49,33 +49,47 @@ export function AnimatedSection({
       AnimationType,
       { from: gsap.TweenVars; to: gsap.TweenVars }
     > = {
-      fadeUp: { from: { opacity: 0, y: 50 }, to: { opacity: 1, y: 0 } },
+      fadeUp: { from: { opacity: 0, y: 30 }, to: { opacity: 1, y: 0 } },
       fadeIn: { from: { opacity: 0 }, to: { opacity: 1 } },
       scaleIn: {
-        from: { opacity: 0, scale: 0.95 },
+        from: { opacity: 0, scale: 0.97 },
         to: { opacity: 1, scale: 1 },
       },
-      slideLeft: { from: { opacity: 0, x: -50 }, to: { opacity: 1, x: 0 } },
-      slideRight: { from: { opacity: 0, x: 50 }, to: { opacity: 1, x: 0 } },
+      slideLeft: { from: { opacity: 0, x: -30 }, to: { opacity: 1, x: 0 } },
+      slideRight: { from: { opacity: 0, x: 30 }, to: { opacity: 1, x: 0 } },
     };
 
     const { from, to } = animations[animation];
 
-    const tween = gsap.fromTo(el, from, {
-      ...to,
-      duration,
-      delay,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: el,
-        start: "top 88%",
-        toggleActions: "play none none none",
-      },
-    });
+    // Check if element is already in viewport (above the fold on page load)
+    const rect = el.getBoundingClientRect();
+    const isAboveFold = rect.top < window.innerHeight;
 
-    return () => {
-      tween.kill();
-    };
+    if (isAboveFold) {
+      // Animate immediately without ScrollTrigger for above-fold content
+      gsap.fromTo(el, from, {
+        ...to,
+        duration,
+        delay: delay + 0.1,
+        ease: "power3.out",
+      });
+    } else {
+      const tween = gsap.fromTo(el, from, {
+        ...to,
+        duration,
+        delay,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 90%",
+          toggleActions: "play none none none",
+        },
+      });
+
+      return () => {
+        tween.kill();
+      };
+    }
   }, [animation, delay, duration]);
 
   return (
@@ -107,7 +121,10 @@ export function StaggerChildren({
     const items = container.querySelectorAll(childSelector);
     if (!items.length) return;
 
-    gsap.set(items, { opacity: 0, y: 30 });
+    gsap.set(items, { opacity: 0, y: 20 });
+
+    const rect = container.getBoundingClientRect();
+    const isAboveFold = rect.top < window.innerHeight;
 
     const tween = gsap.to(items, {
       opacity: 1,
@@ -115,11 +132,15 @@ export function StaggerChildren({
       duration: 0.6,
       stagger: staggerDelay,
       ease: "power3.out",
-      scrollTrigger: {
-        trigger: container,
-        start: "top 85%",
-        toggleActions: "play none none none",
-      },
+      ...(isAboveFold
+        ? { delay: 0.2 }
+        : {
+            scrollTrigger: {
+              trigger: container,
+              start: "top 88%",
+              toggleActions: "play none none none",
+            },
+          }),
     });
 
     return () => {
