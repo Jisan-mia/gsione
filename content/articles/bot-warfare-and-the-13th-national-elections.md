@@ -1,5 +1,5 @@
 ---
-title: Bot Warfare and the 13th National Elections: Did the Interim Government Drop the Ball?
+title: "Bot Warfare and the 13th National Elections: Did the Interim Government Drop the Ball?"
 excerpt: An assessment of how bot networks, AI-driven misinformation, and weak institutional response distorted Bangladesh’s 13th National Elections.
 category: Governance
 author: Asheer Shah
