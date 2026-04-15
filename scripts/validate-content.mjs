@@ -44,6 +44,19 @@ function getCandidateFiles() {
   return listRegisteredFiles();
 }
 
+function isValidDateString(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return false;
+  }
+
+  const date = new Date(`${value}T00:00:00.000Z`);
+  if (Number.isNaN(date.getTime())) {
+    return false;
+  }
+
+  return date.toISOString().slice(0, 10) === value;
+}
+
 function validateType(fieldName, value, rule, relativePath, errors) {
   if (value === undefined || value === null) {
     if (rule.required) {
@@ -73,8 +86,8 @@ function validateType(fieldName, value, rule, relativePath, errors) {
         return;
       }
 
-      if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value) || Number.isNaN(Date.parse(value))) {
-        errors.push(`${relativePath}: frontmatter field \`${fieldName}\` must use YYYY-MM-DD format.`);
+      if (typeof value !== "string" || !isValidDateString(value)) {
+        errors.push(`${relativePath}: frontmatter field \`${fieldName}\` must use a valid YYYY-MM-DD date.`);
       }
       return;
     }
@@ -141,11 +154,6 @@ function validateFile(relativePath, errors) {
   const [contentDirectory, sectionDirectory, fileName] = pathSegments;
   if (contentDirectory !== "content") {
     errors.push(`${relativePath}: unexpected content path.`);
-    return;
-  }
-
-  if (!fileName) {
-    errors.push(`${relativePath}: Markdown content must include a file name.`);
     return;
   }
 
