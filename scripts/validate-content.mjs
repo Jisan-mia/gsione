@@ -132,15 +132,19 @@ function validateFile(relativePath, errors) {
     return;
   }
 
-  const [contentDirectory, sectionDirectory] = pathSegments;
+  const [contentDirectory, sectionDirectory, fileName] = pathSegments;
   if (contentDirectory !== "content") {
     errors.push(`${relativePath}: unexpected content path.`);
     return;
   }
 
+  if (!fileName) {
+    errors.push(`${relativePath}: Markdown content must include a file name.`);
+    return;
+  }
+
   const section = getSectionForRelativePath(relativePath);
   if (!section) {
-    const knownSections = contentSections.map((registeredSection) => `\`${registeredSection.id}\``).join(", ");
     errors.push(`${relativePath}: section \`${sectionDirectory}\` is not registered. Add it to scripts/content-workflow-config.mjs before merging content there.`);
     return;
   }

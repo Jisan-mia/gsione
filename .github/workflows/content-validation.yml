@@ -38,7 +38,8 @@ jobs:
       - name: Detect changed content files
         id: changed-content
         run: |
-          files=$(git diff --name-only --diff-filter=ACMR "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}" -- content)
+          git fetch origin "${{ github.event.pull_request.base.ref }}"
+          files=$(git diff --name-only --diff-filter=ACMR "origin/${{ github.event.pull_request.base.ref }}...${{ github.event.pull_request.head.sha }}" -- content)
           {
             echo 'files<<EOF'
             echo "$files"

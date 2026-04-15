@@ -142,10 +142,17 @@ const changesRequested = reviewStates.includes("CHANGES_REQUESTED");
 const hasApproval = reviewStates.includes("APPROVED") && !changesRequested;
 const checks = await getHeadCheckState(pullRequest.head.sha);
 
+let stateLabel = "state:review";
+if (pullRequest.draft) {
+  stateLabel = "state:draft";
+} else if (hasApproval && checks.allPassing) {
+  stateLabel = "state:approved";
+}
+
 const desiredLabels = [
   ...getDesiredSectionLabels(files),
   ...getDesiredTypeLabels(files),
-  pullRequest.draft ? "state:draft" : hasApproval && checks.allPassing ? "state:approved" : "state:review",
+  stateLabel,
 ];
 
 if (changesRequested) {
