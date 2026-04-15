@@ -155,7 +155,7 @@ function buildArticleSubmission(fields) {
     issue.created_at.slice(0, 10);
 
   if (publishedAt && !isValidDateString(publishedAt)) {
-    throw new Error('Publish date must use the YYYY-MM-DD format.');
+    throw new Error('Article "Publish date (optional)" must use the YYYY-MM-DD format.');
   }
 
   return {
@@ -189,7 +189,7 @@ function buildTrainingSubmission(fields) {
     issue.created_at.slice(0, 10);
 
   if (publishedAt && !isValidDateString(publishedAt)) {
-    throw new Error('Publish date must use the YYYY-MM-DD format.');
+    throw new Error('Training "Publish date (optional)" must use the YYYY-MM-DD format.');
   }
 
   return {
