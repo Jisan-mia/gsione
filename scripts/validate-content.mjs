@@ -132,7 +132,7 @@ function validateFile(relativePath, errors) {
     return;
   }
 
-  const [contentDirectory, sectionId] = pathSegments;
+  const [contentDirectory, sectionDirectory] = pathSegments;
   if (contentDirectory !== "content") {
     errors.push(`${relativePath}: unexpected content path.`);
     return;
@@ -141,7 +141,7 @@ function validateFile(relativePath, errors) {
   const section = getSectionForRelativePath(relativePath);
   if (!section) {
     const knownSections = contentSections.map((registeredSection) => `\`${registeredSection.id}\``).join(", ");
-    errors.push(`${relativePath}: section \`${sectionId}\` is not registered. Add it to scripts/content-workflow-config.mjs before merging content there.`);
+    errors.push(`${relativePath}: section \`${sectionDirectory}\` is not registered. Add it to scripts/content-workflow-config.mjs before merging content there.`);
     return;
   }
 
