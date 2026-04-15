@@ -46,14 +46,14 @@ async function getPullRequestReviews(number) {
 }
 
 async function getHeadCheckState(headSha) {
-  const [status, checkRunsResponse] = await Promise.all([
+  const [commitStatus, checkRunsResponse] = await Promise.all([
     githubRequest(`${repositoryPath}/commits/${headSha}/status`),
     githubRequest(`${repositoryPath}/commits/${headSha}/check-runs`),
   ]);
 
   const checkRuns = checkRunsResponse.check_runs || [];
-  const hasSignals = (status.total_count || 0) > 0 || checkRuns.length > 0;
-  const statusOk = ["success", null].includes(status.state) || status.total_count === 0;
+  const hasSignals = (commitStatus.total_count || 0) > 0 || checkRuns.length > 0;
+  const statusOk = ["success", null].includes(commitStatus.state) || commitStatus.total_count === 0;
   const checkRunsOk = checkRuns.every((run) => {
     if (run.status !== "completed") {
       return false;

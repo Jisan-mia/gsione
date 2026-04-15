@@ -100,8 +100,9 @@ function validateType(fieldName, value, rule, relativePath, errors) {
         return;
       }
 
-      if (value.length < (rule.minItems ?? 0)) {
-        errors.push(`${relativePath}: frontmatter field \`${fieldName}\` must contain at least ${rule.minItems ?? 0} item(s).`);
+      const minItems = rule.minItems ?? 0;
+      if (value.length < minItems) {
+        errors.push(`${relativePath}: frontmatter field \`${fieldName}\` must contain at least ${minItems} item(s).`);
         return;
       }
 
