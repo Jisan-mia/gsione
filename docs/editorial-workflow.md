@@ -47,7 +47,6 @@ The repository now ships three content workflow automations:
 1. `Content validation`
    - validates changed Markdown files under `content/**`
    - enforces registered section paths and section-specific frontmatter
-   - runs `npm run lint` and `npm run build`
 2. `Content governance`
    - synchronizes the editorial label taxonomy
    - applies section labels, type labels, and state labels on PR/review events
@@ -63,7 +62,6 @@ Configure GitHub branch protection or a ruleset for `main` with these settings:
 - Require at least one approval (increase to two if a section needs stronger editorial control)
 - Require status checks before merging
   - `Validate content metadata`
-  - `Run site checks`
 - Restrict direct pushes to maintainers only
 - Prefer squash merge for editorial PRs
 

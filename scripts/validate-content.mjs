@@ -177,8 +177,21 @@ function validateRepositoryStructure(errors) {
   }
 }
 
+function isSectionBackedContentPath(filePath) {
+  if (!filePath.startsWith("content/")) {
+    return false;
+  }
+
+  const pathSegments = filePath.split("/");
+  if (pathSegments.length < 3) {
+    return false;
+  }
+
+  return true;
+}
+
 const candidateFiles = [...new Set(getCandidateFiles())];
-const contentFiles = candidateFiles.filter((filePath) => filePath.startsWith("content/"));
+const contentFiles = candidateFiles.filter(isSectionBackedContentPath);
 const errors = [];
 
 validateRepositoryStructure(errors);

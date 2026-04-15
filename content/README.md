@@ -61,6 +61,6 @@ The page generator will pick up new files automatically.
 
 - Create or update Markdown on a branch, not on `main`.
 - Open a draft pull request with the matching content PR template.
-- Wait for the content validation workflow to check frontmatter, lint, and build status.
+- Wait for the content validation workflow to check content paths and required frontmatter.
 - Mark the pull request ready for review when the content is editorially ready.
 - Maintainers merge approved pull requests to `main` to publish them.
