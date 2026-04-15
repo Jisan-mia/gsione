@@ -7,6 +7,7 @@ import { getSectionById } from "./content-workflow-config.mjs";
 const repositoryPath = getRepositoryPath();
 const rootDirectory = process.cwd();
 const statusMarker = "<!-- content-submission-status -->";
+const publishDateField = "Publish date (optional)";
 const eventPath = process.env.GITHUB_EVENT_PATH;
 
 if (!eventPath || !fs.existsSync(eventPath)) {
@@ -151,11 +152,10 @@ function buildArticleSubmission(fields) {
     required: false,
   });
   const publishedAt =
-    getField(fields, "Publish date (optional)", { required: false }) ||
-    issue.created_at.slice(0, 10);
+    getField(fields, publishDateField, { required: false }) || issue.created_at.slice(0, 10);
 
   if (publishedAt && !isValidDateString(publishedAt)) {
-    throw new Error('Article "Publish date (optional)" must use the YYYY-MM-DD format.');
+    throw new Error(`Article "${publishDateField}" must use the YYYY-MM-DD format.`);
   }
 
   return {
@@ -185,11 +185,10 @@ function buildTrainingSubmission(fields) {
     required: false,
   });
   const publishedAt =
-    getField(fields, "Publish date (optional)", { required: false }) ||
-    issue.created_at.slice(0, 10);
+    getField(fields, publishDateField, { required: false }) || issue.created_at.slice(0, 10);
 
   if (publishedAt && !isValidDateString(publishedAt)) {
-    throw new Error('Training "Publish date (optional)" must use the YYYY-MM-DD format.');
+    throw new Error(`Training "${publishDateField}" must use the YYYY-MM-DD format.`);
   }
 
   return {
