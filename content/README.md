@@ -4,7 +4,7 @@ The site reads editorial content from markdown files in this directory.
 
 ## Blog posts
 
-Create a new file in `content/blog/your-slug.md` with frontmatter like this:
+Create a new file in `content/articles/your-slug.md` with frontmatter like this:
 
 ```md
 ---
@@ -55,3 +55,12 @@ Use markdown for modules, delivery notes, and case studies.
 ```
 
 The page generator will pick up new files automatically.
+
+
+## Editorial pull request workflow
+
+- Create or update Markdown on a branch, not on `main`.
+- Open a draft pull request with the matching content PR template.
+- Wait for the content validation workflow to check frontmatter, lint, and build status.
+- Mark the pull request ready for review when the content is editorially ready.
+- Maintainers merge approved pull requests to `main` to publish them.
