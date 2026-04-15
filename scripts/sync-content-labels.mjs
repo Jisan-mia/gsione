@@ -23,10 +23,10 @@ for (const label of workflowLabels) {
   await githubRequest(`${repositoryPath}/labels`, {
     method: "POST",
     body: {
-        name: label.name,
-        color: label.color,
-        description: label.description,
-      },
+      name: label.name,
+      color: label.color,
+      description: label.description,
+    },
   });
 }
 
