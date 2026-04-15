@@ -1,0 +1,105 @@
+name: Article submission
+description: Submit a new or updated GSi article without editing repository files manually.
+title: "[Article] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for `content/articles/*.md`.
+
+        - Leave the slug blank to create a new article automatically.
+        - Add markdown images directly in the body, for example `![Alt text](https://...)`.
+        - If you upload an image into the issue editor first, GitHub will give you a hosted image URL you can reuse in the article body.
+  - type: input
+    id: article-title
+    attributes:
+      label: Article title
+      placeholder: The article headline
+    validations:
+      required: true
+  - type: input
+    id: article-slug
+    attributes:
+      label: Existing article slug (optional)
+      description: Fill this only when you want to update an existing article file.
+      placeholder: existing-article-slug
+  - type: input
+    id: category
+    attributes:
+      label: Category
+      placeholder: Cybersecurity
+    validations:
+      required: true
+  - type: input
+    id: author-name
+    attributes:
+      label: Author name
+      placeholder: Author Name
+    validations:
+      required: true
+  - type: input
+    id: author-role
+    attributes:
+      label: Author role
+      placeholder: Researcher at GSi
+    validations:
+      required: true
+  - type: textarea
+    id: article-excerpt
+    attributes:
+      label: Article excerpt
+      description: One short summary paragraph for cards and metadata.
+      placeholder: Short summary for cards and metadata.
+    validations:
+      required: true
+  - type: input
+    id: publish-date
+    attributes:
+      label: Publish date (optional)
+      description: Leave blank to use today's date automatically.
+      placeholder: YYYY-MM-DD
+  - type: input
+    id: source-label
+    attributes:
+      label: Source label
+      placeholder: GSi LinkedIn
+    validations:
+      required: true
+  - type: input
+    id: source-url
+    attributes:
+      label: Source URL (optional)
+      placeholder: https://example.com/post
+  - type: dropdown
+    id: featured
+    attributes:
+      label: Feature this article?
+      options:
+        - "No"
+        - "Yes"
+      default: 0
+    validations:
+      required: true
+  - type: textarea
+    id: tags
+    attributes:
+      label: Tags
+      description: Add one tag per line.
+      placeholder: |
+        Policy
+        AI
+        Governance
+    validations:
+      required: true
+  - type: textarea
+    id: article-body
+    attributes:
+      label: Article body
+      description: Write the full article in Markdown, including image links if needed.
+      render: markdown
+      placeholder: |
+        # Article heading
+
+        Write the article in markdown.
+    validations:
+      required: true

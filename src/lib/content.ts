@@ -33,6 +33,7 @@ export interface TrainingProgram {
   level: string;
   duration: string;
   format: string;
+  publishedAt?: string;
   featured: boolean;
   audience: string[];
   focusAreas: string[];
@@ -84,6 +85,29 @@ function sortByDate<T extends { publishedAt?: string; slug: string }>(
   });
 }
 
+function sortByDateThenFeatured<
+  T extends { publishedAt?: string; featured: boolean; slug: string },
+>(items: T[]) {
+  return [...items].sort((left, right) => {
+    const leftDate = left.publishedAt
+      ? new Date(left.publishedAt).getTime()
+      : 0;
+    const rightDate = right.publishedAt
+      ? new Date(right.publishedAt).getTime()
+      : 0;
+
+    if (leftDate !== rightDate) {
+      return rightDate - leftDate;
+    }
+
+    if (left.featured !== right.featured) {
+      return Number(right.featured) - Number(left.featured);
+    }
+
+    return left.slug.localeCompare(right.slug);
+  });
+}
+
 export const getBlogPosts = cache((): BlogPost[] => {
   const posts = readMarkdownFiles(blogRoot).map(
     ({ slug, data, content, updatedAt }) => {
@@ -127,9 +151,7 @@ export const getTrainingPrograms = cache((): TrainingProgram[] => {
     },
   );
 
-  return [...programs].sort(
-    (left, right) => Number(right.featured) - Number(left.featured),
-  );
+  return sortByDateThenFeatured(programs);
 });
 
 export const getFeaturedTrainingPrograms = cache(() =>

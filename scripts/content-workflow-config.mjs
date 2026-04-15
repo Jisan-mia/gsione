@@ -30,6 +30,7 @@ export const contentSections = [
       level: { type: "string", required: true },
       duration: { type: "string", required: true },
       format: { type: "string", required: true },
+      publishedAt: { type: "date", required: false },
       featured: { type: "boolean", required: true },
       audience: { type: "string[]", required: true, minItems: 1 },
       focusAreas: { type: "string[]", required: true, minItems: 1 },

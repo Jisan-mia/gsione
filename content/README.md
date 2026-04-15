@@ -4,6 +4,8 @@ The site reads editorial content from markdown files in this directory.
 
 ## Blog posts
 
+Non-technical contributors can use the **Article submission** issue form in GitHub to generate the Markdown file and open a draft pull request automatically.
+
 Create a new file in `content/articles/your-slug.md` with frontmatter like this:
 
 ```md
@@ -31,6 +33,8 @@ Write the article in markdown.
 
 ## Training pages
 
+Non-technical contributors can use the **Training submission** issue form in GitHub to generate the Markdown file and open a draft pull request automatically.
+
 Create a new file in `content/training/your-slug.md` with frontmatter like this:
 
 ```md
@@ -40,6 +44,7 @@ summary: One-paragraph overview for cards and metadata.
 level: Executive
 duration: Half-day to multi-session
 format: In-person or online
+publishedAt: 2026-03-10
 featured: false
 audience:
   - Public-sector leaders
@@ -59,6 +64,8 @@ The page generator will pick up new files automatically.
 
 ## Editorial pull request workflow
 
+- Non-technical contributors can start with a GitHub issue form instead of editing files directly.
+- The automation writes or updates the Markdown file, creates a branch, and opens a draft PR for review.
 - Create or update Markdown on a branch, not on `main`.
 - Open a draft pull request with the matching content PR template.
 - Wait for the content validation workflow to check content paths and required frontmatter.

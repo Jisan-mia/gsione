@@ -5,6 +5,7 @@ This repository uses a pull-request-first editorial workflow for every Markdown-
 ## Editorial states
 
 GitHub pull requests are the source of truth for work in progress.
+GitHub issues can act as the intake layer for non-technical contributors, but publication still happens through pull requests.
 
 | State | GitHub signal | Meaning |
 | --- | --- | --- |
@@ -40,6 +41,23 @@ Use the matching PR template when opening content work:
 
 Templates capture section, intended audience, publication timing, and reviewer notes so contributors can work entirely from GitHub.
 
+## Non-technical submission flow
+
+Non-technical contributors can now start from GitHub issue forms instead of editing repository files manually.
+
+- `Article submission` creates or updates `content/articles/*.md`
+- `Training submission` creates or updates `content/training/*.md`
+
+The automation:
+
+1. Parses the issue form response
+2. Writes the matching Markdown file with the required frontmatter
+3. Uses the issue creation date as the default `publishedAt` value when no date is supplied
+4. Pushes the generated change to an automation branch
+5. Opens or updates a draft pull request for editorial review
+
+Contributors can include images by pasting Markdown image links directly into the body field. If they upload an image inside the issue editor first, GitHub provides a hosted image URL that can be reused in the Markdown body.
+
 ## Automated checks
 
 The repository now ships three content workflow automations:
@@ -52,6 +70,9 @@ The repository now ships three content workflow automations:
    - applies section labels, type labels, and state labels on PR/review events
 3. `Content publication state`
    - marks merged content PRs as `state:published` after the Pages deployment workflow succeeds on `main`
+4. `Content submission intake`
+   - converts structured issue form submissions into Markdown files
+   - opens or updates draft pull requests automatically for review
 
 ## Required branch protection on `main`
 
@@ -76,7 +97,7 @@ These settings live in repository administration, not in versioned files, so mai
 ## Contributor path
 
 1. Create or update Markdown on a branch.
-2. Open a draft PR using the appropriate content template.
+2. Or, submit the matching GitHub issue form and let automation open the draft PR.
 3. Let automation validate metadata and apply section/type labels.
 4. Mark the PR ready for review when the content is ready.
 5. Address requested revisions until approvals and checks pass.

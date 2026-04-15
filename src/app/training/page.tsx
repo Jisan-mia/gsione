@@ -10,7 +10,11 @@ import {
   CursorGlow,
   AnimatedLine,
 } from "@/components/site/interactive";
-import { getBaseMetadata, getTrainingPrograms } from "@/lib/content";
+import {
+  formatDisplayDate,
+  getBaseMetadata,
+  getTrainingPrograms,
+} from "@/lib/content";
 
 export const metadata: Metadata = getBaseMetadata({
   title: "Training",
@@ -76,6 +80,12 @@ export default function TrainingPage() {
                       <span>{program.level}</span>
                       <span className="text-muted-foreground">&middot;</span>
                       <span>{program.duration}</span>
+                      {program.publishedAt ? (
+                        <>
+                          <span className="text-muted-foreground">&middot;</span>
+                          <span>{formatDisplayDate(program.publishedAt)}</span>
+                        </>
+                      ) : null}
                     </div>
                   </div>
                   <h2 className="mt-4 text-3xl font-semibold text-balance text-foreground transition-colors group-hover:text-primary">

@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 import { Markdown } from '@/components/site/markdown'
 import {
+  formatDisplayDate,
   getBaseMetadata,
   getMetadataImageUrl,
   getTrainingProgramBySlug,
@@ -83,13 +84,19 @@ export default async function TrainingDetailPage({
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to training
           </Link>
-          <div className="mt-6 flex flex-wrap gap-2 text-xs uppercase tracking-[0.18em] text-primary">
-            <span>{program.level}</span>
-            <span className="text-muted-foreground">•</span>
-            <span>{program.duration}</span>
-            <span className="text-muted-foreground">•</span>
-            <span>{program.format}</span>
-          </div>
+           <div className="mt-6 flex flex-wrap gap-2 text-xs uppercase tracking-[0.18em] text-primary">
+             <span>{program.level}</span>
+             <span className="text-muted-foreground">•</span>
+             <span>{program.duration}</span>
+             <span className="text-muted-foreground">•</span>
+             <span>{program.format}</span>
+             {program.publishedAt ? (
+               <>
+                 <span className="text-muted-foreground">•</span>
+                 <span>{formatDisplayDate(program.publishedAt)}</span>
+               </>
+             ) : null}
+           </div>
           <h1 className="mt-5 text-5xl font-semibold text-balance text-foreground sm:text-6xl">
             {program.title}
           </h1>
