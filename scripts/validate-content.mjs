@@ -66,6 +66,13 @@ function validateType(fieldName, value, rule, relativePath, errors) {
       return;
     }
     case "date": {
+      if (value instanceof Date) {
+        if (Number.isNaN(value.getTime())) {
+          errors.push(`${relativePath}: frontmatter field \`${fieldName}\` must be a valid date.`);
+        }
+        return;
+      }
+
       if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value) || Number.isNaN(Date.parse(value))) {
         errors.push(`${relativePath}: frontmatter field \`${fieldName}\` must use YYYY-MM-DD format.`);
       }
