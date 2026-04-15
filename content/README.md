@@ -6,6 +6,8 @@ The site reads editorial content from markdown files in this directory.
 
 Non-technical contributors can use the **Article submission** issue form in GitHub to generate the Markdown file and open a draft pull request automatically.
 
+Choose **Create new content** for a new file or **Update existing content** when editing an existing article. The form now separates the optional custom slug for new content from the existing slug used for updates.
+
 Create a new file in `content/articles/your-slug.md` with frontmatter like this:
 
 ```md
@@ -34,6 +36,8 @@ Write the article in markdown.
 ## Training pages
 
 Non-technical contributors can use the **Training submission** issue form in GitHub to generate the Markdown file and open a draft pull request automatically.
+
+Choose **Create new content** for a new file or **Update existing content** when editing an existing programme. The form now separates the optional custom slug for new content from the existing slug used for updates.
 
 Create a new file in `content/training/your-slug.md` with frontmatter like this:
 

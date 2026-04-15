@@ -91,6 +91,21 @@ function getField(fields, name, { required = true } = {}) {
   return value;
 }
 
+function getFirstField(fields, names, { required = true } = {}) {
+  for (const name of names) {
+    const value = getField(fields, name, { required: false });
+    if (value) {
+      return value;
+    }
+  }
+
+  if (required) {
+    throw new Error(`The issue form is missing one of these responses: ${names.join(", ")}.`);
+  }
+
+  return undefined;
+}
+
 function slugify(value) {
   return value
     .toLowerCase()
@@ -110,6 +125,15 @@ function splitList(value) {
     .split(/\r?\n|,/)
     .map((item) => item.trim())
     .filter(Boolean);
+}
+
+function determineSubmissionMode(fields, existingSlugFieldNames) {
+  const submissionType = getField(fields, "Submission type", { required: false });
+  if (submissionType) {
+    return submissionType.toLowerCase().includes("update") ? "update" : "new";
+  }
+
+  return getFirstField(fields, existingSlugFieldNames, { required: false }) ? "update" : "new";
 }
 
 function isValidDateString(value) {
@@ -148,9 +172,16 @@ function renderFrontmatter(entries) {
 
 function buildArticleSubmission(fields) {
   const title = getField(fields, "Article title");
-  const existingSlug = getField(fields, "Existing article slug (optional)", {
-    required: false,
-  });
+  const mode = determineSubmissionMode(fields, [
+    "Existing article slug (for updates)",
+    "Existing article slug (optional)",
+  ]);
+  const customSlug = getField(fields, "Custom article slug (optional)", { required: false });
+  const existingSlug = getFirstField(
+    fields,
+    ["Existing article slug (for updates)", "Existing article slug (optional)"],
+    { required: false },
+  );
   const publishedAt =
     getField(fields, publishDateField, { required: false }) || issue.created_at.slice(0, 10);
 
@@ -158,11 +189,17 @@ function buildArticleSubmission(fields) {
     throw new Error(`Article "${publishDateField}" must use the YYYY-MM-DD format.`);
   }
 
+  if (mode === "update" && !existingSlug) {
+    throw new Error(
+      'This issue was marked as "Update existing content", but no existing article slug was provided.',
+    );
+  }
+
   return {
     section: getSectionById("articles"),
     title,
-    slug: existingSlug ? slugify(existingSlug) : slugify(title),
-    isUpdate: Boolean(existingSlug),
+    slug: slugify(mode === "update" ? existingSlug : customSlug || title),
+    isUpdate: mode === "update",
     body: getField(fields, "Article body"),
     fileEntries: [
       ["title", title],
@@ -181,9 +218,16 @@ function buildArticleSubmission(fields) {
 
 function buildTrainingSubmission(fields) {
   const title = getField(fields, "Programme title");
-  const existingSlug = getField(fields, "Existing programme slug (optional)", {
-    required: false,
-  });
+  const mode = determineSubmissionMode(fields, [
+    "Existing programme slug (for updates)",
+    "Existing programme slug (optional)",
+  ]);
+  const customSlug = getField(fields, "Custom programme slug (optional)", { required: false });
+  const existingSlug = getFirstField(
+    fields,
+    ["Existing programme slug (for updates)", "Existing programme slug (optional)"],
+    { required: false },
+  );
   const publishedAt =
     getField(fields, publishDateField, { required: false }) || issue.created_at.slice(0, 10);
 
@@ -191,11 +235,17 @@ function buildTrainingSubmission(fields) {
     throw new Error(`Training "${publishDateField}" must use the YYYY-MM-DD format.`);
   }
 
+  if (mode === "update" && !existingSlug) {
+    throw new Error(
+      'This issue was marked as "Update existing content", but no existing programme slug was provided.',
+    );
+  }
+
   return {
     section: getSectionById("training"),
     title,
-    slug: existingSlug ? slugify(existingSlug) : slugify(title),
-    isUpdate: Boolean(existingSlug),
+    slug: slugify(mode === "update" ? existingSlug : customSlug || title),
+    isUpdate: mode === "update",
     body: getField(fields, "Programme body"),
     fileEntries: [
       ["title", title],
@@ -226,7 +276,9 @@ function buildSubmission(fields) {
 
 function ensureExistingTarget(filePath, isUpdate) {
   if (isUpdate && !fs.existsSync(filePath)) {
-    throw new Error(`The requested file does not exist yet: ${path.relative(rootDirectory, filePath)}`);
+    throw new Error(
+      `This submission was treated as an update because an existing slug was provided, but the requested file does not exist yet: ${path.relative(rootDirectory, filePath)}. Choose "Create new content" to open a new page, or provide the slug of an existing file to update.`,
+    );
   }
 }
 
