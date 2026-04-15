@@ -187,11 +187,7 @@ function isSectionBackedContentPath(filePath) {
   }
 
   const pathSegments = filePath.split("/");
-  if (pathSegments.length < 3) {
-    return false;
-  }
-
-  return true;
+  return pathSegments.length === 3;
 }
 
 const candidateFiles = [...new Set(getCandidateFiles())];

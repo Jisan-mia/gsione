@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import { workflowLabels } from "./content-workflow-config.mjs";
+import { autoManagedLabels, workflowLabels } from "./content-workflow-config.mjs";
 import { getRepositoryPath, githubRequest, paginate } from "./github-api.mjs";
 
 const repositoryPath = getRepositoryPath();
@@ -46,6 +46,10 @@ for (const label of publicationLabels) {
   }
 }
 
+const labelsToClearOnPublish = autoManagedLabels.filter(
+  (label) => (label.startsWith("state:") || ["needs:revision", "ready:publish"].includes(label)) && label !== "state:published",
+);
+
 for (const pullRequest of associatedPullRequests) {
   if (!pullRequest.merged_at) {
     continue;
@@ -59,7 +63,7 @@ for (const pullRequest of associatedPullRequests) {
   const issue = await githubRequest(`${repositoryPath}/issues/${pullRequest.number}`);
   const labels = (issue.labels || [])
     .map((label) => label.name)
-    .filter((label) => !["state:draft", "state:review", "state:approved", "needs:revision", "ready:publish"].includes(label));
+    .filter((label) => !labelsToClearOnPublish.includes(label));
 
   labels.push("state:published");
 
