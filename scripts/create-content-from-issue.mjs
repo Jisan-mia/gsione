@@ -337,11 +337,15 @@ function getPullRequestBody(submission, relativePath) {
 - Intake issue: #${issue.number}`;
 }
 
-async function createOrUpdatePullRequest(branchName, submission, relativePath) {
+async function createOrUpdatePullRequest(
+  branchName,
+  submission,
+  relativePath,
+  existingPullRequest,
+) {
   const titlePrefix = submission.isUpdate ? "Update" : "Submit";
   const title = `${titlePrefix} ${submission.section.id}: ${submission.title}`;
   const body = getPullRequestBody(submission, relativePath);
-  const existingPullRequest = await findOpenPullRequest(branchName);
 
   if (existingPullRequest) {
     const updated = await githubRequest(`${repositoryPath}/pulls/${existingPullRequest.number}`, {
@@ -389,13 +393,26 @@ try {
   fs.writeFileSync(filePath, renderMarkdownFile(submission), "utf8");
 
   runGit(`git add ${relativePath}`);
+  const stagedChanges = hasStagedChanges();
+  const existingPullRequest = await findOpenPullRequest(branchName);
 
-  if (hasStagedChanges()) {
+  if (stagedChanges) {
     runGit(`git commit -m ${JSON.stringify(`content: sync issue #${issue.number}`)}`);
     runGit(`git push --force-with-lease origin HEAD:${branchName}`);
+  } else if (!existingPullRequest) {
+    await upsertIssueComment(
+      `The submission matched the existing repository content, so no draft PR was created.\n\n- Target file: \`${relativePath}\``,
+    );
+    console.log(`No content changes detected for issue #${issue.number}; skipping PR creation.`);
+    process.exit(0);
   }
 
-  const pullRequest = await createOrUpdatePullRequest(branchName, submission, relativePath);
+  const pullRequest = await createOrUpdatePullRequest(
+    branchName,
+    submission,
+    relativePath,
+    existingPullRequest,
+  );
   await upsertIssueComment(
     `Draft PR #${pullRequest.number} is ready for review.\n\n- Branch: \`${branchName}\`\n- File: \`${relativePath}\`\n- PR: ${pullRequest.html_url}`,
   );
