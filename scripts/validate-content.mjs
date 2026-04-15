@@ -95,8 +95,13 @@ function validateType(fieldName, value, rule, relativePath, errors) {
       return;
     }
     case "string[]": {
-      if (!Array.isArray(value) || value.length < (rule.minItems ?? 0)) {
-        errors.push(`${relativePath}: frontmatter field \`${fieldName}\` must be an array with at least ${rule.minItems ?? 0} item(s).`);
+      if (!Array.isArray(value)) {
+        errors.push(`${relativePath}: frontmatter field \`${fieldName}\` must be an array.`);
+        return;
+      }
+
+      if (value.length < (rule.minItems ?? 0)) {
+        errors.push(`${relativePath}: frontmatter field \`${fieldName}\` must contain at least ${rule.minItems ?? 0} item(s).`);
         return;
       }
 

@@ -24,7 +24,7 @@ export async function githubRequest(path, { method = "GET", body } = {}) {
     headers: {
       Accept: "application/vnd.github+json",
       Authorization: `Bearer ${token}`,
-      "User-Agent": "Jisan-mia-gsione-content-workflow",
+      "User-Agent": "github-content-workflow",
       ...(body ? { "Content-Type": "application/json" } : {}),
     },
     body: body ? JSON.stringify(body) : undefined,
