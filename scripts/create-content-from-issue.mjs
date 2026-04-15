@@ -277,7 +277,7 @@ function buildSubmission(fields) {
 function ensureExistingTarget(filePath, isUpdate) {
   if (isUpdate && !fs.existsSync(filePath)) {
     throw new Error(
-      `This submission was treated as an update because an existing slug was provided, but the requested file does not exist yet: ${path.relative(rootDirectory, filePath)}. Choose "Create new content" to open a new page, or provide the slug of an existing file to update.`,
+      `This submission was treated as an update because an existing slug was provided, but the requested file does not exist yet: ${path.relative(rootDirectory, filePath)}. Select "Create new content" to open a new page, or provide the slug of an existing file to update.`,
     );
   }
 }
