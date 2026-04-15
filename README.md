@@ -7,7 +7,7 @@ Official website for the Governance and Security Initiative (GSi), built with Ne
 - Next.js 16 (App Router, standalone output)
 - TypeScript
 - Tailwind CSS v4 + shadcn/ui components
-- Markdown-driven content (`content/blog`, `content/training`)
+- Markdown-driven content (`content/articles`, `content/training`)
 - Prisma (SQLite schema available for future data-backed features)
 
 ## Features
@@ -24,7 +24,7 @@ Official website for the Governance and Security Initiative (GSi), built with Ne
 src/app            # Routes and page-level files
 src/components     # UI and site components
 src/lib            # Site config, content utilities, shared helpers
-content/blog       # Blog posts in Markdown
+content/articles   # Article posts in Markdown
 content/training   # Training pages in Markdown
 prisma             # Prisma schema
 public             # Static assets
@@ -73,10 +73,10 @@ public             # Static assets
 
 All editorial content is Markdown-based.
 
-- Add blog posts in `content/blog/*.md`
+- Add article posts in `content/articles/*.md`
 - Add training pages in `content/training/*.md`
 
-Use the frontmatter formats described in `content/README.md`.
+Use the frontmatter formats and editorial workflow described in `content/README.md` and `docs/editorial-workflow.md`.
 
 ## Deployment notes
 

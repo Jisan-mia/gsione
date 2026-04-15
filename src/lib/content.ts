@@ -33,6 +33,7 @@ export interface TrainingProgram {
   level: string;
   duration: string;
   format: string;
+  publishedAt?: string;
   featured: boolean;
   audience: string[];
   focusAreas: string[];
@@ -65,23 +66,48 @@ function getReadingTime(content: string) {
   return `${minutes} min read`;
 }
 
+function getDateTimestamp(date?: string) {
+  return date ? new Date(date).getTime() : 0;
+}
+
 function sortByDate<T extends { publishedAt?: string; slug: string }>(
   items: T[],
 ) {
-  return [...items].sort((left, right) => {
-    const leftDate = left.publishedAt
-      ? new Date(left.publishedAt).getTime()
-      : 0;
-    const rightDate = right.publishedAt
-      ? new Date(right.publishedAt).getTime()
-      : 0;
+  return items
+    .map((item) => ({
+      item,
+      timestamp: getDateTimestamp(item.publishedAt),
+    }))
+    .sort((left, right) => {
+      if (left.timestamp === right.timestamp) {
+        return left.item.slug.localeCompare(right.item.slug);
+      }
 
-    if (leftDate === rightDate) {
-      return left.slug.localeCompare(right.slug);
-    }
+      return right.timestamp - left.timestamp;
+    })
+    .map(({ item }) => item);
+}
 
-    return rightDate - leftDate;
-  });
+function sortByDateThenFeatured<
+  T extends { publishedAt?: string; featured: boolean; slug: string },
+>(items: T[]) {
+  return items
+    .map((item) => ({
+      item,
+      timestamp: getDateTimestamp(item.publishedAt),
+    }))
+    .sort((left, right) => {
+      if (left.timestamp !== right.timestamp) {
+        return right.timestamp - left.timestamp;
+      }
+
+      if (left.item.featured !== right.item.featured) {
+        return Number(right.item.featured) - Number(left.item.featured);
+      }
+
+      return left.item.slug.localeCompare(right.item.slug);
+    })
+    .map(({ item }) => item);
 }
 
 export const getBlogPosts = cache((): BlogPost[] => {
@@ -127,9 +153,7 @@ export const getTrainingPrograms = cache((): TrainingProgram[] => {
     },
   );
 
-  return [...programs].sort(
-    (left, right) => Number(right.featured) - Number(left.featured),
-  );
+  return sortByDateThenFeatured(programs);
 });
 
 export const getFeaturedTrainingPrograms = cache(() =>

@@ -1,0 +1,112 @@
+name: Training submission
+description: Submit a new or updated GSi training page without editing repository files manually.
+title: "[Training] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for `content/training/*.md`.
+
+        - Leave the slug blank to create a new programme automatically.
+        - Add markdown images directly in the body, for example `![Alt text](https://...)`.
+        - If you upload an image into the issue editor first, GitHub will give you a hosted image URL you can reuse in the programme body.
+  - type: input
+    id: programme-title
+    attributes:
+      label: Programme title
+      placeholder: Programme title
+    validations:
+      required: true
+  - type: input
+    id: programme-slug
+    attributes:
+      label: Existing programme slug (optional)
+      description: Fill this only when you want to update an existing training file.
+      placeholder: existing-programme-slug
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: One short overview paragraph for cards and metadata.
+      placeholder: One-paragraph overview for cards and metadata.
+    validations:
+      required: true
+  - type: input
+    id: level
+    attributes:
+      label: Level
+      placeholder: Executive / Advanced
+    validations:
+      required: true
+  - type: input
+    id: duration
+    attributes:
+      label: Duration
+      placeholder: Half-day to multi-session
+    validations:
+      required: true
+  - type: input
+    id: format
+    attributes:
+      label: Format
+      placeholder: In-person, virtual, or hybrid
+    validations:
+      required: true
+  - type: input
+    id: publish-date
+    attributes:
+      label: Publish date (optional)
+      description: Leave blank to use the issue date automatically.
+      placeholder: YYYY-MM-DD
+  - type: dropdown
+    id: featured
+    attributes:
+      label: Feature this programme?
+      options:
+        - "No"
+        - "Yes"
+      default: 0
+    validations:
+      required: true
+  - type: textarea
+    id: audience
+    attributes:
+      label: Audience
+      description: Add one audience line per item.
+      placeholder: |
+        Policy teams and regulators
+        University departments
+    validations:
+      required: true
+  - type: textarea
+    id: focus-areas
+    attributes:
+      label: Focus areas
+      description: Add one focus area per line.
+      placeholder: |
+        AI governance
+        Information integrity
+    validations:
+      required: true
+  - type: textarea
+    id: outcomes
+    attributes:
+      label: Outcomes
+      description: Add one outcome per line.
+      placeholder: |
+        Understand the governance trade-offs
+        Build a response framework
+    validations:
+      required: true
+  - type: textarea
+    id: programme-body
+    attributes:
+      label: Programme body
+      description: Write the full training content in Markdown, including image links if needed.
+      render: markdown
+      placeholder: |
+        # Programme overview
+
+        Write the programme content in markdown.
+    validations:
+      required: true

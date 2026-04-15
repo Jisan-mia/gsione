@@ -1,0 +1,58 @@
+name: Content validation
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+      - converted_to_draft
+    paths:
+      - content/**
+      - scripts/*.mjs
+      - .github/workflows/content-validation.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate-content:
+    name: Validate content metadata
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Detect changed content files
+        id: changed-content
+        run: |
+          git fetch origin "${{ github.event.pull_request.base.ref }}"
+          files=$(git diff --name-only --diff-filter=ACMR "origin/${{ github.event.pull_request.base.ref }}...${{ github.event.pull_request.head.sha }}" -- content)
+          {
+            echo 'files<<EOF'
+            echo "$files"
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Validate Markdown content
+        if: steps.changed-content.outputs.files != ''
+        env:
+          CONTENT_FILES: ${{ steps.changed-content.outputs.files }}
+        run: npm run content:validate
+
+      - name: Skip when no content files changed
+        if: steps.changed-content.outputs.files == ''
+        run: echo "No content files changed."
+
