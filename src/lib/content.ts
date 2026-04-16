@@ -17,7 +17,7 @@ export interface BlogPost {
   author: string;
   authorRole: string;
   publishedAt?: string;
-  sourceLabel: string;
+  sourceLabel?: string;
   sourceUrl?: string;
   featured: boolean;
   tags: string[];

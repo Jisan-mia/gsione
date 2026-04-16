@@ -1,5 +1,5 @@
 import { getRepositoryPath, githubRequest, paginate } from "./github-api.mjs";
-import { workflowLabels } from "./content-workflow-config.mjs";
+import { retiredWorkflowLabelNames, workflowLabels } from "./content-workflow-config.mjs";
 
 const repositoryPath = getRepositoryPath();
 const existingLabels = await paginate(`${repositoryPath}/labels`);
@@ -27,6 +27,16 @@ for (const label of workflowLabels) {
       color: label.color,
       description: label.description,
     },
+  });
+}
+
+for (const labelName of retiredWorkflowLabelNames) {
+  if (!existingByName.has(labelName)) {
+    continue;
+  }
+
+  await githubRequest(`${repositoryPath}/labels/${encodeURIComponent(labelName)}`, {
+    method: "DELETE",
   });
 }
 

@@ -12,6 +12,7 @@ body:
         - Use **Existing article slug** only when you want to edit a file that already exists in `content/articles/`.
         - Add markdown images directly in the body, for example `![Alt text](https://...)`.
         - If you upload an image into the issue editor first, GitHub will give you a hosted image URL you can reuse in the article body.
+        - After you submit, automation will open a draft pull request and add a rendered content preview to the issue.
   - type: dropdown
     id: submission-type
     attributes:
@@ -79,10 +80,8 @@ body:
   - type: input
     id: source-label
     attributes:
-      label: Source label
+      label: Source label (optional)
       placeholder: GSi LinkedIn
-    validations:
-      required: true
   - type: input
     id: source-url
     attributes:
@@ -113,7 +112,7 @@ body:
     id: article-body
     attributes:
       label: Article body
-      description: Write the full article in Markdown, including image links if needed.
+      description: Write the full article in Markdown, including image links if needed. A rendered preview will be added after submission.
       render: markdown
       placeholder: |
         # Article heading

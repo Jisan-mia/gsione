@@ -208,7 +208,10 @@ function buildArticleSubmission(fields) {
       ["author", getField(fields, "Author name")],
       ["authorRole", getField(fields, "Author role")],
       ["publishedAt", publishedAt],
-      ["sourceLabel", getField(fields, "Source label")],
+      [
+        "sourceLabel",
+        getFirstField(fields, ["Source label (optional)", "Source label"], { required: false }),
+      ],
       ["sourceUrl", getField(fields, "Source URL (optional)", { required: false })],
       ["featured", normalizeBoolean(getField(fields, "Feature this article?"))],
       ["tags", splitList(getField(fields, "Tags"))],
@@ -301,6 +304,10 @@ function renderMarkdownFile(submission) {
   return `---\n${frontmatter}\n---\n\n${submission.body.trim()}\n`;
 }
 
+function getRenderedPreview(submission) {
+  return `## Content preview\n\n${submission.body.trim()}`;
+}
+
 function runGit(command) {
   execSync(command, {
     cwd: rootDirectory,
@@ -345,47 +352,18 @@ async function findOpenPullRequest(branchName) {
 }
 
 function getPullRequestBody(submission, relativePath) {
-  if (submission.isUpdate) {
-    return `## Summary
-- Section: ${submission.section.id}
-- Content type: update to existing Markdown content
-- Update type: routine refresh
-- Intended audience: internal reviewers, public readers
-- Publication intent: merge when approved
-
-## Update checklist
-- [x] I updated an existing Markdown file under \`${submission.section.directory}/\`
-- [x] I reviewed the frontmatter and body for consistency with the current section requirements
-- [ ] I noted whether this should also carry the manual \`type:correction\` label
-- [ ] I described any reviewer follow-up needed below
-
-## Reviewer notes
-- Reason for the update: Captured from GitHub issue #${issue.number}
-- Editorial considerations:
-- Sources or supporting links:
-- Requested publication timing:
-- Generated file: \`${relativePath}\``;
-  }
-
   return `## Summary
 - Section: ${submission.section.id}
-- Content type: new Markdown content
-- Intended audience: internal reviewers, public readers
-- Publication intent: publish immediately after approval
-
-## Submission checklist
-- [x] I added Markdown content under \`${submission.section.directory}/\`
-- [x] I used the required frontmatter for this section
-- [x] I confirmed the title, summary/excerpt, and metadata are review-ready
-- [ ] I identified any factual or editorial sensitivities for maintainers below
+- Status: ${submission.isUpdate ? "Review existing content update" : "Draft new content submission"}
+- Source issue: #${issue.number}
+- Generated file: \`${relativePath}\`
 
 ## Reviewer notes
-- Editorial considerations:
-- Sources or supporting links:
-- Requested publication timing:
-- Follow-up actions after merge:
-- Generated file: \`${relativePath}\`
-- Intake issue: #${issue.number}`;
+- Editorial considerations or requested edits:
+- Publication timing notes:
+- Rendered preview: posted back to issue #${issue.number}
+
+Closes #${issue.number}`;
 }
 
 async function createOrUpdatePullRequest(
@@ -465,7 +443,7 @@ try {
     existingPullRequest,
   );
   await upsertIssueComment(
-    `Draft PR #${pullRequest.number} is ready for review.\n\n- Branch: \`${branchName}\`\n- File: \`${relativePath}\`\n- PR: ${pullRequest.html_url}`,
+    `Draft PR #${pullRequest.number} is ready for review.\n\n- Branch: \`${branchName}\`\n- File: \`${relativePath}\`\n- PR: ${pullRequest.html_url}\n\n${getRenderedPreview(submission)}`,
   );
 
   console.log(`Prepared ${relativePath} from issue #${issue.number} and linked pull request #${pullRequest.number}.`);

@@ -119,7 +119,7 @@ export default async function ArticlePage({
                 {post.author} &middot; {post.authorRole}
               </span>
               <span>{post.readingTime}</span>
-              <span>{post.sourceLabel}</span>
+              {post.sourceLabel ? <span>{post.sourceLabel}</span> : null}
             </div>
             {post.sourceUrl ? (
               <a
