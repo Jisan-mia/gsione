@@ -422,11 +422,11 @@ export function CursorFollower() {
     const hasPointer = window.matchMedia("(pointer: fine)").matches;
     if (!hasPointer) return;
 
+    setIsVisible(true);
+
     const dot = dotRef.current;
     const ring = ringRef.current;
     if (!dot || !ring) return;
-
-    const showFollower = () => setIsVisible(true);
 
     const moveDot = (e: PointerEvent) => {
       if (!hasMoved.current) {
@@ -451,7 +451,6 @@ export function CursorFollower() {
     const handleEnter = () => setIsHovering(true);
     const handleLeave = () => setIsHovering(false);
 
-    window.addEventListener("pointermove", showFollower, { once: true });
     window.addEventListener("pointermove", moveDot);
 
     const interactives = document.querySelectorAll(
@@ -476,7 +475,6 @@ export function CursorFollower() {
     observer.observe(document.body, { childList: true, subtree: true });
 
     return () => {
-      window.removeEventListener("pointermove", showFollower);
       window.removeEventListener("pointermove", moveDot);
       interactives.forEach((el) => {
         el.removeEventListener("pointerenter", handleEnter);

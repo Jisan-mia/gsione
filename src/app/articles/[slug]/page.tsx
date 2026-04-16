@@ -101,7 +101,7 @@ export default async function ArticlePage({
               className="inline-flex items-center text-sm text-muted-foreground transition-colors hover:text-primary"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Articles
+              Back to GSi Articles
             </Link>
             <div className="mt-6 flex flex-wrap gap-2 text-xs uppercase tracking-[0.18em] text-primary">
               <span>{post.category}</span>

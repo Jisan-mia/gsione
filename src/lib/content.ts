@@ -7,28 +7,9 @@ import { siteConfig, siteUrl } from "@/lib/site";
 
 const contentRoot = path.join(process.cwd(), "content");
 const blogRoot = path.join(contentRoot, "articles");
-const analysisRoot = path.join(contentRoot, "analysis");
-const podcastRoot = path.join(contentRoot, "podcast");
 const trainingRoot = path.join(contentRoot, "training");
 
 export interface BlogPost {
-  slug: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  author: string;
-  authorRole: string;
-  publishedAt?: string;
-  sourceLabel?: string;
-  sourceUrl?: string;
-  featured: boolean;
-  tags: string[];
-  content: string;
-  readingTime: string;
-  updatedAt?: string;
-}
-
-export interface AnalysisPost {
   slug: string;
   title: string;
   excerpt: string;
@@ -57,17 +38,6 @@ export interface TrainingProgram {
   audience: string[];
   focusAreas: string[];
   outcomes: string[];
-  content: string;
-  updatedAt?: string;
-}
-
-export interface PodcastEpisode {
-  slug: string;
-  title: string;
-  publishedAt?: string;
-  guestName: string;
-  hostName: string;
-  youtubeUrl: string;
   content: string;
   updatedAt?: string;
 }
@@ -169,35 +139,6 @@ export const getBlogPostBySlug = cache((slug: string) =>
   getBlogPosts().find((post) => post.slug === slug),
 );
 
-export const getAnalysisPosts = cache((): AnalysisPost[] => {
-  const posts = readMarkdownFiles(analysisRoot).map(
-    ({ slug, data, content, updatedAt }) => {
-      const frontmatter = data as Omit<
-        AnalysisPost,
-        "slug" | "content" | "readingTime"
-      >;
-
-      return {
-        ...frontmatter,
-        slug,
-        content,
-        readingTime: getReadingTime(content),
-        updatedAt,
-      };
-    },
-  );
-
-  return sortByDate(posts);
-});
-
-export const getFeaturedAnalysisPosts = cache(() =>
-  getAnalysisPosts().filter((post) => post.featured),
-);
-
-export const getAnalysisPostBySlug = cache((slug: string) =>
-  getAnalysisPosts().find((post) => post.slug === slug),
-);
-
 export const getTrainingPrograms = cache((): TrainingProgram[] => {
   const programs = readMarkdownFiles(trainingRoot).map(
     ({ slug, data, content, updatedAt }) => {
@@ -223,23 +164,6 @@ export const getTrainingProgramBySlug = cache((slug: string) =>
   getTrainingPrograms().find((program) => program.slug === slug),
 );
 
-export const getPodcastEpisodes = cache((): PodcastEpisode[] => {
-  const episodes = readMarkdownFiles(podcastRoot).map(
-    ({ slug, data, content, updatedAt }) => {
-      const frontmatter = data as Omit<PodcastEpisode, "slug" | "content">;
-
-      return {
-        ...frontmatter,
-        slug,
-        content,
-        updatedAt,
-      };
-    },
-  );
-
-  return sortByDate(episodes);
-});
-
 export function formatDisplayDate(date?: string) {
   if (!date) {
     return "Undated";
@@ -250,37 +174,6 @@ export function formatDisplayDate(date?: string) {
     month: "long",
     year: "numeric",
   }).format(new Date(date));
-}
-
-export function getYouTubeEmbedUrl(url: string) {
-  try {
-    const parsed = new URL(url);
-    const isShortUrl = parsed.hostname === "youtu.be";
-    const isYouTubeHost =
-      parsed.hostname === "www.youtube.com" ||
-      parsed.hostname === "youtube.com" ||
-      parsed.hostname === "m.youtube.com";
-
-    let videoId = "";
-
-    if (isShortUrl) {
-      videoId = parsed.pathname.replace(/^\/+/, "");
-    } else if (isYouTubeHost) {
-      if (parsed.pathname.startsWith("/embed/")) {
-        return url;
-      }
-
-      videoId = parsed.searchParams.get("v") || "";
-    }
-
-    if (!videoId) {
-      return url;
-    }
-
-    return `https://www.youtube.com/embed/${videoId}`;
-  } catch {
-    return url;
-  }
 }
 
 export function getMetadataImageUrl(pathName = "/opengraph-image") {

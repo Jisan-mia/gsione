@@ -1,9 +1,7 @@
 # Replace these entries with GitHub teams as the editorial group grows.
 # Example: @your-org/editorial-articles and @your-org/editorial-training
 
-/content/analysis/ @Jisan-mia
 /content/articles/ @Jisan-mia
-/content/podcast/ @Jisan-mia
 /content/training/ @Jisan-mia
 
 # Workflow, governance, and automation changes stay under maintainer review.

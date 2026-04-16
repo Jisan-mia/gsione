@@ -1,22 +1,5 @@
 export const contentSections = [
   {
-    id: "analysis",
-    directory: "content/analysis",
-    owners: ["@Jisan-mia"],
-    fields: {
-      title: { type: "string", required: true },
-      excerpt: { type: "string", required: true },
-      category: { type: "string", required: true },
-      author: { type: "string", required: true },
-      authorRole: { type: "string", required: true },
-      publishedAt: { type: "date", required: false },
-      sourceLabel: { type: "string", required: false },
-      sourceUrl: { type: "url", required: false },
-      featured: { type: "boolean", required: true },
-      tags: { type: "string[]", required: true, minItems: 1 },
-    },
-  },
-  {
     id: "articles",
     directory: "content/articles",
     owners: ["@Jisan-mia"],
@@ -31,18 +14,6 @@ export const contentSections = [
       sourceUrl: { type: "url", required: false },
       featured: { type: "boolean", required: true },
       tags: { type: "string[]", required: true, minItems: 1 },
-    },
-  },
-  {
-    id: "podcast",
-    directory: "content/podcast",
-    owners: ["@Jisan-mia"],
-    fields: {
-      title: { type: "string", required: true },
-      publishedAt: { type: "date", required: false },
-      guestName: { type: "string", required: true },
-      hostName: { type: "string", required: true },
-      youtubeUrl: { type: "url", required: true },
     },
   },
   {
@@ -90,9 +61,7 @@ export const retiredWorkflowLabelNames = [
   "type:new-content",
   "type:update",
   "type:correction",
-  "section:analysis",
   "section:articles",
-  "section:podcast",
   "section:training",
   "needs:revision",
   "blocked",

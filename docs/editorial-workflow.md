@@ -21,9 +21,7 @@ All Markdown sections must be registered in `scripts/content-workflow-config.mjs
 
 Current sections:
 
-- `content/analysis/*.md`
 - `content/articles/*.md`
-- `content/podcast/*.md`
 - `content/training/*.md`
 
 To add another Markdown section later:
@@ -45,9 +43,7 @@ Templates capture the linked issue, current review status, and reviewer notes so
 
 Non-technical contributors can now start from GitHub issue forms instead of editing repository files manually.
 
-- `Analysis submission` creates or updates `content/analysis/*.md`
 - `Article submission` creates or updates `content/articles/*.md`
-- `Podcast submission` creates or updates `content/podcast/*.md`
 - `Training submission` creates or updates `content/training/*.md`
 
 The automation:
@@ -66,7 +62,7 @@ Each issue form now asks contributors to choose between **Create new content** a
 
 Contributors can include images by pasting Markdown image links directly into the body field. If they upload an image inside the issue editor first, GitHub provides a hosted image URL that can be reused in the Markdown body.
 
-For article and analysis submissions, `sourceLabel` is optional. Author name and author role remain the required attribution fields.
+For article submissions, `sourceLabel` is now optional. Author name and author role remain the only required attribution fields.
 
 ## Automated checks
 
