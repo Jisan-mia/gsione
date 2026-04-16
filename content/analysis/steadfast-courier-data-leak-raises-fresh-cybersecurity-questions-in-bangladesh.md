@@ -1,5 +1,5 @@
 ---
-title: "🚨 Alleged Steadfast Courier Data Leak Raises Fresh Cybersecurity Questions in Bangladesh📦"
+title: "Alleged Steadfast Courier Data Leak Raises Fresh Cybersecurity Questions in Bangladesh"
 excerpt: "An alleged Steadfast Courier data leak highlights how exposed logistics data can quickly become a trust, governance, and cybersecurity problem in Bangladesh."
 category: "Cybersecurity"
 author: "Md. Atiquer Rahman"
@@ -18,6 +18,8 @@ tags:
   - "InfoSec"
   - "CyberGovernance"
 ---
+
+# 🚨 Alleged Steadfast Courier Data Leak Raises Fresh Cybersecurity Questions in Bangladesh 📦
 
 Md. Atiquer Rahman, Cyber Incident Analyst, GSi.
 

@@ -1,5 +1,5 @@
 ---
-title: "🚢💰 Crypto at Sea? Iran’s Reported Hormuz Tolls Could Change Global Trade"
+title: "Crypto at Sea? Iran’s Reported Hormuz Tolls Could Change Global Trade"
 excerpt: "Reports of Hormuz transit tolls collected in crypto or alternative currencies point to a new mix of strategic geography, sanctions resistance, and digital finance."
 category: "Geopolitics"
 author: "Md. Atiquer Rahman"
@@ -18,6 +18,8 @@ tags:
   - "GlobalTrade"
   - "CyberPolitics"
 ---
+
+# 🚢💰 Crypto at Sea? Iran’s Reported Hormuz Tolls Could Change Global Trade
 
 Md. Atiquer Rahman, Cyber Incident Analyst, GSi.
 
