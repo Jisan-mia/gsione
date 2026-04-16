@@ -1,56 +1,56 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BookOpen } from "lucide-react";
+import { ArrowRight, FileText } from "lucide-react";
 import {
   AnimatedSection,
   StaggerChildren,
 } from "@/components/site/animated-section";
 import {
-  TextReveal,
-  CursorGlow,
   AnimatedLine,
+  CursorGlow,
+  TextReveal,
 } from "@/components/site/interactive";
 import {
   formatDisplayDate,
+  getAnalysisPosts,
   getBaseMetadata,
-  getBlogPosts,
 } from "@/lib/content";
 
 export const metadata: Metadata = getBaseMetadata({
-  title: "Articles",
+  title: "Analysis",
   description:
-    "In-depth analysis and expert commentary from GSi on cybersecurity, AI policy, governance, environmental risk, and digital rights.",
-  pathName: "/articles",
-  ogImagePath: "/articles/opengraph-image",
+    "Byte-sized GSi analysis on recent cyber incidents, geopolitical developments, governance questions, and public-interest affairs.",
+  pathName: "/analysis",
+  ogImagePath: "/analysis/opengraph-image",
   keywords: [
-    "GSi articles",
-    "Bangladesh policy analysis",
-    "cybersecurity commentary",
-    "AI policy Bangladesh",
-    "governance writing",
-    "gsithinktank articles",
+    "GSi analysis",
+    "Bangladesh analysis",
+    "cyber incident analysis",
+    "geopolitical commentary",
+    "policy nuggets",
+    "gsithinktank analysis",
   ],
 });
 
-export default function ArticlesPage() {
-  const posts = getBlogPosts();
+export default function AnalysisPage() {
+  const posts = getAnalysisPosts();
 
   return (
     <main id="main-content">
       <section className="section-space border-b border-border/60">
         <div className="page-shell">
           <AnimatedSection>
-            <span className="eyebrow shimmer">Articles</span>
+            <span className="eyebrow shimmer">Analysis</span>
             <TextReveal
               as="h1"
               className="mt-5 max-w-4xl text-5xl font-semibold text-balance text-foreground sm:text-6xl"
             >
-              Expert analysis and policy commentary from GSi.
+              Fast analysis for recent developments that need immediate context.
             </TextReveal>
             <p className="mt-6 max-w-3xl text-base leading-8 text-muted-foreground sm:text-lg">
-              In-depth articles on cybersecurity governance, AI policy,
-              information integrity, environmental risk, and public
-              accountability.
+              Short-form GSi analysis tracks cyber incidents, geopolitical
+              developments, governance signals, and public-interest affairs with
+              clear context and Bangladesh-relevant perspective.
             </p>
           </AnimatedSection>
           <AnimatedLine className="mt-8" />
@@ -65,14 +65,14 @@ export default function ArticlesPage() {
           {posts.map((post) => (
             <Link
               key={post.slug}
-              href={`/articles/${post.slug}`}
+              href={`/analysis/${post.slug}`}
               className="group h-full"
             >
               <CursorGlow>
                 <article className="section-card-interactive flex h-full flex-col p-6 sm:p-7">
                   <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
-                      <BookOpen className="h-5 w-5" />
+                      <FileText className="h-5 w-5" />
                     </div>
                     <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.18em] text-primary">
                       <span>{post.category}</span>
@@ -103,7 +103,7 @@ export default function ArticlesPage() {
                     <span>{post.readingTime}</span>
                   </div>
                   <span className="mt-6 inline-flex items-center text-sm font-medium text-primary transition-colors group-hover:text-accent">
-                    Read full article
+                    Read full analysis
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-2" />
                   </span>
                 </article>

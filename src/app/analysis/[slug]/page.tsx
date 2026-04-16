@@ -6,15 +6,15 @@ import { AnimatedSection } from "@/components/site/animated-section";
 import { Markdown } from "@/components/site/markdown";
 import {
   formatDisplayDate,
+  getAnalysisPostBySlug,
+  getAnalysisPosts,
   getBaseMetadata,
   getMetadataImageUrl,
-  getBlogPostBySlug,
-  getBlogPosts,
 } from "@/lib/content";
 import { siteConfig, siteUrl } from "@/lib/site";
 
 export function generateStaticParams() {
-  return getBlogPosts().map((post) => ({ slug: post.slug }));
+  return getAnalysisPosts().map((post) => ({ slug: post.slug }));
 }
 
 export function generateMetadata({
@@ -23,20 +23,20 @@ export function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   return params.then(({ slug }) => {
-    const post = getBlogPostBySlug(slug);
+    const post = getAnalysisPostBySlug(slug);
 
     if (!post) {
       return getBaseMetadata({
-        title: "Article not found",
-        pathName: `/articles/${slug}`,
+        title: "Analysis not found",
+        pathName: `/analysis/${slug}`,
       });
     }
 
     return getBaseMetadata({
       title: post.title,
       description: post.excerpt,
-      pathName: `/articles/${post.slug}`,
-      ogImagePath: `/articles/${post.slug}/opengraph-image`,
+      pathName: `/analysis/${post.slug}`,
+      ogImagePath: `/analysis/${post.slug}/opengraph-image`,
       openGraphType: "article",
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt,
@@ -48,24 +48,24 @@ export function generateMetadata({
   });
 }
 
-export default async function ArticlePage({
+export default async function AnalysisDetailPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const post = getAnalysisPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
-  const articleSchema = {
+  const analysisSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.excerpt,
-    image: [getMetadataImageUrl(`/articles/${post.slug}/opengraph-image`)],
+    image: [getMetadataImageUrl(`/analysis/${post.slug}/opengraph-image`)],
     author: {
       "@type": "Person",
       name: post.author,
@@ -79,7 +79,7 @@ export default async function ArticlePage({
         url: `${siteUrl}/android-chrome-512x512.png`,
       },
     },
-    mainEntityOfPage: `${siteUrl}/articles/${post.slug}`,
+    mainEntityOfPage: `${siteUrl}/analysis/${post.slug}`,
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
     articleSection: post.category,
@@ -90,18 +90,18 @@ export default async function ArticlePage({
     <main id="main-content">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(analysisSchema) }}
       />
 
       <section className="section-space border-b border-border/60">
         <div className="page-shell max-w-4xl">
           <AnimatedSection>
             <Link
-              href="/articles"
+              href="/analysis"
               className="inline-flex items-center text-sm text-muted-foreground transition-colors hover:text-primary"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Articles
+              Back to Analysis
             </Link>
             <div className="mt-6 flex flex-wrap gap-2 text-xs uppercase tracking-[0.18em] text-primary">
               <span>{post.category}</span>
@@ -150,14 +150,14 @@ export default async function ArticlePage({
                 Continue reading
               </h2>
               <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
-                Explore more GSi articles on governance, cybersecurity, and
-                policy reform.
+                Explore more short-form GSi analysis on cyber incidents,
+                geopolitics, governance, and public-interest developments.
               </p>
               <Link
-                href="/articles"
+                href="/analysis"
                 className="mt-6 inline-flex items-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all hover:opacity-90 hover:shadow-lg hover:shadow-primary/20"
               >
-                Browse all articles
+                Browse all analysis
               </Link>
             </div>
           </AnimatedSection>

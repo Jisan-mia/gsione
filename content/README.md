@@ -2,6 +2,37 @@
 
 The site reads editorial content from markdown files in this directory.
 
+## Analysis posts
+
+Non-technical contributors can use the **Analysis submission** issue form in GitHub to generate the Markdown file and open a draft pull request automatically.
+
+Choose **Create new content** for a new nugget or **Update existing content** when editing an existing analysis post. The form separates the optional custom slug for new content from the existing slug used for updates.
+
+Create a new file in `content/analysis/your-slug.md` with frontmatter like this:
+
+```md
+---
+title: Example analysis title
+excerpt: Short summary for cards and metadata.
+category: Cybersecurity
+author: Author Name
+authorRole: Analyst at GSi
+publishedAt: 2026-03-10
+sourceLabel: GSi LinkedIn
+sourceUrl: https://example.com/post
+featured: false
+tags:
+  - Example
+  - Commentary
+---
+
+# Analysis heading
+
+Write the analysis in markdown.
+```
+
+`publishedAt` and `sourceLabel` are optional. If `publishedAt` is omitted, the site shows `Undated`.
+
 ## Blog posts
 
 Non-technical contributors can use the **Article submission** issue form in GitHub to generate the Markdown file and open a draft pull request automatically.
@@ -65,6 +96,27 @@ Use markdown for modules, delivery notes, and case studies.
 
 The page generator will pick up new files automatically.
 
+## Podcast pages
+
+Non-technical contributors can use the **Podcast submission** issue form in GitHub to generate the Markdown file and open a draft pull request automatically.
+
+Choose **Create new content** for a new episode or **Update existing content** when editing an existing podcast page. The form keeps episode metadata lightweight and can generate default notes automatically.
+
+Create a new file in `content/podcast/your-slug.md` with frontmatter like this:
+
+```md
+---
+title: Episode title
+publishedAt: 2026-03-10
+guestName: Guest Name
+hostName: Host Name
+youtubeUrl: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+---
+
+# Episode notes
+
+Add short notes, context, or a summary for the episode.
+```
 
 ## Editorial pull request workflow
 

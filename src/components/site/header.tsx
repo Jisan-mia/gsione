@@ -85,9 +85,15 @@ export function SiteHeader() {
 
   // Close mobile menu on route change and immediately restore scroll
   useEffect(() => {
-    setMobileOpen(false);
     document.body.style.overflow = '';
-  }, [pathname]);
+    if (!mobileOpen) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      setMobileOpen(false);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [mobileOpen, pathname]);
 
   // Keep --header-h CSS variable in sync with actual header height
   useEffect(() => {
