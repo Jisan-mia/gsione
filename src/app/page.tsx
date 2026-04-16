@@ -59,36 +59,34 @@ export default function HomePage() {
     <main id="main-content">
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className="hero-gradient overflow-hidden border-b border-border/60 relative">
-        <div className="page-shell grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 lg:py-24 relative">
+        <div className="page-shell py-16 sm:py-20 lg:py-24 relative">
           <HeroAnimation>
-            <div className="max-w-3xl">
-              <span className="eyebrow shimmer">
-                {homeContent.hero.eyebrow}
-              </span>
+            <div className="mx-auto max-w-5xl text-center">
+              <span className="eyebrow shimmer">{homeContent.hero.eyebrow}</span>
               <TextReveal
                 as="h1"
-                className="mt-6 max-w-4xl text-5xl font-semibold leading-tight text-balance text-foreground sm:text-6xl lg:text-7xl"
+                className="mx-auto mt-6 max-w-4xl text-5xl font-semibold leading-tight text-balance text-foreground sm:text-6xl lg:text-7xl"
                 staggerAmount={0.02}
               >
                 {homeContent.hero.title}
               </TextReveal>
-              <p className="mt-6 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
+              <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-muted-foreground sm:text-lg">
                 {homeContent.hero.description}
               </p>
-              <ul className="mt-8 grid gap-3 text-sm leading-7 text-muted-foreground sm:grid-cols-2 sm:text-base">
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                 {homeContent.hero.points.map((point) => (
-                  <li
+                  <div
                     key={point}
-                    className="rounded-2xl border border-border/70 bg-background/70 px-4 py-3"
+                    className="rounded-full border border-border/70 bg-background/75 px-4 py-2 text-sm text-muted-foreground shadow-sm"
                   >
-                    <span className="flex items-start gap-3">
-                      <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-primary pulse-dot" />
+                    <span className="inline-flex items-center gap-2">
+                      <span className="h-2 w-2 rounded-full bg-primary pulse-dot" />
                       <span>{point}</span>
                     </span>
-                  </li>
+                  </div>
                 ))}
-              </ul>
-              <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              </div>
+              <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Magnetic strength={0.15}>
                   <Link
                     href="/about"
@@ -107,66 +105,66 @@ export default function HomePage() {
                   </Link>
                 </Magnetic>
               </div>
-              <div className="mt-10 grid gap-4 md:grid-cols-3">
-                {homeContent.proof.map((item) => (
-                  <div
-                    key={item.title}
-                    className="rounded-3xl border border-border/70 bg-background/80 p-5"
-                  >
-                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                      {item.title}
-                    </p>
-                    <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                      {item.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
             </div>
           </HeroAnimation>
 
-          <AnimatedSection animation="slideRight" delay={0.3}>
-            <div className="hero-grid section-card relative overflow-hidden p-5 sm:p-6">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10" />
-              <div className="relative space-y-5">
-                <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-                  <CirclePlay className="h-4 w-4" />
-                  <span>{homeContent.hero.video.label}</span>
-                </div>
-                <div>
-                  <h2 className="text-2xl font-semibold text-balance text-foreground sm:text-3xl">
-                    {homeContent.hero.video.title}
-                  </h2>
-                  <p className="mt-3 max-w-xl text-sm leading-7 text-muted-foreground sm:text-base">
-                    {homeContent.hero.video.description}
-                  </p>
-                </div>
-                <AspectRatio ratio={16 / 9} className="overflow-hidden rounded-[1.75rem] border border-border/70 bg-background shadow-sm">
-                  <iframe
-                    src={homeContent.hero.video.embedUrl}
-                    title="GSi introduction video"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                    className="h-full w-full"
-                  />
-                </AspectRatio>
-                <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
-                  <div className="rounded-2xl border border-border/70 bg-background/85 px-5 py-4">
-                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                      Why it feels different
-                    </p>
-                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
-                      A short, human introduction makes the organisation more authentic before visitors explore articles, training, or partnerships.
+          <AnimatedSection animation="fadeUp" delay={0.25}>
+            <div className="mx-auto mt-12 max-w-6xl">
+              <div className="section-card hero-grid relative overflow-hidden rounded-[2.5rem] p-4 sm:p-6 lg:p-8">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.14),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(16,185,129,0.12),transparent_28%)]" />
+                <div className="relative rounded-[2rem] border border-border/70 bg-background/80 p-5 shadow-[0_20px_60px_-30px_rgba(15,23,42,0.45)] backdrop-blur sm:p-7 lg:p-8">
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/60 pb-5">
+                    <div className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+                      <CirclePlay className="h-4 w-4" />
+                      <span>{homeContent.hero.video.label}</span>
+                    </div>
+                    <div className="rounded-full border border-border/70 bg-background px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                      {siteConfig.location}
+                    </div>
+                  </div>
+                  <div className="mx-auto mt-6 max-w-3xl text-center">
+                    <h2 className="text-3xl font-semibold text-balance text-foreground sm:text-4xl">
+                      {homeContent.hero.video.title}
+                    </h2>
+                    <p className="mt-4 text-sm leading-7 text-muted-foreground sm:text-base">
+                      {homeContent.hero.video.description}
                     </p>
                   </div>
-                  <div className="rounded-2xl border border-border/70 bg-primary px-5 py-4 text-primary-foreground">
-                    <p className="text-sm font-semibold uppercase tracking-[0.18em]">
-                      Base
-                    </p>
-                    <p className="mt-2 max-w-[16rem] text-sm leading-6">
-                      {siteConfig.location}
-                    </p>
+                  <AspectRatio
+                    ratio={16 / 9}
+                    className="mt-8 overflow-hidden rounded-[1.75rem] border border-border/70 bg-background shadow-lg"
+                  >
+                    <iframe
+                      src={homeContent.hero.video.embedUrl}
+                      title="GSi introduction video"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      className="h-full w-full"
+                    />
+                  </AspectRatio>
+                  <div className="mt-8 grid gap-4 lg:grid-cols-[1.15fr_0.85fr_0.85fr]">
+                    <div className="rounded-[1.75rem] border border-border/70 bg-background/85 p-5 text-left">
+                      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+                        Why this direction works
+                      </p>
+                      <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                        Instead of splitting attention across two competing columns, the hero now behaves like an opening scene: short message first, one video focal point second, then supporting proof underneath.
+                      </p>
+                    </div>
+                    {homeContent.proof.slice(0, 2).map((item) => (
+                      <div
+                        key={item.title}
+                        className="rounded-[1.75rem] border border-border/70 bg-background/85 p-5 text-left"
+                      >
+                        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+                          {item.title}
+                        </p>
+                        <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                          {item.description}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
