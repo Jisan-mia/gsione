@@ -101,7 +101,7 @@ export default function HomePage() {
                   href="/articles"
                   className="inline-flex items-center justify-center rounded-full border border-border/80 bg-card px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary hover:text-primary hover:shadow-md"
                 >
-                  Read GSi Articles
+                  Read Articles
                 </Link>
               </Magnetic>
             </div>
@@ -185,7 +185,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── GSi Analysis ─────────────────────────────────────── */}
+      {/* ── Analysis ─────────────────────────────────────────── */}
       <section id="analysis" className="section-space">
         <div className="page-shell">
           <AnimatedSection>
@@ -473,13 +473,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── GSi Articles ─────────────────────────────────────── */}
+      {/* ── Articles ─────────────────────────────────────────── */}
       <section id="research" className="section-space">
         <div className="page-shell">
           <AnimatedSection>
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div className="max-w-3xl">
-                <span className="eyebrow">GSi Articles</span>
+                <span className="eyebrow">Articles</span>
                 <TextReveal
                   as="h2"
                   className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl"

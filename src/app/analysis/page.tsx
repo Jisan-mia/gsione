@@ -17,7 +17,7 @@ import {
 } from "@/lib/content";
 
 export const metadata: Metadata = getBaseMetadata({
-  title: "GSi Analysis",
+  title: "Analysis",
   description:
     "Byte-sized GSi analysis on recent cyber incidents, geopolitical developments, governance questions, and public-interest affairs.",
   pathName: "/analysis",
@@ -40,7 +40,7 @@ export default function AnalysisPage() {
       <section className="section-space border-b border-border/60">
         <div className="page-shell">
           <AnimatedSection>
-            <span className="eyebrow shimmer">GSi Analysis</span>
+            <span className="eyebrow shimmer">Analysis</span>
             <TextReveal
               as="h1"
               className="mt-5 max-w-4xl text-5xl font-semibold text-balance text-foreground sm:text-6xl"

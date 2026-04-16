@@ -6,7 +6,7 @@ export const contentType = ogImageContentType;
 
 export default function AnalysisOpenGraphImage() {
   return renderOgImage({
-    eyebrow: "GSi Analysis",
+    eyebrow: "Analysis",
     title: "Fast analysis on cyber incidents, geopolitics, and governance.",
     description:
       "Short-form GSi nuggets covering recent news, affairs, and public-interest developments.",

@@ -1,5 +1,5 @@
 ---
-title: "GSi Podcast Placeholder Episode"
+title: "Podcast Placeholder Episode"
 publishedAt: "2026-04-16"
 guestName: "Placeholder Guest"
 hostName: "GSi Host"

@@ -25,9 +25,9 @@ export const siteConfig = {
 export const primaryNavigation = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/analysis", label: "GSi Analysis" },
+  { href: "/analysis", label: "Analysis" },
   { href: "/training", label: "Training" },
-  { href: "/articles", label: "GSi Articles" },
+  { href: "/articles", label: "Articles" },
   { href: "/podcast", label: "Podcast" },
   { href: "/#contact", label: "Contact" },
 ] as const;
@@ -115,7 +115,7 @@ export const homeContent = {
     },
   ],
   analysis: {
-    eyebrow: "GSi Analysis",
+    eyebrow: "Analysis",
     title: "Byte-sized analysis for fast-moving policy and security developments.",
     description:
       "Recent nuggets from GSi on cyber incidents, geopolitics, governance, and public-interest developments that need quick but credible context.",
