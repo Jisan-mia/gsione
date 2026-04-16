@@ -4,6 +4,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   BookOpen,
+  FileText,
   GraduationCap,
   Landmark,
   MonitorCog,
@@ -28,6 +29,8 @@ import {
 } from "@/components/site/interactive";
 import { ContactForm } from "@/components/site/contact-form";
 import {
+  formatDisplayDate,
+  getAnalysisPosts,
   getFeaturedBlogPosts,
   getFeaturedTrainingPrograms,
 } from "@/lib/content";
@@ -50,6 +53,7 @@ const stats = [
 ];
 
 export default function HomePage() {
+  const recentAnalysis = getAnalysisPosts().slice(0, 3);
   const featuredPosts = getFeaturedBlogPosts().slice(0, 3);
   const featuredPrograms = getFeaturedTrainingPrograms().slice(0, 2);
 
@@ -181,50 +185,73 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Services ─────────────────────────────────────────── */}
-      <section id="services" className="section-space">
+      {/* ── GSi Analysis ─────────────────────────────────────── */}
+      <section id="analysis" className="section-space">
         <div className="page-shell">
           <AnimatedSection>
-            <div className="max-w-3xl">
-              <span className="eyebrow">What we do</span>
-              <TextReveal
-                as="h2"
-                className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl"
-              >
-                Research, training, and policy engagement across critical
-                governance challenges.
-              </TextReveal>
-              <p className="mt-4 max-w-2xl text-base leading-8 text-muted-foreground">
-                GSi works across research, public commentary, training, and
-                issue-based initiatives bridging governance, national security,
-                cybersecurity, and AI policy.
-              </p>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div className="max-w-3xl">
+                <span className="eyebrow">{homeContent.analysis.eyebrow}</span>
+                <TextReveal
+                  as="h2"
+                  className="mt-5 text-4xl font-semibold text-balance text-foreground sm:text-5xl"
+                >
+                  {homeContent.analysis.title}
+                </TextReveal>
+                <p className="mt-4 max-w-2xl text-base leading-8 text-muted-foreground">
+                  {homeContent.analysis.description}
+                </p>
+              </div>
+              <Magnetic strength={0.15}>
+                <Link
+                  href="/analysis"
+                  className="inline-flex items-center gap-1 whitespace-nowrap text-sm font-medium text-primary transition-colors hover:text-accent link-animated"
+                >
+                  Browse all analysis
+                  <ArrowRight className="h-4 w-4 shrink-0" />
+                </Link>
+              </Magnetic>
             </div>
           </AnimatedSection>
           <AnimatedLine className="mt-8" />
           <StaggerChildren
-            className="mt-10 grid gap-5 lg:grid-cols-2"
+            className="mt-10 grid gap-5 lg:grid-cols-3"
             staggerDelay={0.12}
           >
-            {homeContent.services.map((service) => (
-              <CursorGlow key={service.title}>
-                <article className="section-card-interactive flex h-full flex-col p-6 sm:p-7">
-                  <h3 className="text-2xl font-semibold text-foreground">
-                    {service.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
-                    {service.description}
-                  </p>
-                  <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
-                    {service.items.map((item) => (
-                      <li key={item} className="flex items-start gap-3">
-                        <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              </CursorGlow>
+            {recentAnalysis.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/analysis/${post.slug}`}
+                className="group h-full"
+              >
+                <CursorGlow>
+                  <article className="section-card-interactive flex h-full flex-col p-6 sm:p-7">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+                        <FileText className="h-5 w-5" />
+                      </div>
+                      <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.18em] text-primary">
+                        <span>{post.category}</span>
+                        <span className="text-muted-foreground">&middot;</span>
+                        <span>{formatDisplayDate(post.publishedAt)}</span>
+                      </div>
+                    </div>
+                    <h3 className="mt-4 text-2xl font-semibold text-balance text-foreground transition-colors group-hover:text-primary">
+                      {post.title}
+                    </h3>
+                    <p className="mt-3 flex-1 text-sm leading-7 text-muted-foreground sm:text-base">
+                      {post.excerpt}
+                    </p>
+                    <p className="mt-5 text-sm text-muted-foreground">
+                      {post.author} &middot; {post.readingTime}
+                    </p>
+                    <span className="mt-4 inline-flex items-center text-sm font-medium text-primary transition-colors group-hover:text-accent">
+                      Read full analysis
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-2" />
+                    </span>
+                  </article>
+                </CursorGlow>
+              </Link>
             ))}
           </StaggerChildren>
         </div>

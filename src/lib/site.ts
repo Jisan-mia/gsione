@@ -25,11 +25,64 @@ export const siteConfig = {
 export const primaryNavigation = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/#services", label: "Services" },
+  { href: "/analysis", label: "GSi Analysis" },
   { href: "/training", label: "Training" },
   { href: "/articles", label: "GSi Articles" },
+  { href: "/podcast", label: "Podcast" },
   { href: "/#contact", label: "Contact" },
 ] as const;
+
+export const archivedHomeSections = {
+  services: {
+    eyebrow: "What we did",
+    title:
+      "Research, training, and policy engagement across critical governance challenges.",
+    description:
+      "GSi works across research, public commentary, training, and issue-based initiatives bridging governance, national security, cybersecurity, and AI policy.",
+    cards: [
+      {
+        title: "Policy research and writing",
+        description:
+          "Briefs, essays, explainers, and long-form analysis on governance, security, digital policy, and public-sector reform.",
+        items: [
+          "Cybersecurity governance and digital resilience",
+          "AI policy, deepfakes, and information integrity",
+          "Governance, elections, and institutional accountability",
+        ],
+      },
+      {
+        title: "Strategic dialogue and commentary",
+        description:
+          "Public engagement through interviews, panels, and media conversations that translate complex policy issues for wider audiences.",
+        items: [
+          "Television and live discussion appearances",
+          "Founder commentary on emerging conflict technologies",
+          "Public-interest explainers for policy and civic audiences",
+        ],
+      },
+      {
+        title: "Training and capacity building",
+        description:
+          "Custom learning programmes for institutions working on cybersecurity, AI governance, strategic risk, and public policy practice.",
+        items: [
+          "Executive briefings and workshops",
+          "Team training for regulators, NGOs, and universities",
+          "Practical modules with Bangladesh-focused case studies",
+        ],
+      },
+      {
+        title: "Public-interest initiatives",
+        description:
+          "Issue-based initiatives that connect governance ideas to local needs, especially digital access and environmental quality.",
+        items: [
+          "Ward 28 public Wi-Fi initiative",
+          "Shyamoli-Agargaon canal rehabilitation advocacy",
+          "Community-centred urban and civic engagement",
+        ],
+      },
+    ],
+  },
+} as const;
 
 export const homeContent = {
   hero: {
@@ -61,48 +114,12 @@ export const homeContent = {
         "Work that links policy thinking with local action, including digital inclusion and environmental advocacy initiatives.",
     },
   ],
-  services: [
-    {
-      title: "Policy research and writing",
-      description:
-        "Briefs, essays, explainers, and long-form analysis on governance, security, digital policy, and public-sector reform.",
-      items: [
-        "Cybersecurity governance and digital resilience",
-        "AI policy, deepfakes, and information integrity",
-        "Governance, elections, and institutional accountability",
-      ],
-    },
-    {
-      title: "Strategic dialogue and commentary",
-      description:
-        "Public engagement through interviews, panels, and media conversations that translate complex policy issues for wider audiences.",
-      items: [
-        "Television and live discussion appearances",
-        "Founder commentary on emerging conflict technologies",
-        "Public-interest explainers for policy and civic audiences",
-      ],
-    },
-    {
-      title: "Training and capacity building",
-      description:
-        "Custom learning programmes for institutions working on cybersecurity, AI governance, strategic risk, and public policy practice.",
-      items: [
-        "Executive briefings and workshops",
-        "Team training for regulators, NGOs, and universities",
-        "Practical modules with Bangladesh-focused case studies",
-      ],
-    },
-    {
-      title: "Public-interest initiatives",
-      description:
-        "Issue-based initiatives that connect governance ideas to local needs, especially digital access and environmental quality.",
-      items: [
-        "Ward 28 public Wi-Fi initiative",
-        "Shyamoli-Agargaon canal rehabilitation advocacy",
-        "Community-centred urban and civic engagement",
-      ],
-    },
-  ],
+  analysis: {
+    eyebrow: "GSi Analysis",
+    title: "Byte-sized analysis for fast-moving policy and security developments.",
+    description:
+      "Recent nuggets from GSi on cyber incidents, geopolitics, governance, and public-interest developments that need quick but credible context.",
+  },
   focusAreas: [
     {
       title: "Cybersecurity and digital resilience",
