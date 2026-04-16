@@ -33,16 +33,23 @@ export const primaryNavigation = [
 
 export const homeContent = {
   hero: {
-    eyebrow: "Independent think tank and training academy",
+    eyebrow: "Bangladesh-rooted think tank and training academy",
     title:
-      "Governance, security, and technology policy grounded in real public-interest work.",
+      "Authentic policy insight for governance, security, and emerging technology.",
     description:
-      "GSi brings together policy research, executive learning, public commentary, and community-facing initiatives across governance, national security, cybersecurity, AI policy, and urban reform.",
+      "GSi combines research, training, and public dialogue into work that feels grounded, credible, and close to the communities it serves.",
     points: [
-      "Based in Dhaka and focused on Bangladesh within wider regional and global debates.",
-      "Academic and professional experience spanning Bangladesh, the UK, the Netherlands, and the United States.",
-      "A public-facing platform for political, cybersecurity, governance, and nonprofit work.",
+      "Based in Dhaka with a Bangladesh-first lens on wider regional and global debates.",
+      "Research, commentary, and executive learning shaped by real policy and civic work.",
+      "A public-facing platform connecting cybersecurity, governance, AI policy, and reform.",
     ],
+    video: {
+      label: "Watch the introduction",
+      title: "A quick look at the mission behind GSi",
+      description:
+        "Use this space for a short founder or company introduction that immediately makes the organisation feel human, grounded, and easy to understand.",
+      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0",
+    },
   },
   proof: [
     {
