@@ -47,7 +47,7 @@ export const homeContent = {
       label: "Watch the introduction",
       title: "Press play for the short intro film",
       description:
-        "This hero is designed around a single idea: let visitors feel the organisation first, then read deeper. For now, the video uses a placeholder YouTube embed.",
+        "A short welcome film introducing GSi’s work across governance, security, technology policy, and public-interest reform. The current embed is a temporary placeholder.",
       embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0",
     },
   },

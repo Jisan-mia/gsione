@@ -111,7 +111,10 @@ export default function HomePage() {
           <AnimatedSection animation="fadeUp" delay={0.25}>
             <div className="mx-auto mt-12 max-w-6xl">
               <div className="section-card hero-grid relative overflow-hidden rounded-[2.5rem] p-4 sm:p-6 lg:p-8">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.14),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(16,185,129,0.12),transparent_28%)]" />
+                <div className="absolute inset-0">
+                  <div className="absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 rounded-full bg-primary/12 blur-3xl" />
+                  <div className="absolute bottom-0 right-0 h-56 w-56 rounded-full bg-accent/12 blur-3xl" />
+                </div>
                 <div className="relative rounded-[2rem] border border-border/70 bg-background/80 p-5 shadow-[0_20px_60px_-30px_rgba(15,23,42,0.45)] backdrop-blur sm:p-7 lg:p-8">
                   <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/60 pb-5">
                     <div className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-primary">
@@ -146,10 +149,10 @@ export default function HomePage() {
                   <div className="mt-8 grid gap-4 lg:grid-cols-[1.15fr_0.85fr_0.85fr]">
                     <div className="rounded-[1.75rem] border border-border/70 bg-background/85 p-5 text-left">
                       <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                        Why this direction works
+                        What visitors will get
                       </p>
                       <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                        Instead of splitting attention across two competing columns, the hero now behaves like an opening scene: short message first, one video focal point second, then supporting proof underneath.
+                        A quick introduction to the organisation, the issues it works on, and the kind of research and training visitors can explore next.
                       </p>
                     </div>
                     {homeContent.proof.slice(0, 2).map((item) => (
