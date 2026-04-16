@@ -6,7 +6,7 @@ export const contentType = ogImageContentType;
 
 export default function ArticlesOpenGraphImage() {
   return renderOgImage({
-    eyebrow: "Articles",
+    eyebrow: "GSi Articles",
     title: "Expert analysis on governance, security, and technology policy.",
     description:
       "In-depth articles on cybersecurity, AI governance, democratic accountability, environmental risk, and digital rights.",

@@ -1,23 +1,14 @@
 import { MetadataRoute } from "next";
-import {
-  getAnalysisPosts,
-  getBlogPosts,
-  getPodcastEpisodes,
-  getTrainingPrograms,
-} from "@/lib/content";
+import { getBlogPosts, getTrainingPrograms } from "@/lib/content";
 import { siteUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const analysisPosts = getAnalysisPosts();
   const blogPosts = getBlogPosts();
-  const podcastEpisodes = getPodcastEpisodes();
   const trainingPrograms = getTrainingPrograms();
   const latestContentDate = [
-    ...analysisPosts.map((post) => post.updatedAt || post.publishedAt),
     ...blogPosts.map((post) => post.updatedAt || post.publishedAt),
-    ...podcastEpisodes.map((episode) => episode.updatedAt || episode.publishedAt),
     ...trainingPrograms.map((program) => program.updatedAt),
   ]
     .filter(Boolean)
@@ -41,22 +32,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${siteUrl}/analysis`,
-      lastModified: siteLastModified,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
       url: `${siteUrl}/articles`,
       lastModified: siteLastModified,
       changeFrequency: "weekly",
       priority: 0.9,
-    },
-    {
-      url: `${siteUrl}/podcast`,
-      lastModified: siteLastModified,
-      changeFrequency: "weekly",
-      priority: 0.8,
     },
     {
       url: `${siteUrl}/training`,
@@ -84,15 +63,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const analysisRoutes: MetadataRoute.Sitemap = analysisPosts.map((post) => ({
-    url: `${siteUrl}/analysis/${post.slug}`,
-    lastModified: new Date(
-      post.updatedAt || post.publishedAt || siteLastModified,
-    ),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
   const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${siteUrl}/articles/${post.slug}`,
     lastModified: new Date(
@@ -111,5 +81,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  return [...staticRoutes, ...analysisRoutes, ...blogRoutes, ...trainingRoutes];
+  return [...staticRoutes, ...blogRoutes, ...trainingRoutes];
 }

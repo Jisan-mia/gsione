@@ -219,106 +219,6 @@ function buildArticleSubmission(fields) {
   };
 }
 
-function buildAnalysisSubmission(fields) {
-  const title = getField(fields, "Analysis title");
-  const mode = determineSubmissionMode(fields, [
-    "Existing analysis slug (for updates)",
-    "Existing analysis slug (optional)",
-  ]);
-  const customSlug = getField(fields, "Custom analysis slug (optional)", {
-    required: false,
-  });
-  const existingSlug = getFirstField(
-    fields,
-    ["Existing analysis slug (for updates)", "Existing analysis slug (optional)"],
-    { required: false },
-  );
-  const publishedAt =
-    getField(fields, publishDateField, { required: false }) || issue.created_at.slice(0, 10);
-
-  if (publishedAt && !isValidDateString(publishedAt)) {
-    throw new Error(`Analysis "${publishDateField}" must use the YYYY-MM-DD format.`);
-  }
-
-  if (mode === "update" && !existingSlug) {
-    throw new Error(
-      'This issue was marked as "Update existing content", but no existing analysis slug was provided.',
-    );
-  }
-
-  return {
-    section: getSectionById("analysis"),
-    title,
-    slug: slugify(mode === "update" ? existingSlug : customSlug || title),
-    isUpdate: mode === "update",
-    body: getField(fields, "Analysis body"),
-    fileEntries: [
-      ["title", title],
-      ["excerpt", getField(fields, "Analysis excerpt")],
-      ["category", getField(fields, "Category")],
-      ["author", getField(fields, "Author name")],
-      ["authorRole", getField(fields, "Author role")],
-      ["publishedAt", publishedAt],
-      [
-        "sourceLabel",
-        getFirstField(fields, ["Source label (optional)", "Source label"], { required: false }),
-      ],
-      ["sourceUrl", getField(fields, "Source URL (optional)", { required: false })],
-      ["featured", normalizeBoolean(getField(fields, "Feature this analysis?"))],
-      ["tags", splitList(getField(fields, "Tags"))],
-    ],
-  };
-}
-
-function buildPodcastSubmission(fields) {
-  const title = getField(fields, "Episode title");
-  const mode = determineSubmissionMode(fields, [
-    "Existing episode slug (for updates)",
-    "Existing episode slug (optional)",
-  ]);
-  const customSlug = getField(fields, "Custom episode slug (optional)", {
-    required: false,
-  });
-  const existingSlug = getFirstField(
-    fields,
-    ["Existing episode slug (for updates)", "Existing episode slug (optional)"],
-    { required: false },
-  );
-  const publishedAt =
-    getField(fields, publishDateField, { required: false }) || issue.created_at.slice(0, 10);
-
-  if (publishedAt && !isValidDateString(publishedAt)) {
-    throw new Error(`Podcast "${publishDateField}" must use the YYYY-MM-DD format.`);
-  }
-
-  if (mode === "update" && !existingSlug) {
-    throw new Error(
-      'This issue was marked as "Update existing content", but no existing episode slug was provided.',
-    );
-  }
-
-  const guestName = getField(fields, "Guest name");
-  const hostName = getField(fields, "Host name");
-  const notes = getField(fields, "Episode notes (optional)", { required: false });
-
-  return {
-    section: getSectionById("podcast"),
-    title,
-    slug: slugify(mode === "update" ? existingSlug : customSlug || title),
-    isUpdate: mode === "update",
-    body:
-      notes ||
-      `# ${title}\n\nHosted by ${hostName}, this GSi podcast episode features ${guestName}. Watch the embedded episode on the site.`,
-    fileEntries: [
-      ["title", title],
-      ["publishedAt", publishedAt],
-      ["guestName", guestName],
-      ["hostName", hostName],
-      ["youtubeUrl", getField(fields, "YouTube URL")],
-    ],
-  };
-}
-
 function buildTrainingSubmission(fields) {
   const title = getField(fields, "Programme title");
   const mode = determineSubmissionMode(fields, [
@@ -366,16 +266,8 @@ function buildTrainingSubmission(fields) {
 }
 
 function buildSubmission(fields) {
-  if (fields.has("analysis title")) {
-    return buildAnalysisSubmission(fields);
-  }
-
   if (fields.has("article title")) {
     return buildArticleSubmission(fields);
-  }
-
-  if (fields.has("episode title")) {
-    return buildPodcastSubmission(fields);
   }
 
   if (fields.has("programme title")) {

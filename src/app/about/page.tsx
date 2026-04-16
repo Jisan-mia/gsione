@@ -269,7 +269,7 @@ export default function AboutPage() {
                       {member.articles.length > 0 && (
                         <div className="mt-6">
                           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-                            Articles
+                            GSi Articles
                           </p>
                           <ul className="mt-3 space-y-2">
                             {member.articles.map((article) => (
@@ -451,7 +451,7 @@ export default function AboutPage() {
                     href="/articles"
                     className="btn-glow inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all hover:opacity-90 hover:shadow-lg hover:shadow-primary/20"
                   >
-                    Read Articles
+                    Read GSi Articles
                   </Link>
                 </Magnetic>
                 <Magnetic strength={0.12}>
