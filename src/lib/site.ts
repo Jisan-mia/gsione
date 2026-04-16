@@ -35,7 +35,7 @@ export const homeContent = {
   hero: {
     eyebrow: "Bangladesh-rooted think tank and training academy",
     title:
-      "A clearer, more human introduction to GSi.",
+      "A clearer, more human introduction to GSi",
     description:
       "Research, training, and public dialogue for governance, security, and emerging technology—presented with a voice that feels grounded, credible, and immediate.",
     points: [
@@ -52,6 +52,11 @@ export const homeContent = {
     },
   },
   proof: [
+    {
+      title: "What visitors will get",
+      description:
+        "A quick introduction to the organisation, the issues it works on, and the kind of research and training they can explore next.",
+    },
     {
       title: "Research-led",
       description:

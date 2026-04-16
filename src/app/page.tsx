@@ -147,14 +147,6 @@ export default function HomePage() {
                     />
                   </AspectRatio>
                   <div className="mt-8 grid gap-4 xl:grid-cols-4">
-                    <div className="rounded-[1.75rem] border border-border/70 bg-background/85 p-5 text-left">
-                      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                        What visitors will get
-                      </p>
-                      <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                        A quick introduction to the organisation, the issues it works on, and the kind of research and training visitors can explore next.
-                      </p>
-                    </div>
                     {homeContent.proof.map((item) => (
                       <div
                         key={item.title}
