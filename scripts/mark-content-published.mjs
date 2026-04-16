@@ -46,9 +46,7 @@ for (const label of publicationLabels) {
   }
 }
 
-const labelsToClearOnPublish = autoManagedLabels.filter(
-  (label) => (label.startsWith("state:") || ["needs:revision", "ready:publish"].includes(label)) && label !== "state:published",
-);
+const labelsToClearOnPublish = autoManagedLabels.filter((label) => label !== "state:published");
 
 for (const pullRequest of associatedPullRequests) {
   if (!pullRequest.merged_at) {

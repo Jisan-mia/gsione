@@ -12,6 +12,7 @@ body:
         - Use **Existing programme slug** only when you want to edit a file that already exists in `content/training/`.
         - Add markdown images directly in the body, for example `![Alt text](https://...)`.
         - If you upload an image into the issue editor first, GitHub will give you a hosted image URL you can reuse in the programme body.
+        - After you submit, automation will open a draft pull request and add a rendered content preview to the issue.
   - type: dropdown
     id: submission-type
     attributes:
@@ -120,7 +121,7 @@ body:
     id: programme-body
     attributes:
       label: Programme body
-      description: Write the full training content in Markdown, including image links if needed.
+      description: Write the full training content in Markdown, including image links if needed. A rendered preview will be added after submission.
       render: markdown
       placeholder: |
         # Programme overview

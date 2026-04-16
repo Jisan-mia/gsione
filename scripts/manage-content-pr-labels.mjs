@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import { autoManagedLabels, getSectionForRelativePath, workflowLabels } from "./content-workflow-config.mjs";
+import { autoManagedLabels, workflowLabels } from "./content-workflow-config.mjs";
 import { getRepositoryPath, githubRequest, paginate } from "./github-api.mjs";
 
 const repositoryPath = getRepositoryPath();
@@ -41,76 +41,6 @@ async function getPullRequestFiles(number) {
   return paginate(`${repositoryPath}/pulls/${number}/files`);
 }
 
-async function getPullRequestReviews(number) {
-  return paginate(`${repositoryPath}/pulls/${number}/reviews`);
-}
-
-async function getHeadCheckState(headSha) {
-  const [commitStatus, checkRunsResponse] = await Promise.all([
-    githubRequest(`${repositoryPath}/commits/${headSha}/status`),
-    githubRequest(`${repositoryPath}/commits/${headSha}/check-runs`),
-  ]);
-
-  const checkRuns = checkRunsResponse.check_runs || [];
-  const hasSignals = (commitStatus.total_count || 0) > 0 || checkRuns.length > 0;
-  const statusOk = ["success", null].includes(commitStatus.state) || commitStatus.total_count === 0;
-  const checkRunsOk = checkRuns.every((run) => {
-    if (run.status !== "completed") {
-      return false;
-    }
-
-    return ["success", "neutral", "skipped"].includes(run.conclusion);
-  });
-
-  return {
-    hasSignals,
-    allPassing: hasSignals && statusOk && checkRunsOk,
-  };
-}
-
-function getLatestReviewStates(reviews) {
-  const latestByReviewer = new Map();
-
-  for (const review of reviews) {
-    const login = review.user?.login;
-    if (!login) {
-      continue;
-    }
-
-    latestByReviewer.set(login, review.state);
-  }
-
-  return [...latestByReviewer.values()];
-}
-
-function getDesiredTypeLabels(files) {
-  const contentFiles = files.filter((file) => file.filename.startsWith("content/"));
-
-  if (contentFiles.length === 0) {
-    return [];
-  }
-
-  const hasNewContent = contentFiles.some((file) => file.status === "added");
-  return [hasNewContent ? "type:new-content" : "type:update"];
-}
-
-function getDesiredSectionLabels(files) {
-  const labels = new Set();
-
-  for (const file of files) {
-    if (!file.filename.startsWith("content/")) {
-      continue;
-    }
-
-    const section = getSectionForRelativePath(file.filename);
-    if (section) {
-      labels.add(section.label);
-    }
-  }
-
-  return [...labels];
-}
-
 function withoutManagedLabels(labels) {
   return labels.filter((label) => !autoManagedLabels.includes(label.name));
 }
@@ -136,32 +66,7 @@ if (contentFiles.length === 0) {
   process.exit(0);
 }
 
-const reviews = await getPullRequestReviews(pullRequest.number);
-const reviewStates = getLatestReviewStates(reviews);
-const changesRequested = reviewStates.includes("CHANGES_REQUESTED");
-const hasApproval = reviewStates.includes("APPROVED") && !changesRequested;
-const checks = await getHeadCheckState(pullRequest.head.sha);
-
-let stateLabel = "state:review";
-if (pullRequest.draft) {
-  stateLabel = "state:draft";
-} else if (hasApproval && checks.allPassing) {
-  stateLabel = "state:approved";
-}
-
-const desiredLabels = [
-  ...getDesiredSectionLabels(files),
-  ...getDesiredTypeLabels(files),
-  stateLabel,
-];
-
-if (changesRequested) {
-  desiredLabels.push("needs:revision");
-}
-
-if (!pullRequest.draft && hasApproval && checks.allPassing) {
-  desiredLabels.push("ready:publish");
-}
+const desiredLabels = [pullRequest.draft ? "state:draft" : "state:review"];
 
 await replaceLabels(pullRequest.number, desiredLabels);
 

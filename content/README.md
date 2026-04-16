@@ -31,7 +31,7 @@ tags:
 Write the article in markdown.
 ```
 
-`publishedAt` is optional. If it is omitted, the site shows `Undated`.
+`publishedAt` and `sourceLabel` are optional. If `publishedAt` is omitted, the site shows `Undated`.
 
 ## Training pages
 
@@ -69,9 +69,9 @@ The page generator will pick up new files automatically.
 ## Editorial pull request workflow
 
 - Non-technical contributors can start with a GitHub issue form instead of editing files directly.
-- The automation writes or updates the Markdown file, creates a branch, and opens a draft PR for review.
+- The automation writes or updates the Markdown file, creates a branch, opens a draft PR for review, and posts a rendered markdown preview back to the issue.
 - Create or update Markdown on a branch, not on `main`.
 - Open a draft pull request with the matching content PR template.
 - Wait for the content validation workflow to check content paths and required frontmatter.
 - Mark the pull request ready for review when the content is editorially ready.
-- Maintainers merge approved pull requests to `main` to publish them.
+- Merging the content pull request publishes the change and closes the linked intake issue.
