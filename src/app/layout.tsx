@@ -1,21 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Lora } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { SiteFooter } from "@/components/site/footer";
 import { SiteHeader } from "@/components/site/header";
 import { GlobalEffects } from "@/components/site/global-effects";
 import { siteConfig, siteUrl } from "@/lib/site";
 import "./globals.css";
-
-const sans = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
-const serif = Lora({
-  subsets: ["latin"],
-  variable: "--font-serif",
-});
 
 const themeScript = `
   (function () {
@@ -136,7 +125,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${sans.variable} ${serif.variable} min-h-screen bg-background font-sans text-foreground antialiased`}
+        className="min-h-screen bg-background font-sans text-foreground antialiased"
       >
         <a
           href="#main-content"
