@@ -7,9 +7,21 @@ body:
       value: |
         Use this form for `content/articles/*.md`.
 
-        - Leave the slug blank to create a new article automatically.
+        - Choose whether you are creating a new article or updating an existing one.
+        - Use **Custom article slug** only for new articles when you want to override the filename generated from the title.
+        - Use **Existing article slug** only when you want to edit a file that already exists in `content/articles/`.
         - Add markdown images directly in the body, for example `![Alt text](https://...)`.
         - If you upload an image into the issue editor first, GitHub will give you a hosted image URL you can reuse in the article body.
+  - type: dropdown
+    id: submission-type
+    attributes:
+      label: Submission type
+      options:
+        - Create new content
+        - Update existing content
+      default: 0
+    validations:
+      required: true
   - type: input
     id: article-title
     attributes:
@@ -18,10 +30,16 @@ body:
     validations:
       required: true
   - type: input
-    id: article-slug
+    id: custom-article-slug
     attributes:
-      label: Existing article slug (optional)
-      description: Fill this only when you want to update an existing article file.
+      label: Custom article slug (optional)
+      description: For new articles only. Leave blank to generate the filename from the title.
+      placeholder: custom-article-slug
+  - type: input
+    id: existing-article-slug
+    attributes:
+      label: Existing article slug (for updates)
+      description: Required only when you want to update an existing article file.
       placeholder: existing-article-slug
   - type: input
     id: category

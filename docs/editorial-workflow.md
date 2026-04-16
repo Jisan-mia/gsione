@@ -56,6 +56,11 @@ The automation:
 4. Pushes the generated change to an automation branch
 5. Opens or updates a draft pull request for editorial review
 
+Each issue form now asks contributors to choose between **Create new content** and **Update existing content**.
+
+- For new content, contributors can leave the custom slug blank to generate a filename from the title, or provide a custom slug when they want to control the filename.
+- For updates, contributors must provide the slug of an existing Markdown file in the matching section.
+
 Contributors can include images by pasting Markdown image links directly into the body field. If they upload an image inside the issue editor first, GitHub provides a hosted image URL that can be reused in the Markdown body.
 
 ## Automated checks

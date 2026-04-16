@@ -7,9 +7,21 @@ body:
       value: |
         Use this form for `content/training/*.md`.
 
-        - Leave the slug blank to create a new programme automatically.
+        - Choose whether you are creating a new programme or updating an existing one.
+        - Use **Custom programme slug** only for new programmes when you want to override the filename generated from the title.
+        - Use **Existing programme slug** only when you want to edit a file that already exists in `content/training/`.
         - Add markdown images directly in the body, for example `![Alt text](https://...)`.
         - If you upload an image into the issue editor first, GitHub will give you a hosted image URL you can reuse in the programme body.
+  - type: dropdown
+    id: submission-type
+    attributes:
+      label: Submission type
+      options:
+        - Create new content
+        - Update existing content
+      default: 0
+    validations:
+      required: true
   - type: input
     id: programme-title
     attributes:
@@ -18,10 +30,16 @@ body:
     validations:
       required: true
   - type: input
-    id: programme-slug
+    id: custom-programme-slug
     attributes:
-      label: Existing programme slug (optional)
-      description: Fill this only when you want to update an existing training file.
+      label: Custom programme slug (optional)
+      description: For new programmes only. Leave blank to generate the filename from the title.
+      placeholder: custom-programme-slug
+  - type: input
+    id: existing-programme-slug
+    attributes:
+      label: Existing programme slug (for updates)
+      description: Required only when you want to update an existing training file.
       placeholder: existing-programme-slug
   - type: textarea
     id: summary
