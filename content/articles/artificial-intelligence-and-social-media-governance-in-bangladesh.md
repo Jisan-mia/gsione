@@ -94,3 +94,5 @@ That is the challenge GSi’s work keeps returning to, because it is no longer a
 ## Working principle
 
 AI policy should be assessed by what it protects and what it risks. If a system claims to improve safety while weakening transparency and due process, it is creating a second governance problem instead of solving the first one.
+
+![jjj](/uploads/2026/04/artificial-intelligence-and-social-media-governance-in-bangladesh-efodhr.webp)
