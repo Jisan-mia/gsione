@@ -86,7 +86,14 @@ export function SiteHeader() {
   // Restore document scroll if navigation changes while the menu is closing
   useEffect(() => {
     document.body.style.overflow = '';
-  }, [pathname]);
+    if (!mobileOpen) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      setMobileOpen(false);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [mobileOpen, pathname]);
 
   // Keep --header-h CSS variable in sync with actual header height
   useEffect(() => {
@@ -180,7 +187,7 @@ export function SiteHeader() {
             >
               <span className="sm:hidden">GSi</span>
               <span className="hidden sm:inline">
-                Governance and Security Initiative – GSi
+                Governance and Security Initiative
               </span>
             </span>
             <span

@@ -1,0 +1,80 @@
+name: Podcast submission
+description: Submit a new or updated GSi podcast entry without editing repository files manually.
+title: "[Podcast] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for `content/podcast/*.md`.
+
+        - Choose whether you are creating a new episode or updating an existing one.
+        - Use **Custom episode slug** only for new podcast entries when you want to override the filename generated from the title.
+        - Use **Existing episode slug** only when you want to edit a file that already exists in `content/podcast/`.
+        - Add optional markdown notes if you want text under the embedded video.
+        - After you submit, automation will open a draft pull request and add a rendered content preview to the issue.
+  - type: dropdown
+    id: submission-type
+    attributes:
+      label: Submission type
+      options:
+        - Create new content
+        - Update existing content
+      default: 0
+    validations:
+      required: true
+  - type: input
+    id: episode-title
+    attributes:
+      label: Episode title
+      placeholder: Episode title
+    validations:
+      required: true
+  - type: input
+    id: custom-episode-slug
+    attributes:
+      label: Custom episode slug (optional)
+      description: For new episodes only. Leave blank to generate the filename from the title.
+      placeholder: custom-episode-slug
+  - type: input
+    id: existing-episode-slug
+    attributes:
+      label: Existing episode slug (for updates)
+      description: Required only when you want to update an existing podcast file.
+      placeholder: existing-episode-slug
+  - type: input
+    id: publish-date
+    attributes:
+      label: Publish date (optional)
+      description: Leave blank to use the issue date automatically.
+      placeholder: YYYY-MM-DD
+  - type: input
+    id: host-name
+    attributes:
+      label: Host name
+      placeholder: Host Name
+    validations:
+      required: true
+  - type: input
+    id: guest-name
+    attributes:
+      label: Guest name
+      placeholder: Guest Name
+    validations:
+      required: true
+  - type: input
+    id: youtube-url
+    attributes:
+      label: YouTube URL
+      placeholder: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+    validations:
+      required: true
+  - type: textarea
+    id: episode-notes
+    attributes:
+      label: Episode notes (optional)
+      description: Optional markdown notes to show under the embedded video.
+      render: markdown
+      placeholder: |
+        # Episode notes
+
+        Add optional notes, highlights, or context.

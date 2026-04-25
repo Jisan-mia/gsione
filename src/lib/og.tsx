@@ -15,12 +15,24 @@ interface OgImageOptions {
   meta?: string;
 }
 
+function sanitizeOgText(value: string) {
+  return value
+    .replace(/[\p{Extended_Pictographic}\uFE0F]/gu, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
 export function renderOgImage({
   eyebrow,
   title,
   description,
   meta,
 }: OgImageOptions) {
+  const safeEyebrow = sanitizeOgText(eyebrow);
+  const safeTitle = sanitizeOgText(title);
+  const safeDescription = sanitizeOgText(description);
+  const safeMeta = meta ? sanitizeOgText(meta) : undefined;
+
   return new ImageResponse(
     <div
       style={{
@@ -111,7 +123,7 @@ export function renderOgImage({
                   textTransform: "uppercase",
                 }}
               >
-                {eyebrow}
+                  {safeEyebrow}
               </div>
             </div>
           </div>
@@ -130,13 +142,13 @@ export function renderOgImage({
               <div
                 style={{
                   display: "flex",
-                  fontSize: title.length > 68 ? "58px" : "68px",
+                  fontSize: safeTitle.length > 68 ? "58px" : "68px",
                   lineHeight: 1.04,
                   fontWeight: 700,
                   letterSpacing: "-0.04em",
                 }}
               >
-                {title}
+                  {safeTitle}
               </div>
               <div
                 style={{
@@ -148,7 +160,7 @@ export function renderOgImage({
                   color: "rgba(237, 236, 231, 0.8)",
                 }}
               >
-                {description}
+                  {safeDescription}
               </div>
             </div>
           </div>
@@ -172,7 +184,7 @@ export function renderOgImage({
             >
               {siteConfig.name}
             </div>
-            {meta ? (
+            {safeMeta ? (
               <div
                 style={{
                   display: "flex",
@@ -180,7 +192,7 @@ export function renderOgImage({
                   color: "rgba(237, 236, 231, 0.68)",
                 }}
               >
-                {meta}
+                {safeMeta}
               </div>
             ) : null}
           </div>
