@@ -11,10 +11,10 @@ tags:
   - "Social media"
   - "Disinformation"
   - "Bangladesh"
-status: "published"
+status: "archived"
 ---
 
-# Artificial Intelligence and Social Media Governance in Bangladesh edit
+# Artificial Intelligence and Social Media Governance in Bangladesh
 
 Artificial intelligence is no longer a specialised policy topic at the edge of public life. In Bangladesh it now touches electoral politics, media ecosystems, platform moderation, and the everyday circulation of misleading content.
 
