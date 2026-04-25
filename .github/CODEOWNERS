@@ -4,11 +4,17 @@
 /content/analysis/ @Jisan-mia
 /content/articles/ @Jisan-mia
 /content/podcast/ @Jisan-mia
+/content/team/ @Jisan-mia
 /content/training/ @Jisan-mia
+/public/uploads/ @Jisan-mia
 
 # Workflow, governance, and automation changes stay under maintainer review.
 /.github/ @Jisan-mia
 /scripts/content-*.mjs @Jisan-mia
+/src/app/admin/ @Jisan-mia
+/src/app/dashboard/ @Jisan-mia
+/src/components/admin/ @Jisan-mia
+/src/lib/admin/ @Jisan-mia
 /README.md @Jisan-mia
 /content/README.md @Jisan-mia
 /docs/editorial-workflow.md @Jisan-mia

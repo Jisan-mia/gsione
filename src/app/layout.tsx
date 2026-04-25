@@ -1,9 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Lora } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
-import { SiteFooter } from "@/components/site/footer";
-import { SiteHeader } from "@/components/site/header";
-import { GlobalEffects } from "@/components/site/global-effects";
+import { SiteChrome } from "@/components/site/site-chrome";
 import { siteConfig, siteUrl } from "@/lib/site";
 import "./globals.css";
 
@@ -35,7 +33,7 @@ export const metadata: Metadata = {
   applicationName: siteConfig.name,
   creator: siteConfig.name,
   publisher: siteConfig.name,
-  title: `${siteConfig.name} | Governance, security, and technology policy`,
+  title: `${siteConfig.name} | ${siteConfig.tagline}`,
   description: siteConfig.description,
   alternates: {
     canonical: siteUrl,
@@ -56,7 +54,7 @@ export const metadata: Metadata = {
     "think tank Bangladesh",
   ],
   openGraph: {
-    title: `${siteConfig.name} | Governance, security, and technology policy`,
+    title: `${siteConfig.name} | ${siteConfig.tagline}`,
     description: siteConfig.description,
     url: siteUrl,
     siteName: siteConfig.name,
@@ -72,7 +70,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} | Governance, security, and technology policy`,
+    title: `${siteConfig.name} | ${siteConfig.tagline}`,
     description: siteConfig.description,
     images: [`${siteUrl}/opengraph-image`],
   },
@@ -163,12 +161,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <div className="relative flex min-h-screen flex-col">
-          <GlobalEffects />
-          <SiteHeader />
-          <div className="flex-1">{children}</div>
-          <SiteFooter />
-        </div>
+        <SiteChrome>{children}</SiteChrome>
         <Toaster />
       </body>
     </html>

@@ -5,7 +5,7 @@ export const siteUrl =
 export const siteConfig = {
   name: "Governance and Security Initiative",
   shortName: "GSi",
-  tagline: "Research • Dialogue • Reform",
+  tagline: "From Bengal to beyond . . .",
   title: "Governance and Security Initiative",
   description:
     "Independent think tank and training academy in Dhaka working on governance, national security, cybersecurity, AI policy, and public-interest reform.",
@@ -86,22 +86,21 @@ export const archivedHomeSections = {
 
 export const homeContent = {
   hero: {
-    eyebrow: "Bangladesh-rooted think tank and training academy",
-    title:
-      "A clearer, more human introduction to GSi",
+    eyebrow: "Governance and Security Initiative",
+    title: "Policy thinking for a more secure public future.",
     description:
-      "Research, training, and public dialogue for governance, security, and emerging technology—presented with a voice that feels grounded, credible, and immediate.",
+      "GSi is a Bangladesh-rooted think tank and training academy working across governance, security, cyber policy, AI, and public-interest reform.",
     points: [
-      "Bangladesh-first perspective",
-      "Public-interest policy work",
-      "Training shaped by real practice",
+      "Research",
+      "Training",
+      "Public dialogue",
     ],
     video: {
-      label: "Watch the introduction",
-      title: "Press play for the short intro film",
+      label: "Intro video",
+      title: "Meet GSi in under a few minutes",
       description:
-        "A short welcome film introducing GSi’s work across governance, security, technology policy, and public-interest reform. The current embed is a temporary placeholder.",
-      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0",
+        "A concise introduction to the initiative, its focus areas, and the kind of public-interest work visitors can explore next.",
+      embedUrl: "https://youtu.be/ApAvTMdAUmQ?si=pmE1m9uYUHp0E0Qe",
     },
   },
   proof: [
@@ -329,56 +328,6 @@ export const founderProfile = {
 } as const;
 
 export const leadershipProfiles = [founderProfile] as const;
-
-export const teamMembers = [
-  {
-    id: "syeda-nafisa-anjum",
-    name: "Syeda Nafisa Anjum",
-    role: "Digital Security Researcher",
-    image: "/team-nafisa.jpeg",
-    bio: "Syeda Nafisa Anjum is a Digital Security Researcher at GSi, currently studying Economics at BRAC University. Her research focuses on digital violence against women, data protection legislation, environmental governance, and the intersection of technology policy with gender-based security.",
-    articles: [
-      "Connected but Not Protected: Bangladesh Data Ordinance Act 2025, Legal Loopholes and the Costs to Women",
-      "Dhaka: A Killing Test Tube for Children — Hemayetpur Supplying the Poisonous Gas",
-    ],
-    areas: [
-      "Digital violence and gender-based cyber threats",
-      "Data protection and privacy legislation",
-      "Environmental governance and public health",
-    ],
-  },
-  {
-    id: "abul-kasem",
-    name: "Abul Kasem",
-    role: "Governance Researcher",
-    image: null,
-    bio: "Abul Kasem is a Governance Researcher at GSi focusing on institutional cybersecurity preparedness, behavioral policy interventions, and urban environmental governance. His work applies analytical frameworks to practical governance challenges in Bangladesh.",
-    articles: [
-      "From Random Clicks to a Human Firewall: First-Order Defenses Against Phishing in Bangladesh",
-      "Choking the Bay and Flooding Dhaka\u2019s Streets with Plastic: Can Peter Hall\u2019s Policy Paradigms Rescue DNCC?",
-    ],
-    areas: [
-      "Cybersecurity governance and phishing defense",
-      "Urban environmental policy",
-      "Behavioral policy frameworks",
-    ],
-  },
-  {
-    id: "nusrat-khan",
-    name: "Nusrat Khan",
-    role: "Cybersecurity Researcher",
-    image: null,
-    bio: "Nusrat Khan is a Cybersecurity Researcher at GSi with a focus on cyber law, corporate data protection accountability, and comparative legal frameworks across South Asia and Europe.",
-    articles: [
-      "Cyber Law and the Illusion of Protection: When Personal Data Is Leaked in Bangladesh, Who Is Accountable?",
-    ],
-    areas: [
-      "Cyber law and data protection",
-      "Corporate accountability in data governance",
-      "Comparative legal analysis (GDPR vs Bangladesh)",
-    ],
-  },
-] as const;
 
 export const legalContent = {
   privacy: {

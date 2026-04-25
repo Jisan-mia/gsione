@@ -14,6 +14,7 @@ export const contentSections = [
       sourceUrl: { type: "url", required: false },
       featured: { type: "boolean", required: true },
       tags: { type: "string[]", required: true, minItems: 1 },
+      status: { type: "string", required: false },
     },
   },
   {
@@ -31,6 +32,7 @@ export const contentSections = [
       sourceUrl: { type: "url", required: false },
       featured: { type: "boolean", required: true },
       tags: { type: "string[]", required: true, minItems: 1 },
+      status: { type: "string", required: false },
     },
   },
   {
@@ -43,6 +45,7 @@ export const contentSections = [
       guestName: { type: "string", required: true },
       hostName: { type: "string", required: true },
       youtubeUrl: { type: "url", required: true },
+      status: { type: "string", required: false },
     },
   },
   {
@@ -60,6 +63,25 @@ export const contentSections = [
       audience: { type: "string[]", required: true, minItems: 1 },
       focusAreas: { type: "string[]", required: true, minItems: 1 },
       outcomes: { type: "string[]", required: true, minItems: 1 },
+      status: { type: "string", required: false },
+    },
+  },
+  {
+    id: "team",
+    directory: "content/team",
+    owners: ["@Jisan-mia"],
+    fields: {
+      name: { type: "string", required: true },
+      role: { type: "string", required: true },
+      image: { type: "string", required: false },
+      imageAlt: { type: "string", required: false },
+      linkedin: { type: "string", required: false },
+      email: { type: "string", required: false },
+      sortOrder: { type: "number", required: true },
+      founder: { type: "boolean", required: false },
+      articles: { type: "string[]", required: true, minItems: 0 },
+      areas: { type: "string[]", required: true, minItems: 1 },
+      status: { type: "string", required: false },
     },
   },
 ];

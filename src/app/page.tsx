@@ -5,7 +5,6 @@ import {
   ArrowUpRight,
   BookOpen,
   FileText,
-  CirclePlay,
   GraduationCap,
   Landmark,
   MonitorCog,
@@ -29,14 +28,14 @@ import {
   CursorGlow,
 } from "@/components/site/interactive";
 import { ContactForm } from "@/components/site/contact-form";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { VideoPlayer } from "@/components/site/video-player";
 import {
   formatDisplayDate,
   getAnalysisPosts,
   getFeaturedBlogPosts,
   getFeaturedTrainingPrograms,
 } from "@/lib/content";
-import { founderProfile, homeContent, siteConfig } from "@/lib/site";
+import { founderProfile, homeContent } from "@/lib/site";
 
 const focusIcons = [
   ShieldCheck,
@@ -62,113 +61,32 @@ export default function HomePage() {
   return (
     <main id="main-content">
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="hero-gradient overflow-hidden border-b border-border/60 relative">
-        <div className="page-shell py-16 sm:py-20 lg:py-24 relative">
-          <HeroAnimation>
-            <div className="mx-auto max-w-5xl text-center">
-              <span className="eyebrow shimmer">{homeContent.hero.eyebrow}</span>
+      <section className="relative overflow-hidden border-b border-border/60 bg-background">
+        <div className="page-shell relative flex min-h-[calc(100svh-7rem)] flex-col items-center justify-center py-5 sm:py-7">
+          <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-4 sm:gap-5">
+            <AnimatedSection
+              animation="scaleIn"
+              delay={0.04}
+              className="w-full"
+            >
+              <VideoPlayer
+                url={homeContent.hero.video.embedUrl}
+                title={homeContent.hero.video.title}
+                minimal
+                className="mx-auto w-full max-w-5xl"
+              />
+            </AnimatedSection>
+
+            <HeroAnimation className="text-center">
               <TextReveal
                 as="h1"
-                className="mx-auto mt-6 max-w-4xl text-5xl font-semibold leading-tight text-balance text-foreground sm:text-6xl lg:text-7xl"
+                className="text-xl font-semibold text-balance text-foreground sm:text-2xl lg:text-3xl"
                 staggerAmount={0.02}
               >
-                {homeContent.hero.title}
+                From Bengal to beyond . . .
               </TextReveal>
-              <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-muted-foreground sm:text-lg">
-                {homeContent.hero.description}
-              </p>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                {homeContent.hero.points.map((point) => (
-                  <div
-                    key={point}
-                    className="rounded-full border border-border/70 bg-background/75 px-4 py-2 text-sm text-muted-foreground shadow-sm"
-                  >
-                    <span className="inline-flex items-center gap-2">
-                      <span className="h-2 w-2 rounded-full bg-primary pulse-dot" />
-                      <span>{point}</span>
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Magnetic strength={0.15}>
-                  <Link
-                    href="/about"
-                    className="btn-glow inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all hover:opacity-90 hover:shadow-lg hover:shadow-primary/20"
-                  >
-                    Explore the profile
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </Magnetic>
-                <Magnetic strength={0.15}>
-                  <Link
-                    href="/articles"
-                    className="inline-flex items-center justify-center rounded-full border border-border/80 bg-card px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary hover:text-primary hover:shadow-md"
-                  >
-                    Read GSi Articles
-                  </Link>
-                </Magnetic>
-              </div>
-            </div>
-          </HeroAnimation>
-
-          <AnimatedSection animation="fadeUp" delay={0.25}>
-            <div className="mx-auto mt-12 max-w-6xl">
-              <div className="section-card hero-grid relative overflow-hidden rounded-[2.5rem] p-4 sm:p-6 lg:p-8">
-                <div className="absolute inset-0">
-                  <div className="absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 rounded-full bg-primary/12 blur-3xl" />
-                  <div className="absolute bottom-0 right-0 h-56 w-56 rounded-full bg-accent/12 blur-3xl" />
-                </div>
-                <div className="relative rounded-[2rem] border border-border/70 bg-background/80 p-5 shadow-[0_20px_60px_-30px_rgba(15,23,42,0.45)] backdrop-blur sm:p-7 lg:p-8">
-                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/60 pb-5">
-                    <div className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-                      <CirclePlay className="h-4 w-4" />
-                      <span>{homeContent.hero.video.label}</span>
-                    </div>
-                    <div className="rounded-full border border-border/70 bg-background px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                      {siteConfig.location}
-                    </div>
-                  </div>
-                  <div className="mx-auto mt-6 max-w-3xl text-center">
-                    <h2 className="text-3xl font-semibold text-balance text-foreground sm:text-4xl">
-                      {homeContent.hero.video.title}
-                    </h2>
-                    <p className="mt-4 text-sm leading-7 text-muted-foreground sm:text-base">
-                      {homeContent.hero.video.description}
-                    </p>
-                  </div>
-                  <AspectRatio
-                    ratio={16 / 9}
-                    className="mt-8 overflow-hidden rounded-[1.75rem] border border-border/70 bg-background shadow-lg"
-                  >
-                    <iframe
-                      src={homeContent.hero.video.embedUrl}
-                      title="GSi introduction video"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                      className="h-full w-full"
-                    />
-                  </AspectRatio>
-                  <div className="mt-8 grid gap-4 xl:grid-cols-4">
-                    {homeContent.proof.map((item) => (
-                      <div
-                        key={item.title}
-                        className="rounded-[1.75rem] border border-border/70 bg-background/85 p-5 text-left"
-                      >
-                        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                          {item.title}
-                        </p>
-                        <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                          {item.description}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
+            </HeroAnimation>
+          </div>
         </div>
       </section>
 
