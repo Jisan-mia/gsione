@@ -11,7 +11,7 @@ tags:
   - "Social media"
   - "Disinformation"
   - "Bangladesh"
-status: "archived"
+status: "published"
 ---
 
 # Artificial Intelligence and Social Media Governance in Bangladesh
