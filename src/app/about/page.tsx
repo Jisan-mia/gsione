@@ -13,12 +13,11 @@ import {
   AnimatedLine,
   CursorGlow,
 } from "@/components/site/interactive";
-import { getBaseMetadata } from "@/lib/content";
+import { getBaseMetadata, getTeamMembers } from "@/lib/content";
 import {
   founderProfile,
   organizationProfile,
   siteConfig,
-  teamMembers,
 } from "@/lib/site";
 
 export const metadata: Metadata = getBaseMetadata({
@@ -37,6 +36,8 @@ export const metadata: Metadata = getBaseMetadata({
 });
 
 export default function AboutPage() {
+  const teamMembers = getTeamMembers();
+
   return (
     <main id="main-content">
       {/* ── Overview ─────────────────────────────────────────── */}
@@ -218,7 +219,7 @@ export default function AboutPage() {
           <div className="mt-10 space-y-6">
             {teamMembers.map((member, idx) => (
               <AnimatedSection
-                key={member.id}
+                key={member.slug}
                 animation="fadeUp"
                 delay={idx * 0.1}
               >
@@ -234,7 +235,7 @@ export default function AboutPage() {
                         <div className="relative aspect-square w-full overflow-hidden lg:aspect-auto lg:h-full lg:min-h-80">
                           <Image
                             src={member.image}
-                            alt={member.name}
+                            alt={member.imageAlt || member.name}
                             fill
                             className="object-cover object-top"
                             sizes="(min-width: 1024px) 40vw, 100vw"

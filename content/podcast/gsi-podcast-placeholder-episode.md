@@ -3,7 +3,7 @@ title: "Podcast Placeholder Episode"
 publishedAt: "2026-04-16"
 guestName: "Placeholder Guest"
 hostName: "GSi Host"
-youtubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+youtubeUrl: "https://youtu.be/ApAvTMdAUmQ?si=pmE1m9uYUHp0E0Qe"
 ---
 
 # Episode notes
@@ -12,4 +12,4 @@ This placeholder podcast entry keeps the new podcast workflow live while the fir
 
 - Host: GSi Host
 - Guest: Placeholder Guest
-- Video: Rick Astley placeholder link for embed testing
+- Video: GSi introduction video

@@ -28,13 +28,14 @@ import {
   CursorGlow,
 } from "@/components/site/interactive";
 import { ContactForm } from "@/components/site/contact-form";
+import { VideoPlayer } from "@/components/site/video-player";
 import {
   formatDisplayDate,
   getAnalysisPosts,
   getFeaturedBlogPosts,
   getFeaturedTrainingPrograms,
 } from "@/lib/content";
-import { founderProfile, homeContent, siteConfig } from "@/lib/site";
+import { founderProfile, homeContent } from "@/lib/site";
 
 const focusIcons = [
   ShieldCheck,
@@ -60,86 +61,32 @@ export default function HomePage() {
   return (
     <main id="main-content">
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="hero-gradient overflow-hidden border-b border-border/60 relative">
-        <div className="page-shell grid gap-12 py-16 sm:py-20 lg:grid-cols-[1.2fr_0.8fr] lg:py-24 relative">
-          <HeroAnimation>
-            <div>
-              <span className="eyebrow shimmer">
-                {homeContent.hero.eyebrow}
-              </span>
-            </div>
-            <TextReveal
-              as="h1"
-              className="mt-6 max-w-4xl text-5xl font-semibold leading-tight text-balance text-foreground sm:text-6xl lg:text-7xl"
-              staggerAmount={0.02}
+      <section className="relative overflow-hidden border-b border-border/60 bg-background">
+        <div className="page-shell relative flex min-h-[calc(100svh-7rem)] flex-col items-center justify-center py-5 sm:py-7">
+          <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-4 sm:gap-5">
+            <AnimatedSection
+              animation="scaleIn"
+              delay={0.04}
+              className="w-full"
             >
-              {homeContent.hero.title}
-            </TextReveal>
-            <p className="mt-6 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
-              {homeContent.hero.description}
-            </p>
-            <ul className="mt-8 space-y-3 text-sm leading-7 text-muted-foreground sm:text-base">
-              {homeContent.hero.points.map((point) => (
-                <li key={point} className="flex items-start gap-3">
-                  <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-primary pulse-dot" />
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <Magnetic strength={0.15}>
-                <Link
-                  href="/about"
-                  className="btn-glow inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all hover:opacity-90 hover:shadow-lg hover:shadow-primary/20"
-                >
-                  Explore the profile
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </Magnetic>
-              <Magnetic strength={0.15}>
-                <Link
-                  href="/articles"
-                  className="inline-flex items-center justify-center rounded-full border border-border/80 bg-card px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary hover:text-primary hover:shadow-md"
-                >
-                  Read Articles
-                </Link>
-              </Magnetic>
-            </div>
-          </HeroAnimation>
+              <VideoPlayer
+                url={homeContent.hero.video.embedUrl}
+                title={homeContent.hero.video.title}
+                minimal
+                className="mx-auto w-full max-w-5xl"
+              />
+            </AnimatedSection>
 
-          <AnimatedSection animation="slideRight" delay={0.3}>
-            <div className="hero-grid section-card relative overflow-hidden p-6 sm:p-8">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10" />
-              <div className="relative space-y-6">
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-                    What GSi brings together
-                  </p>
-                  <div className="mt-4 grid gap-3">
-                    {homeContent.proof.map((item) => (
-                      <div
-                        key={item.title}
-                        className="rounded-2xl border border-border/70 bg-background/85 p-4 transition-all duration-300 hover:border-primary/30 hover:shadow-sm"
-                      >
-                        <h2 className="text-xl font-semibold text-foreground">
-                          {item.title}
-                        </h2>
-                        <p className="mt-2 text-sm leading-7 text-muted-foreground">
-                          {item.description}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="rounded-2xl border border-border/70 bg-primary px-5 py-4 text-primary-foreground">
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em]">
-                    Base
-                  </p>
-                  <p className="mt-2 text-base">{siteConfig.location}</p>
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
+            <HeroAnimation className="text-center">
+              <TextReveal
+                as="h1"
+                className="text-xl font-semibold text-balance text-foreground sm:text-2xl lg:text-3xl"
+                staggerAmount={0.02}
+              >
+                From Bengal to beyond . . .
+              </TextReveal>
+            </HeroAnimation>
+          </div>
         </div>
       </section>
 
