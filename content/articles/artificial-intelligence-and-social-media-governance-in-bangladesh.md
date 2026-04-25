@@ -1,19 +1,20 @@
 ---
-title: Artificial Intelligence and Social Media Governance in Bangladesh
-excerpt: A policy framing of deepfakes, disinformation, platform moderation, and democratic risk in Bangladesh.
-category: AI Policy
-author: Asheer Shah
-authorRole: Founder & Director at GSi
-sourceLabel: GSi
+title: "Artificial Intelligence and Social Media Governance in Bangladesh"
+excerpt: "A policy framing of deepfakes, disinformation, platform moderation, and democratic risk in Bangladesh."
+category: "AI Policy"
+author: "Asheer Shah"
+authorRole: "Founder & Director at GSi"
+sourceLabel: "GSi"
 featured: true
 tags:
-  - Artificial intelligence
-  - Social media
-  - Disinformation
-  - Bangladesh
+  - "Artificial intelligence"
+  - "Social media"
+  - "Disinformation"
+  - "Bangladesh"
+status: "published"
 ---
 
-# Artificial Intelligence and Social Media Governance in Bangladesh
+# Artificial Intelligence and Social Media Governance in Bangladesh edit
 
 Artificial intelligence is no longer a specialised policy topic at the edge of public life. In Bangladesh it now touches electoral politics, media ecosystems, platform moderation, and the everyday circulation of misleading content.
 
