@@ -187,7 +187,7 @@ export function SiteHeader() {
             >
               <span className="sm:hidden">GSi</span>
               <span className="hidden sm:inline">
-                Governance and Security Initiative – GSi
+                Governance and Security Initiative
               </span>
             </span>
             <span
