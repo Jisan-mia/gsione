@@ -366,8 +366,9 @@ export const teamMembers = [
 export const legalContent = {
   privacy: {
     title: "Privacy Policy",
+    effectiveDate: "April 25, 2026",
     description:
-      "How the GSi website handles contact requests, analytics-light browsing, and linked third-party platforms.",
+      "How the GSi website handles contact requests, local theme preferences, and linked third-party platforms.",
     sections: [
       {
         title: "What this site collects",
@@ -376,6 +377,14 @@ export const legalContent = {
       {
         title: "How information is used",
         body: "Contact details and inquiry messages may be used to reply to partnership requests, media inquiries, research collaboration proposals, or training discussions. GSi should not use submitted information for unrelated marketing activity without consent.",
+      },
+      {
+        title: "Theme preference storage",
+        body: "If you switch between light and dark mode, the site saves that preference in your browser's local storage. This value stays on your device and is used only to load the chosen theme consistently on later visits.",
+      },
+      {
+        title: "Analytics and advertising",
+        body: "The current site does not set advertising cookies, create user profiles, or run a behavioural analytics stack. If analytics or embedded third-party tools are added later, this policy should be updated before launch.",
       },
       {
         title: "Third-party services",
@@ -389,6 +398,7 @@ export const legalContent = {
   },
   terms: {
     title: "Terms of Use",
+    effectiveDate: "April 25, 2026",
     description:
       "Basic terms for using the GSi website, reading content, and making contact.",
     sections: [
@@ -399,6 +409,14 @@ export const legalContent = {
       {
         title: "Intellectual property",
         body: "Unless credited to another publisher or source, original copy on this site should be treated as the work of GSi or its credited authors. Reuse should preserve attribution and should not distort the original meaning.",
+      },
+      {
+        title: "No professional advice",
+        body: "Articles, training descriptions, and public commentary are provided for general information. They should not be treated as legal, security, diplomatic, financial, or other professional advice for a specific situation.",
+      },
+      {
+        title: "Accuracy and availability",
+        body: "GSi aims to keep public information accurate and useful, but publication dates, external sources, programme formats, and linked resources may change over time. The site may also be updated or temporarily unavailable without notice.",
       },
       {
         title: "External links",
@@ -412,12 +430,17 @@ export const legalContent = {
   },
   cookies: {
     title: "Cookie Policy",
+    effectiveDate: "April 25, 2026",
     description:
-      "A simple explanation of the minimal browser-side storage used by the site.",
+      "A simple explanation of the minimal browser-side storage used by the GSi site.",
     sections: [
       {
-        title: "Theme preference",
-        body: "The site stores a small browser-side preference so returning visitors can keep their chosen light or dark theme without the first-load flicker seen in the previous implementation.",
+        title: "No essential website cookies",
+        body: "The current public site does not use login, shopping, advertising, or analytics cookies. Visitors can read pages, articles, and training information without accepting a cookie banner.",
+      },
+      {
+        title: "Theme preference storage",
+        body: "The light or dark theme choice is saved in browser local storage rather than a cookie. The value is used only to apply the chosen theme before the page paints, which helps avoid a first-load colour flicker.",
       },
       {
         title: "No advertising profile",

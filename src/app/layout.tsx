@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Lora } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { SiteFooter } from "@/components/site/footer";
@@ -20,18 +20,31 @@ const serif = Lora({
 const themeScript = `
   (function () {
     try {
+      var root = document.documentElement;
       var stored = window.localStorage.getItem('theme');
       var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      var theme = stored || system;
-      document.documentElement.classList.toggle('dark', theme === 'dark');
-      document.documentElement.style.colorScheme = theme;
+      var theme = stored === 'light' || stored === 'dark' ? stored : system;
+      root.classList.toggle('dark', theme === 'dark');
+      root.classList.toggle('light', theme === 'light');
+      root.dataset.theme = theme;
+      root.style.colorScheme = theme;
     } catch (error) {}
   })();
 `;
 
+export const viewport: Viewport = {
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F8FAFC" },
+    { media: "(prefers-color-scheme: dark)", color: "#0B1120" },
+  ],
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: siteConfig.name,
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
   title: `${siteConfig.name} | Governance, security, and technology policy`,
   description: siteConfig.description,
   alternates: {
@@ -101,9 +114,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationId = `${siteUrl}/#organization`;
+
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": organizationId,
     name: siteConfig.name,
     alternateName: siteConfig.shortName,
     url: siteUrl,
@@ -123,15 +139,28 @@ export default function RootLayout({
     ],
   };
 
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteUrl}/#website`,
+    name: siteConfig.name,
+    alternateName: siteConfig.shortName,
+    url: siteUrl,
+    description: siteConfig.description,
+    publisher: {
+      "@id": organizationId,
+    },
+    inLanguage: "en",
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        <meta name="theme-color" content="#1E40AF" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
+            __html: JSON.stringify([organizationSchema, websiteSchema]),
           }}
         />
       </head>

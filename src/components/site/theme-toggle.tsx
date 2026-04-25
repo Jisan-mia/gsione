@@ -7,6 +7,8 @@ type Theme = 'light' | 'dark'
 
 function applyTheme(nextTheme: Theme) {
   document.documentElement.classList.toggle('dark', nextTheme === 'dark')
+  document.documentElement.classList.toggle('light', nextTheme === 'light')
+  document.documentElement.dataset.theme = nextTheme
   document.documentElement.style.colorScheme = nextTheme
   window.localStorage.setItem('theme', nextTheme)
 }
