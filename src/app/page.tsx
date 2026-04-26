@@ -64,6 +64,16 @@ export default function HomePage() {
       <section className="relative overflow-hidden border-b border-border/60 bg-background">
         <div className="page-shell relative flex min-h-[calc(100svh-7rem)] flex-col items-center justify-center py-5 sm:py-7">
           <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-4 sm:gap-5">
+            <HeroAnimation className="text-center">
+              <TextReveal
+                as="h1"
+                className="font-sans text-[2.5rem] font-semibold text-balance text-foreground"
+                staggerAmount={0.02}
+              >
+                From Bengal to beyond . . .
+              </TextReveal>
+            </HeroAnimation>
+
             <AnimatedSection
               animation="scaleIn"
               delay={0.04}
@@ -76,16 +86,6 @@ export default function HomePage() {
                 className="mx-auto w-full max-w-5xl"
               />
             </AnimatedSection>
-
-            <HeroAnimation className="text-center">
-              <TextReveal
-                as="h1"
-                className="text-xl font-semibold text-balance text-foreground sm:text-2xl lg:text-3xl"
-                staggerAmount={0.02}
-              >
-                From Bengal to beyond . . .
-              </TextReveal>
-            </HeroAnimation>
           </div>
         </div>
       </section>
