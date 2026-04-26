@@ -9,7 +9,7 @@ featured: false
 tags:
   - "GSi"
   - "test"
-status: "draft"
+status: "published"
 ---
 
 # New Article testing
