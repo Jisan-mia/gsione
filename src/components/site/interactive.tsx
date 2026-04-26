@@ -627,6 +627,133 @@ export function HoverGlow({ children, className }: HoverGlowProps) {
 }
 
 /* ── Staggered Text ───────────────────────────────────────── */
+/* ── ScrambleText ─────────────────────────────────────────── */
+// Each character lives in its own fixed-width slot (ghost char locks width,
+// scramble char is absolute overlay) — zero layout shift regardless of font.
+// All chars scramble simultaneously; each resolves at a random independent time.
+const GLITCH_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*<>[]{}|=+_~";
+
+interface ScrambleTextProps {
+  children: string;
+  className?: string;
+  as?: "h1" | "h2" | "h3" | "p" | "span";
+  /** Total scramble duration in ms. Default 1400 */
+  duration?: number;
+  /** Auto-trigger interval in ms. 0 = disabled. Default 3000 */
+  autoInterval?: number;
+}
+
+export function ScrambleText({
+  children,
+  className,
+  as: Tag = "span",
+  duration = 1400,
+  autoInterval = 10000,
+}: ScrambleTextProps) {
+  const [scrambled, setScrambled] = useState<(string | null)[]>(() =>
+    Array.from({ length: children.length }, () => null),
+  );
+  const frameRef = useRef<number | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const isRunning = useRef(false);
+
+  const cancel = useCallback(() => {
+    if (frameRef.current !== null) {
+      cancelAnimationFrame(frameRef.current);
+      frameRef.current = null;
+    }
+    isRunning.current = false;
+  }, []);
+
+  const runScramble = useCallback(() => {
+    if (prefersReducedMotion()) return;
+    // Don't interrupt an in-progress animation
+    if (isRunning.current) return;
+
+    isRunning.current = true;
+
+    const src = children.split("");
+    const totalFrames = Math.round((duration / 1000) * 60);
+    const resolveAt = src.map((ch) =>
+      ch === " " || ch === "."
+        ? 0
+        : Math.floor(Math.random() * totalFrames * 0.6) +
+          Math.floor(totalFrames * 0.4),
+    );
+
+    let frame = 0;
+
+    const tick = () => {
+      if (frame >= totalFrames) {
+        setScrambled(src.map(() => null));
+        frameRef.current = null;
+        isRunning.current = false;
+        return;
+      }
+
+      setScrambled(
+        src.map((ch, i) => {
+          if (ch === " " || ch === ".") return null;
+          if (frame >= resolveAt[i]) return null;
+          return GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)];
+        }),
+      );
+
+      frame += 1;
+      frameRef.current = requestAnimationFrame(tick);
+    };
+
+    frameRef.current = requestAnimationFrame(tick);
+  }, [children, duration]);
+
+  // Periodic auto-scramble
+  useEffect(() => {
+    if (autoInterval <= 0) return;
+    // Stagger initial fire so multiple instances don't all fire at once
+    const jitter = Math.random() * 1500;
+    const init = setTimeout(() => {
+      runScramble();
+      timerRef.current = setInterval(runScramble, autoInterval);
+    }, jitter);
+
+    return () => {
+      clearTimeout(init);
+      if (timerRef.current !== null) clearInterval(timerRef.current);
+      cancel();
+    };
+  }, [autoInterval, runScramble, cancel]);
+
+  const chars = children.split("");
+
+  return (
+    <Tag
+      className={cn(className)}
+      onMouseEnter={runScramble}
+      onFocus={runScramble}
+      aria-label={children}
+    >
+      <span aria-hidden="true">
+        {chars.map((ch, i) => {
+          const glyph = scrambled[i];
+          const visible = glyph !== null ? glyph : ch === " " ? "\u00A0" : ch;
+          return (
+            <span key={i} className="relative inline-block">
+              {/* Ghost char — invisible, locks the slot width */}
+              <span className="invisible select-none">
+                {ch === " " ? "\u00A0" : ch}
+              </span>
+              {/* Scramble/original char — absolute overlay, never shifts layout */}
+              <span className="absolute inset-0 flex items-center justify-center">
+                {visible}
+              </span>
+            </span>
+          );
+        })}
+      </span>
+    </Tag>
+  );
+}
+
 interface StaggeredTextProps {
   text: string;
   className?: string;

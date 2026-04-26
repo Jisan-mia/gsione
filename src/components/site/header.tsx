@@ -9,6 +9,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { primaryNavigation, siteConfig } from "@/lib/site";
 import { ThemeToggle } from "@/components/site/theme-toggle";
+import { ScrambleText } from "@/components/site/interactive";
 import { cn } from "@/lib/utils";
 
 function NavLinks({
@@ -85,7 +86,7 @@ export function SiteHeader() {
 
   // Restore document scroll if navigation changes while the menu is closing
   useEffect(() => {
-    document.body.style.overflow = '';
+    document.body.style.overflow = "";
     if (!mobileOpen) return;
 
     const frame = window.requestAnimationFrame(() => {
@@ -132,16 +133,16 @@ export function SiteHeader() {
 
   // Lock body scroll when mobile nav is open; always restore on cleanup
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [mobileOpen]);
 
   // Guarantee scroll is restored when component unmounts
   useEffect(() => {
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, []);
 
@@ -190,14 +191,15 @@ export function SiteHeader() {
                 Governance and Security Initiative
               </span>
             </span>
-            <span
+            <ScrambleText
+              as="span"
               className={cn(
-                "block text-xs text-muted-foreground transition-all duration-500",
+                "block text-xs text-muted-foreground transition-all duration-500 cursor-default",
                 scrolled && "hidden sm:block",
               )}
             >
               {siteConfig.tagline}
-            </span>
+            </ScrambleText>
           </span>
         </Link>
 

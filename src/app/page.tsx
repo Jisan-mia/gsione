@@ -20,6 +20,7 @@ import {
 } from "@/components/site/animated-section";
 import {
   TextReveal,
+  ScrambleText,
   Magnetic,
   Marquee,
   NumberTicker,
@@ -65,13 +66,12 @@ export default function HomePage() {
         <div className="page-shell relative flex min-h-[calc(100svh-7rem)] flex-col items-center justify-center py-5 sm:py-7">
           <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-4 sm:gap-5">
             <HeroAnimation className="text-center">
-              <TextReveal
+              <ScrambleText
                 as="h1"
-                className="font-sans text-[2.5rem] font-semibold text-balance text-foreground"
-                staggerAmount={0.02}
+                className="font-sans text-[2.5rem] font-semibold text-balance text-foreground cursor-default"
               >
                 From Bengal to beyond . . .
-              </TextReveal>
+              </ScrambleText>
             </HeroAnimation>
 
             <AnimatedSection
