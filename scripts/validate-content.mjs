@@ -78,6 +78,12 @@ function validateType(fieldName, value, rule, relativePath, errors) {
       }
       return;
     }
+    case "number": {
+      if (typeof value !== "number" || Number.isNaN(value)) {
+        errors.push(`${relativePath}: frontmatter field \`${fieldName}\` must be a number.`);
+      }
+      return;
+    }
     case "date": {
       if (value instanceof Date) {
         if (Number.isNaN(value.getTime())) {

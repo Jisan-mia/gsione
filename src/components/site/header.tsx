@@ -83,7 +83,7 @@ export function SiteHeader() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
 
-  // Close mobile menu on route change and immediately restore scroll
+  // Restore document scroll if navigation changes while the menu is closing
   useEffect(() => {
     document.body.style.overflow = '';
     if (!mobileOpen) return;

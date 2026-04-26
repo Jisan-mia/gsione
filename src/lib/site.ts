@@ -5,7 +5,7 @@ export const siteUrl =
 export const siteConfig = {
   name: "Governance and Security Initiative",
   shortName: "GSi",
-  tagline: "Research • Dialogue • Reform",
+  tagline: "From Bengal to beyond . . .",
   title: "Governance and Security Initiative",
   description:
     "Independent think tank and training academy in Dhaka working on governance, national security, cybersecurity, AI policy, and public-interest reform.",
@@ -86,18 +86,29 @@ export const archivedHomeSections = {
 
 export const homeContent = {
   hero: {
-    eyebrow: "Independent think tank and training academy",
-    title:
-      "Governance, security, and technology policy grounded in real public-interest work.",
+    eyebrow: "Governance and Security Initiative",
+    title: "Policy thinking for a more secure public future.",
     description:
-      "GSi brings together policy research, executive learning, public commentary, and community-facing initiatives across governance, national security, cybersecurity, AI policy, and urban reform.",
+      "GSi is a Bangladesh-rooted think tank and training academy working across governance, security, cyber policy, AI, and public-interest reform.",
     points: [
-      "Based in Dhaka and focused on Bangladesh within wider regional and global debates.",
-      "Academic and professional experience spanning Bangladesh, the UK, the Netherlands, and the United States.",
-      "A public-facing platform for political, cybersecurity, governance, and nonprofit work.",
+      "Research",
+      "Training",
+      "Public dialogue",
     ],
+    video: {
+      label: "Intro video",
+      title: "Meet GSi in under a few minutes",
+      description:
+        "A concise introduction to the initiative, its focus areas, and the kind of public-interest work visitors can explore next.",
+      embedUrl: "https://youtu.be/ApAvTMdAUmQ?si=pmE1m9uYUHp0E0Qe",
+    },
   },
   proof: [
+    {
+      title: "What visitors will get",
+      description:
+        "A quick introduction to the organisation, the issues it works on, and the kind of research and training they can explore next.",
+    },
     {
       title: "Research-led",
       description:
@@ -318,61 +329,12 @@ export const founderProfile = {
 
 export const leadershipProfiles = [founderProfile] as const;
 
-export const teamMembers = [
-  {
-    id: "syeda-nafisa-anjum",
-    name: "Syeda Nafisa Anjum",
-    role: "Digital Security Researcher",
-    image: "/team-nafisa.jpeg",
-    bio: "Syeda Nafisa Anjum is a Digital Security Researcher at GSi, currently studying Economics at BRAC University. Her research focuses on digital violence against women, data protection legislation, environmental governance, and the intersection of technology policy with gender-based security.",
-    articles: [
-      "Connected but Not Protected: Bangladesh Data Ordinance Act 2025, Legal Loopholes and the Costs to Women",
-      "Dhaka: A Killing Test Tube for Children — Hemayetpur Supplying the Poisonous Gas",
-    ],
-    areas: [
-      "Digital violence and gender-based cyber threats",
-      "Data protection and privacy legislation",
-      "Environmental governance and public health",
-    ],
-  },
-  {
-    id: "abul-kasem",
-    name: "Abul Kasem",
-    role: "Governance Researcher",
-    image: null,
-    bio: "Abul Kasem is a Governance Researcher at GSi focusing on institutional cybersecurity preparedness, behavioral policy interventions, and urban environmental governance. His work applies analytical frameworks to practical governance challenges in Bangladesh.",
-    articles: [
-      "From Random Clicks to a Human Firewall: First-Order Defenses Against Phishing in Bangladesh",
-      "Choking the Bay and Flooding Dhaka\u2019s Streets with Plastic: Can Peter Hall\u2019s Policy Paradigms Rescue DNCC?",
-    ],
-    areas: [
-      "Cybersecurity governance and phishing defense",
-      "Urban environmental policy",
-      "Behavioral policy frameworks",
-    ],
-  },
-  {
-    id: "nusrat-khan",
-    name: "Nusrat Khan",
-    role: "Cybersecurity Researcher",
-    image: null,
-    bio: "Nusrat Khan is a Cybersecurity Researcher at GSi with a focus on cyber law, corporate data protection accountability, and comparative legal frameworks across South Asia and Europe.",
-    articles: [
-      "Cyber Law and the Illusion of Protection: When Personal Data Is Leaked in Bangladesh, Who Is Accountable?",
-    ],
-    areas: [
-      "Cyber law and data protection",
-      "Corporate accountability in data governance",
-      "Comparative legal analysis (GDPR vs Bangladesh)",
-    ],
-  },
-] as const;
-
 export const legalContent = {
   privacy: {
     title: "Privacy Policy",
+    effectiveDate: "April 25, 2026",
     description:
-      "How the GSi website handles contact requests, analytics-light browsing, and linked third-party platforms.",
+      "How the GSi website handles contact requests, local theme preferences, and linked third-party platforms.",
     sections: [
       {
         title: "What this site collects",
@@ -381,6 +343,14 @@ export const legalContent = {
       {
         title: "How information is used",
         body: "Contact details and inquiry messages may be used to reply to partnership requests, media inquiries, research collaboration proposals, or training discussions. GSi should not use submitted information for unrelated marketing activity without consent.",
+      },
+      {
+        title: "Theme preference storage",
+        body: "If you switch between light and dark mode, the site saves that preference in your browser's local storage. This value stays on your device and is used only to load the chosen theme consistently on later visits.",
+      },
+      {
+        title: "Analytics and advertising",
+        body: "The current site does not set advertising cookies, create user profiles, or run a behavioural analytics stack. If analytics or embedded third-party tools are added later, this policy should be updated before launch.",
       },
       {
         title: "Third-party services",
@@ -394,6 +364,7 @@ export const legalContent = {
   },
   terms: {
     title: "Terms of Use",
+    effectiveDate: "April 25, 2026",
     description:
       "Basic terms for using the GSi website, reading content, and making contact.",
     sections: [
@@ -404,6 +375,14 @@ export const legalContent = {
       {
         title: "Intellectual property",
         body: "Unless credited to another publisher or source, original copy on this site should be treated as the work of GSi or its credited authors. Reuse should preserve attribution and should not distort the original meaning.",
+      },
+      {
+        title: "No professional advice",
+        body: "Articles, training descriptions, and public commentary are provided for general information. They should not be treated as legal, security, diplomatic, financial, or other professional advice for a specific situation.",
+      },
+      {
+        title: "Accuracy and availability",
+        body: "GSi aims to keep public information accurate and useful, but publication dates, external sources, programme formats, and linked resources may change over time. The site may also be updated or temporarily unavailable without notice.",
       },
       {
         title: "External links",
@@ -417,12 +396,17 @@ export const legalContent = {
   },
   cookies: {
     title: "Cookie Policy",
+    effectiveDate: "April 25, 2026",
     description:
-      "A simple explanation of the minimal browser-side storage used by the site.",
+      "A simple explanation of the minimal browser-side storage used by the GSi site.",
     sections: [
       {
-        title: "Theme preference",
-        body: "The site stores a small browser-side preference so returning visitors can keep their chosen light or dark theme without the first-load flicker seen in the previous implementation.",
+        title: "No essential website cookies",
+        body: "The current public site does not use login, shopping, advertising, or analytics cookies. Visitors can read pages, articles, and training information without accepting a cookie banner.",
+      },
+      {
+        title: "Theme preference storage",
+        body: "The light or dark theme choice is saved in browser local storage rather than a cookie. The value is used only to apply the chosen theme before the page paints, which helps avoid a first-load colour flicker.",
       },
       {
         title: "No advertising profile",

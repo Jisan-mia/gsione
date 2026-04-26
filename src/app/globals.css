@@ -38,6 +38,7 @@
     "Segoe UI", sans-serif;
   --font-serif:
     "Lora", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  color-scheme: light;
   --radius: 1.25rem;
   --background: oklch(0.984 0.003 248);
   /* #F8FAFC cool white */
@@ -69,7 +70,8 @@
 }
 
 /* ── Blue governance palette (dark) ──────────────────────────── */
-.dark {
+:root.dark {
+  color-scheme: dark;
   --background: oklch(0.155 0.025 264);
   /* #0B1120 dark navy */
   --foreground: oklch(0.925 0.008 253);
@@ -93,6 +95,30 @@
   --border: oklch(0.300 0.020 264);
   --input: oklch(0.300 0.020 264);
   --ring: oklch(0.586 0.170 261);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    color-scheme: dark;
+    --background: oklch(0.155 0.025 264);
+    --foreground: oklch(0.925 0.008 253);
+    --card: oklch(0.195 0.025 264);
+    --card-foreground: oklch(0.925 0.008 253);
+    --popover: oklch(0.195 0.025 264);
+    --popover-foreground: oklch(0.925 0.008 253);
+    --primary: oklch(0.586 0.170 261);
+    --primary-foreground: oklch(0.155 0.025 264);
+    --secondary: oklch(0.245 0.020 264);
+    --secondary-foreground: oklch(0.925 0.008 253);
+    --muted: oklch(0.245 0.020 264);
+    --muted-foreground: oklch(0.700 0.015 253);
+    --accent: oklch(0.700 0.140 250);
+    --accent-foreground: oklch(0.155 0.025 264);
+    --destructive: oklch(0.72 0.17 24.94);
+    --border: oklch(0.300 0.020 264);
+    --input: oklch(0.300 0.020 264);
+    --ring: oklch(0.586 0.170 261);
+  }
 }
 
 @layer base {

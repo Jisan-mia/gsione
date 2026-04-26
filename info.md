@@ -1,7 +1,7 @@
 ## From Facebook Page of GSI
 Governance and Security Initiative - GSi 
 Independent think tank and training academy on governance, national security, cybersecurity & AI policy.
-Research • Dialogue • Reform
+From Bengal to beyond . . .
 
 Page · Nonprofit organization
 

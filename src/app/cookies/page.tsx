@@ -17,13 +17,16 @@ export default function CookiesPage() {
           <h1 className="mt-5 text-5xl font-semibold text-balance text-foreground sm:text-6xl">
             {legalContent.cookies.title}
           </h1>
+          <p className="mt-4 text-sm font-medium text-primary">
+            Effective {legalContent.cookies.effectiveDate}
+          </p>
           <p className="mt-6 text-base leading-8 text-muted-foreground sm:text-lg">
             {legalContent.cookies.description}
           </p>
           <div className="mt-10 space-y-5">
             {legalContent.cookies.sections.map((section) => (
               <article key={section.title} className="section-card p-6 sm:p-7">
-                <h2 className="text-3xl font-semibold text-foreground">{section.title}</h2>
+                <h2 className="text-2xl font-semibold text-foreground sm:text-3xl">{section.title}</h2>
                 <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
                   {section.body}
                 </p>

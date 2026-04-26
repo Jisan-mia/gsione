@@ -8,8 +8,7 @@ export const contentType = ogImageContentType;
 export default function OpenGraphImage() {
   return renderOgImage({
     eyebrow: "Governance and Security Initiative",
-    title:
-      "Governance, security, and technology policy for the public interest.",
+    title: siteConfig.tagline,
     description: siteConfig.description,
     meta: "Dhaka, Bangladesh",
   });

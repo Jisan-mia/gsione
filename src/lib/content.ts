@@ -10,6 +10,9 @@ const blogRoot = path.join(contentRoot, "articles");
 const analysisRoot = path.join(contentRoot, "analysis");
 const podcastRoot = path.join(contentRoot, "podcast");
 const trainingRoot = path.join(contentRoot, "training");
+const teamRoot = path.join(contentRoot, "team");
+
+export type ContentStatus = "published" | "draft" | "archived";
 
 export interface BlogPost {
   slug: string;
@@ -23,6 +26,7 @@ export interface BlogPost {
   sourceUrl?: string;
   featured: boolean;
   tags: string[];
+  status?: ContentStatus;
   content: string;
   readingTime: string;
   updatedAt?: string;
@@ -40,6 +44,7 @@ export interface AnalysisPost {
   sourceUrl?: string;
   featured: boolean;
   tags: string[];
+  status?: ContentStatus;
   content: string;
   readingTime: string;
   updatedAt?: string;
@@ -57,6 +62,7 @@ export interface TrainingProgram {
   audience: string[];
   focusAreas: string[];
   outcomes: string[];
+  status?: ContentStatus;
   content: string;
   updatedAt?: string;
 }
@@ -68,7 +74,25 @@ export interface PodcastEpisode {
   guestName: string;
   hostName: string;
   youtubeUrl: string;
+  status?: ContentStatus;
   content: string;
+  updatedAt?: string;
+}
+
+export interface TeamMember {
+  slug: string;
+  name: string;
+  role: string;
+  image?: string;
+  imageAlt?: string;
+  linkedin?: string;
+  email?: string;
+  sortOrder: number;
+  founder?: boolean;
+  status?: ContentStatus;
+  articles: string[];
+  areas: string[];
+  bio: string;
   updatedAt?: string;
 }
 
@@ -118,6 +142,10 @@ function sortByDate<T extends { publishedAt?: string; slug: string }>(
     .map(({ item }) => item);
 }
 
+function isPublished<T extends { status?: ContentStatus }>(item: T) {
+  return !item.status || item.status === "published";
+}
+
 function sortByDateThenFeatured<
   T extends { publishedAt?: string; featured: boolean; slug: string },
 >(items: T[]) {
@@ -158,7 +186,7 @@ export const getBlogPosts = cache((): BlogPost[] => {
     },
   );
 
-  return sortByDate(posts);
+  return sortByDate(posts.filter(isPublished));
 });
 
 export const getFeaturedBlogPosts = cache(() =>
@@ -187,7 +215,7 @@ export const getAnalysisPosts = cache((): AnalysisPost[] => {
     },
   );
 
-  return sortByDate(posts);
+  return sortByDate(posts.filter(isPublished));
 });
 
 export const getFeaturedAnalysisPosts = cache(() =>
@@ -212,7 +240,7 @@ export const getTrainingPrograms = cache((): TrainingProgram[] => {
     },
   );
 
-  return sortByDateThenFeatured(programs);
+  return sortByDateThenFeatured(programs.filter(isPublished));
 });
 
 export const getFeaturedTrainingPrograms = cache(() =>
@@ -237,7 +265,32 @@ export const getPodcastEpisodes = cache((): PodcastEpisode[] => {
     },
   );
 
-  return sortByDate(episodes);
+  return sortByDate(episodes.filter(isPublished));
+});
+
+export const getTeamMembers = cache((): TeamMember[] => {
+  const members = readMarkdownFiles(teamRoot).map(
+    ({ slug, data, content, updatedAt }) => {
+      const frontmatter = data as Omit<TeamMember, "slug" | "bio">;
+
+      return {
+        ...frontmatter,
+        slug,
+        bio: content.trim(),
+        updatedAt,
+      };
+    },
+  );
+
+  return members
+    .filter((member) => isPublished(member) && !member.founder)
+    .sort((left, right) => {
+      if (left.sortOrder !== right.sortOrder) {
+        return left.sortOrder - right.sortOrder;
+      }
+
+      return left.name.localeCompare(right.name);
+    });
 });
 
 export function formatDisplayDate(date?: string) {
