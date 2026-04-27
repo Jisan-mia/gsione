@@ -84,17 +84,10 @@ export function SiteHeader() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
 
-  // Restore document scroll if navigation changes while the menu is closing
+  // Close the mobile menu when the route changes
   useEffect(() => {
-    document.body.style.overflow = "";
-    if (!mobileOpen) return;
-
-    const frame = window.requestAnimationFrame(() => {
-      setMobileOpen(false);
-    });
-
-    return () => window.cancelAnimationFrame(frame);
-  }, [mobileOpen, pathname]);
+    setMobileOpen(false);
+  }, [pathname]);
 
   // Keep --header-h CSS variable in sync with actual header height
   useEffect(() => {
