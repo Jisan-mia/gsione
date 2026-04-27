@@ -100,7 +100,7 @@ export const homeContent = {
       title: "Meet GSi in under a few minutes",
       description:
         "A concise introduction to the initiative, its focus areas, and the kind of public-interest work visitors can explore next.",
-      embedUrl: "https://youtu.be/ApAvTMdAUmQ?si=pmE1m9uYUHp0E0Qe",
+      embedUrl: "https://www.youtube.com/watch?v=h-hemV8-JWM",
     },
   },
   proof: [
