@@ -4,6 +4,7 @@ publishedAt: "2026-04-16"
 guestName: "Placeholder Guest"
 hostName: "GSi Host"
 youtubeUrl: "https://youtu.be/ApAvTMdAUmQ?si=pmE1m9uYUHp0E0Qe"
+status: "draft"
 ---
 
 # Episode notes
