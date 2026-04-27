@@ -83,10 +83,19 @@ export function SiteHeader() {
   const [hidden, setHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
+  const previousPathnameRef = useRef(pathname);
 
   // Close the mobile menu when the route changes
   useEffect(() => {
-    setMobileOpen(false);
+    if (previousPathnameRef.current === pathname) return;
+
+    previousPathnameRef.current = pathname;
+
+    const frame = window.requestAnimationFrame(() => {
+      setMobileOpen(false);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
   }, [pathname]);
 
   // Keep --header-h CSS variable in sync with actual header height
