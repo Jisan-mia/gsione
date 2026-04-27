@@ -92,6 +92,7 @@ export function SiteHeader() {
     previousPathnameRef.current = pathname;
 
     const frame = window.requestAnimationFrame(() => {
+      document.body.style.overflow = "";
       setMobileOpen(false);
     });
 
