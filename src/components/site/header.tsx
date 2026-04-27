@@ -83,18 +83,21 @@ export function SiteHeader() {
   const [hidden, setHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
+  const previousPathnameRef = useRef(pathname);
 
-  // Restore document scroll if navigation changes while the menu is closing
+  // Close the mobile menu when the route changes
   useEffect(() => {
-    document.body.style.overflow = "";
-    if (!mobileOpen) return;
+    if (previousPathnameRef.current === pathname) return;
+
+    previousPathnameRef.current = pathname;
 
     const frame = window.requestAnimationFrame(() => {
+      document.body.style.overflow = "";
       setMobileOpen(false);
     });
 
     return () => window.cancelAnimationFrame(frame);
-  }, [mobileOpen, pathname]);
+  }, [pathname]);
 
   // Keep --header-h CSS variable in sync with actual header height
   useEffect(() => {
