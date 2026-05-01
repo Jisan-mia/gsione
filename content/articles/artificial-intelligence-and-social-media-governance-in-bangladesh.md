@@ -5,7 +5,7 @@ category: "AI Policy"
 author: "Asheer Shah"
 authorRole: "Founder & Director at GSi"
 sourceLabel: "GSi"
-featured: true
+featured: false
 tags:
   - "Artificial intelligence"
   - "Social media"
